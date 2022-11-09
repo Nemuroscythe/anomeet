@@ -1,14 +1,21 @@
+# Prérequis
+Version de python : 3.8.10
+- https://www.python.org/downloads/windows/
 
-## Démarrer l'application
-
-Pour lancer l'application sur http://127.0.0.1:5000
-:
+## Environnement virtuel
+### Creation de l'environnement virtuel :
 ```sh
-flask --app main --debug run
+python3 -m venv ./venv
 ```
+
+### Activation de l'environnement virtuel :
+```sh
+./venv/Scripts/activate
+```
+
 ## Gestion des librairies
 ### Mettre à jour les librairies
-
+> Attention à faire dans une fois l'environnement virtuel activer
 ```sh
 pip install -r requirements.txt
 ```
