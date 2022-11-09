@@ -25,6 +25,14 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
+## Démarrer l'application
+
+Pour lancer l'application sur http://127.0.0.1:5000
+:
+```sh
+flask --app main --debug run
+```
+
 ## Informations sur le projet
 ### Structure
 Le project contient :
