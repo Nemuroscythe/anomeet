@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ### Mettre à jour requirements.txt
 
 ```sh
-pip freeze < requirements.txt
+pip freeze > requirements.txt
 ```
 
 ## Informations sur le projet
