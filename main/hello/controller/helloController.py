@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint
+    Blueprint,jsonify
 )
 
 from main.hello.service import helloService
@@ -14,4 +14,4 @@ bp = Blueprint('hello', __name__, url_prefix='/')
 @bp.route('/hello')
 def getHello():
     message = helloService.getHelloMessage()
-    return message
+    return jsonify(message.__dict__)
