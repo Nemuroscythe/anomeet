@@ -15,7 +15,7 @@ python3 -m venv ./venv
 
 ## Gestion des librairies
 ### Mettre à jour les librairies
-> Attention à faire dans une fois l'environnement virtuel activer
+> Attention à faire une fois l'environnement virtuel activé
 ```sh
 pip install -r requirements.txt
 ```
