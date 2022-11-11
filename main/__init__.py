@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from .hello.controller import helloController
 
 def create_app(test_config=None):
     # create and configure the app
@@ -13,9 +14,7 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    #     Blueprints
+    app.register_blueprint(helloController.bp)
 
     return app
