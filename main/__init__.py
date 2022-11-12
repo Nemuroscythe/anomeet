@@ -17,6 +17,8 @@ database = SQLAlchemy(app)
 database.init_app(app)
 
 from .hello.controller.helloController import bp
+from .logging.loggingController import bp as bpLogging
 
 #     Blueprints
 app.register_blueprint(bp)
+app.register_blueprint(bpLogging)
