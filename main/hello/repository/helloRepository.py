@@ -8,3 +8,9 @@ def getHelloMessage():
     dbResponse = db.session.execute(db.select(HelloMessage)).first()
     app.logger.info(type(dbResponse))  # Row est une classe de SQLAlchemy qui fonctionne comme un tuple
     return dbResponse[0]
+
+
+def createHelloMessage(helloMessage):
+    db.session.add(helloMessage)
+    db.session.commit()
+    return None

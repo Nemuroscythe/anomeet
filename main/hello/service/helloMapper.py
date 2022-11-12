@@ -1,4 +1,5 @@
 from main.hello.service.dto.HelloMessageDTO import HelloMessageDTO
+from main.hello.models.HelloMessage import HelloMessage
 
 
 # Ce fichier nous permet de convertir un objet de type entité (lié à une table)
@@ -7,3 +8,7 @@ from main.hello.service.dto.HelloMessageDTO import HelloMessageDTO
 
 def convertHelloMessageToDTO(helloMessage):
     return HelloMessageDTO(helloMessage.content)
+
+
+def convertJSONToHelloMessage(helloMessageJson):
+    return HelloMessage(helloMessageJson["content"])
