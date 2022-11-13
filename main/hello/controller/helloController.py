@@ -29,3 +29,8 @@ def updateHelloMessage(id):  # Notez comment je passe et récupère une variable
     body = request.json
     helloService.updateHelloMessage(id, body)
     return "", 204  # 204 --> HTTP code/status pour "no content" qui signifie que l'appel et réussi mais ne renvoie rien
+
+@bp.route('/hello/<id>', methods=["DELETE"])
+def deleteHelloMessage(id):
+    helloService.deleteHelloMessage(id)
+    return "", 204  # 204 --> HTTP code/status pour "no content" qui signifie que l'appel et réussi mais ne renvoie rien

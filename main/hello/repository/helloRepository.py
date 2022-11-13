@@ -22,3 +22,10 @@ def updateHelloMessage(helloMessage):
     helloMessageDB.content = helloMessage.content # J'effectue une mise à jour de la donnée, ce qui est repéré par l'ORM
     db.session.commit() #Je commit se changement dans la bdd
     return None
+
+
+def deleteHelloMessage(id):
+    helloMessageDB = db.get_or_404(HelloMessage, id) # Je récupère la donnée liée à l'id, nécessaire pour l'ORM
+    db.session.delete(helloMessageDB)
+    db.session.commit() #Je commit se changement dans la bdd
+    return None

@@ -18,3 +18,8 @@ def updateHelloMessage(id, helloMessageJson):
     helloMessage = helloMapper.convertJSONToHelloMessage(helloMessageJson, id)
     helloRepository.updateHelloMessage(helloMessage)
     return None
+
+
+def deleteHelloMessage(id):
+    helloRepository.deleteHelloMessage(id)
+    return None
