@@ -2,6 +2,7 @@ from flask import (
     Blueprint, jsonify, request
 )
 
+from main import app
 from main.hello.service import helloService
 
 # Ce fichier contient tout nos points d'entrées (endpoints) pour la partie "hello"
@@ -12,8 +13,16 @@ bp = Blueprint('hello', __name__, url_prefix='/')
 
 # Une simple page sur /hello HTTP method par défaut : GET
 @bp.route('/hello')
-def getHello():
-    message = helloService.getHelloMessage()
+def getHelloMessages():
+    helloMessages = helloService.getHelloMessages()
+    app.logger.info(helloMessages)
+    helloMessagesDict = map(lambda helloMessage: helloMessage.__dict__, helloMessages)
+    return jsonify(list(helloMessagesDict))
+
+
+@bp.route('/hello/<id>')
+def getHelloMessage(id):
+    message = helloService.getHelloMessage(id)
     return jsonify(message.__dict__)
 
 
@@ -29,6 +38,7 @@ def updateHelloMessage(id):  # Notez comment je passe et récupère une variable
     body = request.json
     helloService.updateHelloMessage(id, body)
     return "", 204  # 204 --> HTTP code/status pour "no content" qui signifie que l'appel et réussi mais ne renvoie rien
+
 
 @bp.route('/hello/<id>', methods=["DELETE"])
 def deleteHelloMessage(id):

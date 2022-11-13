@@ -3,8 +3,13 @@ from main.hello.service import helloMapper
 
 
 # Ce fichier contient notre logique et manipulations de données
-def getHelloMessage():
-    helloMessage = helloRepository.getHelloMessage()
+def getHelloMessages():
+    helloMessage = helloRepository.getHelloMessages()
+    return helloMapper.convertHelloMessageListToDTO(helloMessage)
+
+
+def getHelloMessage(id):
+    helloMessage = helloRepository.getHelloMessage(id)
     return helloMapper.convertHelloMessageToDTO(helloMessage)
 
 
