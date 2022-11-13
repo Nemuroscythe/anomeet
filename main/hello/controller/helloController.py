@@ -19,6 +19,13 @@ def getHello():
 
 @bp.route('/hello', methods=["POST"])
 def createHelloMessage():
-    body = request.json # request permet de récupérer des informations, ici le body s'il est en json
+    body = request.json  # request permet de récupérer des informations, ici le body s'il est en json
     message = helloService.createHelloMessage(body)
     return jsonify(message.__dict__), 201  # 201 --> HTTP code/status pour "created"
+
+
+@bp.route('/hello/<id>', methods=["PUT"])
+def updateHelloMessage(id):  # Notez comment je passe et récupère une variable dans l'url
+    body = request.json
+    helloService.updateHelloMessage(id, body)
+    return "", 204  # 204 --> HTTP code/status pour "no content" qui signifie que l'appel et réussi mais ne renvoie rien

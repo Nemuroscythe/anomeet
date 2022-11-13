@@ -12,3 +12,9 @@ def createHelloMessage(helloMessageJson):
     helloMessage = helloMapper.convertJSONToHelloMessage(helloMessageJson)
     helloRepository.createHelloMessage(helloMessage)
     return helloMapper.convertHelloMessageToDTO(helloMessage)
+
+
+def updateHelloMessage(id, helloMessageJson):
+    helloMessage = helloMapper.convertJSONToHelloMessage(helloMessageJson, id)
+    helloRepository.updateHelloMessage(helloMessage)
+    return None

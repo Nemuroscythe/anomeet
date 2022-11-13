@@ -11,11 +11,9 @@ class HelloMessage(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     content = db.Column(db.String(1000))
 
-    def __init__(self, id, content):
-        self.id = id
-        self.content = content
-
-    def __init__(self, content):
+    def __init__(self, content, id=None):
+        if id is not None:
+            self.id = id
         self.content = content
 
     def __repr__(self):
