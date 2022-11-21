@@ -1,0 +1,10 @@
+Hosted on alwaysdata
+https://www.alwaysdata.com/fr/
+
+
+
+HOST = "postgresql-test-anomeet.alwaysdata.net"
+USER = "test-anomeet_application"
+PASSWORD = "Application_Anomeet"
+DATABASE = "test-anomeet_postgresql"
+PORT = "5432"
