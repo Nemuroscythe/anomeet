@@ -51,19 +51,35 @@ application = Flask(__name__)
 #     return str(data[0])
 
 
-@application.route("/user", methods=["GET"])
+@application.route("/create_user", methods=["GET"])
 def create_user():
-    v1 = 'ali'
-    v2 = 'duman'
-    v3 = 'ali@duman.be'
-    v4 = 'ali'
-    conn = psycopg2.connect(
-        "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO Users (first_name, last_name, email, password) VALUES ('ali','duman','ali@duman.be','ali')")
-    conn.commit()
-    cursor.close()
-    conn.close()
+    # """ insert a new vendor into the vendors table """
+    sql = """INSERT INTO users(first_name, last_name, email, password)
+             VALUES(%s,%s,%s,%s);"""
+    first_name = "Jean-Michel"
+    last_name = "Dupont"
+    email = "jean-mi169@dupont.com"
+    password = "azerty123"
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(dbname="test-anomeet_Postgresql",
+                                user="test-anomeet_application",
+                                password="Application_Anomeet",
+                                host="127.0.0.1",
+                                port="5432")
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (first_name, last_name, email, password))
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
     return "Utilisateur créé !"
 
 
