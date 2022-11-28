@@ -19,13 +19,13 @@ except:
 
 #######################################################
 # Info connection DataBase
-# Sur Postgresql - Allwaysdata
+# Sur Postgresql - Alwaysdata
 #
-HOST = "127.0.0.1"
+HOST = "postgresql-test-anomeet.alwaysdata.net"
 USER = "test-anomeet_application"
 PASSWORD = "Application_Anomeet"
-DATABASE = "test-anomeet_Postgresql"
-PORT = "5050"
+DATABASE = "test-anomeet_postgresql"
+PORT = "5432"
 
 #######################################################
 # Initialisation Flask
@@ -35,25 +35,24 @@ application = Flask(__name__)
 
 
 # Route index
-# @application.route("/")
-# def index():
-#     # Connexion à la base de données allwaydata
-#     with psycopg2.connect(
-#             "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
-#         with conn.cursor() as cur:
-#             cur.execute('SELECT * FROM "public"."hello";')
-#             data = cur.fetchone()
-#     # A partir d'ici data = une list contenant les infos reçues du serveur
-#     # idealement il faut faire un print de data → print(data)
-#     # pour voir comment les données sont organisées sur la table sql
-#     # ici je sais qu'il me faut data[0]
-#     print("test")
-#     return str(data[0])
+@application.route("/")
+def index():
+    # Connexion à la base de données alwaydata
+    with psycopg2.connect(
+            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
+        with conn.cursor() as cur:
+            cur.execute('SELECT * FROM "public"."hello";')
+            data = cur.fetchone()
+    # À partir d'ici data = une list contenant les infos reçues du serveur
+    # idéalement il faut faire un print de data → print(data)
+    # pour voir comment les données sont organisées sur la table sql
+    # ici je sais qu'il me faut data[0]
+    print("test")
+    return str(data[0])
 
 
-@application.route("/create_user", methods=["GET"])
+@application.route("/users", methods=["GET"])
 def create_user():
-    # """ insert a new vendor into the vendors table """
     sql = """INSERT INTO users(first_name, last_name, email, password)
              VALUES(%s,%s,%s,%s);"""
     first_name = "Jean-Michel"
@@ -62,11 +61,7 @@ def create_user():
     password = "azerty123"
     try:
         # connect to the PostgreSQL database
-        conn = psycopg2.connect(dbname="test-anomeet_Postgresql",
-                                user="test-anomeet_application",
-                                password="Application_Anomeet",
-                                host="127.0.0.1",
-                                port="5432")
+        conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
