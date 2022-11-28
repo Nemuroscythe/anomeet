@@ -10,6 +10,7 @@ def test_last_name_empty():
         password = "JohnDoe007"
         Users(last_name, first_name, email, password)
 
+
 def test_email_invalid():
     with pytest.raises(Exception) as e_info:
         last_name = "John"

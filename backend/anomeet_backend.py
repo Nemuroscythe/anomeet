@@ -55,21 +55,23 @@ def index():
 
 @application.route("/users", methods=["GET"])
 def create_user():
-    sql = """INSERT INTO users(first_name, last_name, email, password)
-             VALUES(%s,%s,%s,%s);"""
+    sql = """INSERT INTO users(first_name, last_name, email, password, sex)
+             VALUES(%s,%s,%s,%s,%s);"""
 
     first_name = "Jean-Michel"
     last_name = "Dupont"
-    email = "jean-mi169@dupont.com"
+    email = "jean-mi167@dupont.com"
     password = "azerty123"
-    user = Users(first_name, last_name, email, password)
+    sex = "H"
+    user = Users(first_name, last_name, email, password, sex)
+
     try:
         # connect to the PostgreSQL database
         conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (user.first_name, user.last_name, user.email, user.password))
+        cur.execute(sql, (user.first_name, user.last_name, user.email, user.password, user.sex))
         # commit the changes to the database
         conn.commit()
         # close communication with the database
