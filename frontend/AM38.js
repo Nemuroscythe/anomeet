@@ -10,11 +10,11 @@ function sendMessage()
             {
                 if(this.responseText == "OK")
                 {
-                    console.log("message bien envoyé !")
+                    console.log("message bien envoyé !");
                 }
                 else
                 {
-                    console.error("erreur d'envoi du message")
+                    console.error("erreur d'envoi du message");
                 }
             }
         };
