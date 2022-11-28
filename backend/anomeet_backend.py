@@ -58,6 +58,20 @@ def index():
 
 
 
+# Route concernant la reception d'un message
+@application.route("/msgSent", methods=["POST"])
+def msgSent():
+	msg = request.data
+
+	return msg
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

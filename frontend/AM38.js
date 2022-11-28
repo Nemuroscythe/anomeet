@@ -8,13 +8,14 @@ function sendMessage()
         {
             if (this.readyState == 4 && this.status == 200)
             {
-                if(this.responseText == "OK")
+                if(this.responseText == 0)
                 {
                     console.log("message bien envoyé !");
                 }
                 else
                 {
                     console.error("erreur d'envoi du message");
+                    window.alert(this.responseText);
                 }
             }
         };
