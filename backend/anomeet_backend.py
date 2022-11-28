@@ -5,6 +5,8 @@
 #######################################################
 import os
 
+from backend.users import Users
+
 try:
     import flask
 except:
@@ -37,7 +39,7 @@ application = Flask(__name__)
 # Route index
 @application.route("/")
 def index():
-    # Connexion à la base de données alwaydata
+    # Connexion à la base de données alwaysdata
     with psycopg2.connect(
             "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
         with conn.cursor() as cur:
@@ -55,17 +57,19 @@ def index():
 def create_user():
     sql = """INSERT INTO users(first_name, last_name, email, password)
              VALUES(%s,%s,%s,%s);"""
+
     first_name = "Jean-Michel"
     last_name = "Dupont"
     email = "jean-mi169@dupont.com"
     password = "azerty123"
+    user = Users(first_name, last_name, email, password)
     try:
         # connect to the PostgreSQL database
         conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (first_name, last_name, email, password))
+        cur.execute(sql, (user.first_name, user.last_name, user.email, user.password))
         # commit the changes to the database
         conn.commit()
         # close communication with the database
