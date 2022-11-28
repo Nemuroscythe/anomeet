@@ -4,8 +4,8 @@ from backend.users import Users
 
 def test_last_name_empty():
     with pytest.raises(Exception) as e_info:
-        last_name = ""
-        first_name = "Doe"
+        last_name = "john"
+        first_name = "doe"
         email = "JohnDoe@anonymous.com"
         password = "JohnDoe007"
         Users(last_name, first_name, email, password)

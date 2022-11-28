@@ -58,10 +58,10 @@ def create_user():
     sql = """INSERT INTO users(first_name, last_name, email, password, sex)
              VALUES(%s,%s,%s,%s,%s);"""
 
-    first_name = "Jean-Michel"
+    first_name = "john"
     last_name = "Dupont"
-    email = "jean-mi167@dupont.com"
-    password = "azerty123"
+    email = "jean-mi166@dupont.com"
+    password = "Lambofgod!1409"
     sex = "H"
     user = Users(first_name, last_name, email, password, sex)
 
