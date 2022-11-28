@@ -36,6 +36,16 @@ class Password:
             raise ValueError("Votre mot de passe n'est pas valide")
         self.value = value
 
+
+class Sex:
+    def __get__(self, obj, objtype=None):
+        return self.value
+
+    def __set__(self, obj, value):
+        if value != "H" and value != "F" and value != "X":
+            raise ValueError("Votre sexe n'est pas valide")
+        self.value = value
+
 def email(attr):
     def decorator(classe):
         setattr(classe, attr, Email())
@@ -67,10 +77,18 @@ def password(attr):
         return classe
     return decorator
 
+def sex(attr):
+    def decorator(classe):
+        setattr(classe, attr, Sex())
+        return classe
+    return decorator
+
 @email("email")
 @first_name("first_name")
 @last_name("last_name")
 @password("password")
+@sex("sex")
+
 class Users:
     def __init__(self, first_name, last_name, email, password, sex):
         self.first_name = first_name
