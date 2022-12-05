@@ -64,7 +64,14 @@ def index():
 @application.route("/msgSent", methods=["POST"])
 def msgSent():
 	msg = request.data
-	msg = json.loads(msg)
+	try:
+		msg = json.loads(msg)
+	except:
+		return "-1"
+
+	msg = strip(msg)
+	if msg == "" or len(msg) > 512:
+		return "-1"
 
 	try:
 		with psycopg2.connect(
