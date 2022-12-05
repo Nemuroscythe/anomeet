@@ -4,9 +4,11 @@
 # Comme on est dans un environnement virtuel 
 # on peut se permettre d'auto-télécharger les librairies
 #
+import json
 import os
 try:
 	import flask
+	from flask import Response
 except:
 	os.system("pip install flask")
 	import flask
@@ -62,11 +64,33 @@ def index():
 @application.route("/msgSent", methods=["POST"])
 def msgSent():
 	msg = request.data
+	msg = json.loads(msg)
 
-	return msg
+	try:
+		with psycopg2.connect(
+		            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
+		        with conn.cursor() as cur:
+		            cur.execute("INSERT INTO message (content) VALUES (%s);", (msg, ))
+		            conn.commit()
+	except:
+		return "-1"
+	return "0"
 
 
 
+
+
+
+# Routes pour servir l'application "conversation"
+@application.route("/conversation", methods=["GET"])
+def conversation():
+	html = open("../frontend/AM38.html", "r").read()
+	return html
+
+@application.route("/AM38.js", methods=["GET"])
+def am38_js():
+	js = open("../frontend/AM38.js", "r").read()
+	return Response(js, mimetype='text/javascript')
 
 
 

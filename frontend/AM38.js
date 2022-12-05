@@ -15,12 +15,11 @@ function sendMessage()
                 else
                 {
                     console.error("erreur d'envoi du message");
-                    window.alert(this.responseText);
                 }
             }
         };
         xhttp.open("POST", "msgSent", true);
-        xhttp.send(msg);
+        xhttp.send(JSON.stringify(msg));
     }
 }
 
