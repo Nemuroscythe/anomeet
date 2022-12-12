@@ -6,6 +6,7 @@
 import os
 
 from backend.users import Users
+from backend.sign_in_treatment import Sign
 
 try:
     import flask
@@ -31,7 +32,7 @@ PORT = "5432"
 
 #######################################################
 # Initialisation Flask
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 application = Flask(__name__)
 
@@ -67,7 +68,8 @@ def create_user():
 
     try:
         # connect to the PostgreSQL database
-        conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
+        conn = psycopg2.connect(
+            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
@@ -82,6 +84,12 @@ def create_user():
         if conn is not None:
             conn.close()
     return "Utilisateur créé !"
+
+
+@application.route("/signIn", methods=["GET"])
+def sign_in():
+    html = open("../frontend/sign_in.html", 'r', encoding='utf8').read()
+    return html
 
 
 if __name__ == "__main__":
