@@ -13,7 +13,7 @@ application = Flask(__name__)
 # c'est le '@', manière la plus facile
 @application.route("/")
 def index():
-	return "Hello Anomeet!"
+	return "Hello Anomeeet!"
 
 # Je n'ai pas spécifié de méthodes ici,
 # car par défaut elle vaut 'GET'

@@ -15,7 +15,7 @@ def index():
 	# qui est laissé tel quel dans le but d'etre
 	# modifiée par le serveur avant d'être renvoyé
 	# au client.
-	html = html.replace("{message}", "Hello Anomeet!")
+	html = html.replace("{message}", "Hello Anomeeet!")
 
 
 	# une fois ma variable html prete je la renvoie :)
