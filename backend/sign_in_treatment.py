@@ -15,6 +15,7 @@ class Name:
         self.value = value
 
 
+# Make if email not exist in db
 class Email:
     def __get__(self, obj, objtype=None):
         return self.value
