@@ -54,17 +54,21 @@ def index():
     return str(data[0])
 
 
-@application.route("/users", methods=["GET"])
+@application.route("/create_user", methods=["GET"])
 def create_user():
-    sql = """INSERT INTO users(first_name, last_name, email, password, sex)
-             VALUES(%s,%s,%s,%s,%s);"""
 
-    first_name = "john"
-    last_name = "Dupont"
-    email = "jean-mi166@dupont.com"
-    password = "Lambofgod!1409"
-    sex = "H"
-    user = Users(first_name, last_name, email, password, sex)
+    if request.method == 'GET':
+        Last_name = request.args['Last_name']
+        First_name = request.args['First_name']
+        Email = request.args['Email']
+        Password = request.args['Password']
+        Confirm_password = request.args['Confirm_password']
+        Sex = request.args['Sex']
+
+        user = Sign(First_name, Last_name, Email, Password, Confirm_password, Sex)
+
+        sql = """INSERT INTO users(first_name, last_name, email, password, sex)
+             VALUES(%s,%s,%s,%s,%s);"""
 
     try:
         # connect to the PostgreSQL database
@@ -86,7 +90,7 @@ def create_user():
     return "Utilisateur créé !"
 
 
-@application.route("/signIn", methods=["GET"])
+@application.route("/signIn")
 def sign_in():
     html = open("../frontend/sign_in.html", 'r', encoding='utf8').read()
     return html

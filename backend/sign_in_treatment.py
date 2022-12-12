@@ -38,14 +38,14 @@ class Password:
         self.value = value
 
 
-class Confirm_password:
-    def __get__(self, obj, objtype=None):
-        return self.value
-
-    def __set__(self, obj, value):
-        if Password() != value:
-            raise ValueError("Votre mot de passe ne correspond pas dans les deux champs")
-        self.value = value
+# class Confirm_password:
+#     def __get__(self, obj, objtype=None):
+#         return self.value
+#
+#     def __set__(self, obj, value):
+#         if Password() != value:
+#             raise ValueError("Votre mot de passe ne correspond pas dans les deux champs")
+#         self.value = value
 
 
 class Sex:
@@ -89,13 +89,13 @@ def password(attr):
 
     return decorator
 
-
-def confirm_password(attr):
-    def decorator(classe):
-        setattr(classe, attr, Confirm_password())
-        return classe
-
-    return decorator
+#
+# def confirm_password(attr):
+#     def decorator(classe):
+#         setattr(classe, attr, Confirm_password())
+#         return classe
+#
+#     return decorator
 
 
 def sex(attr):
@@ -110,7 +110,7 @@ def sex(attr):
 @last_name("last_name")
 @email("email")
 @password("password")
-@confirm_password("confirm_password")
+# @confirm_password("confirm_password")
 @sex("sex")
 
 

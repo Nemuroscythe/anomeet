@@ -25,6 +25,7 @@ class Name:
             raise ValueError("Votre nom ne peut pas être blanc")
         self.value = value
 
+
 class Password:
     def __get__(self, obj, objtype=None):
         return self.value
