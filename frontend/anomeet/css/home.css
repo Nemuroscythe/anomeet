@@ -1,0 +1,142 @@
+@charset "utf-8";
+/* CSS Document */
+
+.home {border-left:1px solid #A8A4A4;border-right:1px solid #A8A4A4;height:580px;padding-top:10px;}
+.test{border: 1 px solid red;}
+.body-home{color:black;width:99%;height:100vh;margin:0;}
+
+
+
+#picProfil {
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    padding: 10px;
+    background-color: rgba(255,140,0,1.00);
+    width: 120px;
+    height: 150px;
+    border-radius: 10px;z-index:1;
+}
+#divPic {
+	position:relative;
+	
+}
+.rope{
+	position:absolute;
+	bottom:-30px;
+	left:-90px;
+	z-index:-1;
+}
+
+	/*-------------------Zone publicité supérieur gauche et droite----------------------*/
+	.divPubLeft{position:relative;left:15px;}
+	.divPubRight{position:relative;left:-15px;padding-left:5px;}
+	.pub{border-top:1px solid #A8A4A4;height:200px;}
+	/*--------------------colonne publicité---------------------------*/
+	.companyPubSide{padding-top:10px;}
+	.companyPubSide img{border-radius:10px;}
+	/*--------------------les pubs de société ---------------------------------*/
+	.companyPubLeft{margin-bottom:20px;position:relative;left:-15px;}
+	.companyPubRight {margin-bottom:20px;position:relative;left:15px;}
+	.logoCompanyLeftAdjust {margin-right:30px;}
+	.logoCompanyRightAdjust{margin-right:10px;margin-left:0px;}
+	.textCompanyAdjust {padding-right:1px;}
+
+#tabs{margin-top:20px;margin-bottom:10px;}
+
+.color-hover a,
+.color-hover a:focus, 
+.color-hover a:hover {
+  background-color: #ff6817;color:#ffef76 !important;
+}
+
+@media (max-width: 768px){
+
+img.picBox{position:absolute;width:25%;}
+}
+@media (min-width: 768px){
+	
+img.picBox{position:absolute;left:-30px;width:30%;}
+}
+@media (min-width: 992px) {
+img.picBox{position:absolute;right:20px;width:120%;}
+}
+
+@media (min-width: 1200px) {
+img.picBox{position:absolute;top:-1px;left:-50px;width:120%;}/**/	
+}
+img.picBox{background-color:rgba(255,140,0,1.00);border-color:rgba(255,140,0,1.00);}/**/
+
+a {color:rgba(0,0,0,0.5);}
+.hour{font-size:0.6em;padding-top:10px;padding-right:5px;}
+.content{padding:5px;}
+p.reaction{font-size:0.8em;}
+
+
+.publicationDisplay{
+	border:2px solid  #e9e9e9;
+	/*border:2px solid rgba(168,164,164,0.4);*/
+	border-radius:5px;
+	box-shadow:2px 2px 4px #e9e9e9;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.borderClass{border-bottom:1px solid rgba(168,164,164,0.4);}
+.line{height:55px;background-color:#e9e9e9;}
+.nameRow {
+	background-color:#f26522;border-radius:3px  3px 0px 0px;padding:15px;color:#ffef76;font-weight:bolder;
+}
+
+.cross {
+	color:#e9e9e9;
+}
+.publicationDisplay h5{font-family: "black-ops-one";color:white;font-weight:bold;}
+
+
+.message {
+	padding:50px 0; background-color:#FDFDFD;/*#FDFDFD*/
+}
+
+.subPicBox {
+	background-color:rgba(255,140,0,1.00);border-color:rgba(255,140,0,1.00);
+}
+.shelf{
+	margin-top:-17px;position:relative; 
+}
+.border-grey{
+	border-bottom:2px solid  #e9e9e9;
+}
+.infos-user{
+	padding:10px;background-color: #f26522;color:#ffef76;font-weight:bolder;
+}
+.comment{resize:none;width:100%;border-radius:5px;}
+.comment:focus{border: 2px solid #f26522 ; outline: none !important;}
+.comment-section{padding-top:5px;}
+.emoji-padding{padding:5px 0;}
+
+
+
+.search{
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+}
+.backgrd-color-grey{background-color:#e9e9e9;}
+
+.mainboard-box{overflow-y: auto !important;height:30vh;}
+.mainboard-box-layout{
+	border-bottom:1px solid  #A8A4A4;
+	
+}
+.mainboard-box-layout a:hover{text-decoration:none;}
+.mainboard-box-layout:hover{
+	
+	background-color:rgba(255,180,130,1.00);
+}
+.mainboard-box-layout-unread{
+	background-color:rgba(180,180,180,0.20);}
+.mainboard-box-layout-picture-padding-0{padding:0;}
+.mainboard-box-layout-padding-top{padding-top:12px;}
+.mainboard-box-layout-margin-top-50{}
+.mainboard-box-layout-visited{
+	border:1px solid #A8A4A4;
+	box-shadow: 2px 2px 3px  #A8A4A4;
+}
