@@ -67,7 +67,7 @@ def msgSent():
 	except:
 		return "-1"
 
-	msg = strip(msg)
+	#msg = strip(msg)
 	if msg == "" or len(msg) > 512:
 		return "-1"
 
