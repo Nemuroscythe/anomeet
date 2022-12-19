@@ -57,6 +57,10 @@ def index():
 	return str(data[0])
 
 
+# import des fonction pour les msg AM38
+from utilitaire_AM38 import *
+
+
 
 # Route concernant la reception d'un message
 @application.route("/msgSent", methods=["POST"])
