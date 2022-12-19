@@ -60,7 +60,7 @@ def index():
 
 # Route concernant la reception d'un message
 @application.route("/msgSent", methods=["POST"])
-def msgSent():
+def msg_sent():
 	msg = request.data
 	try:
 		msg = json.loads(msg)
