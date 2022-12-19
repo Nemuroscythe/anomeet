@@ -1,0 +1,190 @@
+/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Beau+Rivage&family=Great+Vibes&family=Italianno&family=Tangerine:wght@700&display=swap');
+.container {
+	margin: auto;
+}
+
+@media (max-width: 768px) {
+.container {
+	width: 100%;
+}
+hr {
+	background-color: rgba(41,41,41,1.00);
+	border: none;
+	height: 1px;
+}
+#connexionXs {
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px grey;
+	padding-bottom: 5px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	background-color: rgb(215,217,207);
+	font-size: 1em;
+}
+#connexionXs label {
+	font-size: 1.4em;
+}
+.bold {
+	font-weight: bolder;
+}
+.or {
+	font-size: 0.8em;
+	margin-top: -33px;
+	font-weight: bold;
+	color:black;
+}
+/*footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}*/
+}
+
+@media (min-width: 768px) {
+.container {
+	width: 750px;
+}
+.subscribe h1 {
+	font-size: 2em;
+}	
+#connexionXs {
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px grey;
+	padding-bottom: 5px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	background-color: rgb(215,217,207);
+	font-size: 1em;
+}
+/*footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin-top: 10px;
+}*/
+
+}
+
+@media (min-width: 992px) {
+.container {
+	width: 970px;
+}
+}
+
+@media (min-width: 1200px) {
+.container {
+	width: 1170px;
+}
+.backgd-img {
+	background-image: url("../img/anonymous.png");
+}
+.subscribe h1 {
+	font-size: 4em;
+}	
+/*footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}*/
+
+}
+
+
+
+.font-family {
+	font-family: 'Beau Rivage', cursive;
+}
+
+.logo {
+	padding: 5px;
+}
+.logo-text {
+	font-weight: bolder;
+	letter-spacing: 1rem;
+	font-size: 2em;
+	
+	position: relative;
+	top: 20px;
+}
+
+header {
+	background-color: rgba(41,41,41,1.00);
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 3em;
+	letter-spacing: 1rem;
+}
+footer {
+	background-color: rgba(41,41,41,1.00);
+	
+	font-weight: bold;
+	letter-spacing: 1rem;
+	font-size: 1.5em;
+}
+.test {
+	border: 1px solid red;
+}
+.marginTop {
+	margin-top: 5px;
+}
+.marginTop20 {
+	margin-top: 20px;
+}
+.marginTop30 {
+	margin-top: 30px;
+}
+.marginTop50 {
+	margin-top: 50px;
+}
+.marginRight50 {
+	margin-right: 50px;
+}
+.padding5 {
+	padding: 5px;
+}
+.paddingBottom12{
+	padding-bottom:12px;
+}
+.padding-left-10{
+	padding-left: 10px  ;
+}
+.fontSize {
+	font-size: 2em;
+}
+.subscribe {
+	margin-top: 30px;
+	background-color: rgb(215,217,207);
+	border-radius: 10px;
+	box-shadow: 4px 4px 7px grey;
+	padding-bottom: 5px;
+	font-size: 1.5em;
+}
+.newPswdBox {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.backgroundColor {
+	background-color:rgba(41,41,41,1.00);
+}
+
+.forgotPswd {
+	font-size: 0.9em;font-family: "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";color:white;
+}
+.forgotPswd:hover {
+	color: #ffef76;
+}
+.fontColor {
+	color: white;
+}
+.box {
+	height: 100px;
+}
+label{
+	letter-spacing: 0.2rem;
+}
