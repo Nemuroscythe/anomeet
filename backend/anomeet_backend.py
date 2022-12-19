@@ -32,7 +32,7 @@ PORT = "5432"
 
 #######################################################
 # Initialisation Flask
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_file
 
 application = Flask(__name__)
 
@@ -97,13 +97,12 @@ def sign_in():
 
 @application.route("/css/home.css", methods=['GET'])
 def registration_css_home():
-    css_home = open("../frontend/anomeet/css/home.css", "r").read()
-    return css_home
+    return send_file("../frontend/anomeet/css/home.css", mimetypes="text/plain")
 
 @application.route("/css/style.css", methods=['GET'])
 def registration_css_style():
-    css_style = open("../frontend/anomeet/css/style.css", "r").read()
-    return css_style
+    return send_file("../frontend/anomeet/css/style.css", mimetypes="text/plain")
+
 
 
 if __name__ == "__main__":
