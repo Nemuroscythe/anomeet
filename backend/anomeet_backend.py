@@ -96,5 +96,12 @@ def sign_in():
     return html
 
 
+#logo.png
+@application.route("/hub/logo.png", methods=["GET"])
+def logo():
+	return send_file("../frontend/logo.png", mimetype="image/png")
+
+
+
 if __name__ == "__main__":
     application.run(host='0.0.0.0', port=80, debug=True)
