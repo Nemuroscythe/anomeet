@@ -90,10 +90,20 @@ def create_user():
     return "Utilisateur créé !"
 
 
-@application.route("/signIn")
+@application.route("/registration", methods=['GET'])
 def sign_in():
-    html = open("../frontend/sign_in.html", 'r', encoding='utf8').read()
+    html = open("../frontend/anomeet/registration.html", 'r').read()
     return html
+
+@application.route("/css/home.css", methods=['GET'])
+def registration_css_home():
+    css_home = open("../frontend/anomeet/css/home.css", "r").read()
+    return css_home
+
+@application.route("/css/style.css", methods=['GET'])
+def registration_css_style():
+    css_style = open("../frontend/anomeet/css/style.css", "r").read()
+    return css_style
 
 
 if __name__ == "__main__":
