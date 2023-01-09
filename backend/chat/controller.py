@@ -59,9 +59,7 @@ def msg_sent():
 		msg = json.loads(msg)
 	except:
 		return "-1"
-	#msg = strip(msg)
-	if msg == "" or len(msg) > 512:
-		return "-1"
+	verification_msg(msg)
 
 	try:
 		with psycopg2.connect(
