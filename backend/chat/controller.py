@@ -76,12 +76,12 @@ def msg_sent():
 # Routes pour servir l'application "conversation"
 @application.route("/conversation", methods=["GET"])
 def conversation():
-	html = open("../frontend/AM38.html", "r").read()
+	html = open("../templates/conversation.html", "r").read()
 	return html
 
-@application.route("/AM38.js", methods=["GET"])
+@application.route("/conversation.js", methods=["GET"])
 def am38_js():
-	js = open("../frontend/AM38.js", "r").read()
+	js = open("../static_files/conversation.js", "r").read()
 	return Response(js, mimetype='text/javascript')
 
 exec(open("chat/logic.py", "r").read())
