@@ -16,6 +16,10 @@ def index():
 ###
 
 
+###
+# User
+exec(open("user/controller.py", "r").read())
+
 
 
 
