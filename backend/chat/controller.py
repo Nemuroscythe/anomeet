@@ -1,4 +1,3 @@
-
 #######################################################
 # Test import
 # Comme on est dans un environnement virtuel 
@@ -29,38 +28,28 @@ PASSWORD = "Application_Anomeet"
 DATABASE = "test-anomeet_postgresql"
 PORT = "5432"
 
-
-
 #######################################################
 # Initialisation Flask
 from flask import Flask, request
 application = Flask(__name__)
 
-
 # Route index
 @application.route("/")
 def index():
-
 	# Connexion à la base de données allwaydata
 	with psycopg2.connect(
-	            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
-	        with conn.cursor() as cur:
-	            cur.execute('SELECT * FROM "public"."hello";')
-	            data = cur.fetchone()
-	
+		"host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
+		with conn.cursor() as cur:
+			cur.execute('SELECT * FROM "public"."hello";')
+			data = cur.fetchone()
 	# A partir d'ici data = une list contenant les infos reçus du serveur
 	# idealement il faut faire un print de data -> print(data)
 	# pour voir comment les données son organisées sur la table sql
 	# ici je sais qu'il me faut data[0]
-
-
 	return str(data[0])
 
-
-# import des fonction pour les msg AM38
-from utilitaire_AM38 import *
-
-
+# import des fonctions 
+from logic import *
 
 # Route concernant la reception d'un message
 @application.route("/msgSent", methods=["POST"])
@@ -70,7 +59,6 @@ def msg_sent():
 		msg = json.loads(msg)
 	except:
 		return "-1"
-
 	#msg = strip(msg)
 	if msg == "" or len(msg) > 512:
 		return "-1"
@@ -78,17 +66,12 @@ def msg_sent():
 	try:
 		with psycopg2.connect(
 		            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
-		        with conn.cursor() as cur:
-		            cur.execute("INSERT INTO message (content) VALUES (%s);", (msg, ))
-		            conn.commit()
+			with conn.cursor() as cur:
+				cur.execute("INSERT INTO message (content) VALUES (%s);", (msg, ))
+				conn.commit()
 	except:
 		return "-1"
 	return "0"
-
-
-
-
-
 
 # Routes pour servir l'application "conversation"
 @application.route("/conversation", methods=["GET"])
@@ -101,13 +84,7 @@ def am38_js():
 	js = open("../frontend/AM38.js", "r").read()
 	return Response(js, mimetype='text/javascript')
 
-
-
-
-
-
-
-
+exec(open("chat/logic.py", "r").read())
 
 if __name__ == "__main__":
 	application.run(host='0.0.0.0', port=80)
