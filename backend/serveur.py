@@ -40,7 +40,7 @@ application = Flask(__name__)
 # Route index
 ###
 # User
-exec(open("user/controller.py", "r").read())
+exec(open("user/controller.py", "r", encoding="utf-8").read())
 
 
 

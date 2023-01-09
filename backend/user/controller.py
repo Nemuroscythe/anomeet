@@ -1,4 +1,3 @@
-from backend.serveur import *
 # Definition des routes
 
 
