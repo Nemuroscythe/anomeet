@@ -1,6 +1,6 @@
 import pytest
 
-from ..logic import *
+exec(open("../logic.py", "r").read())
 
 def test_verification_msg(msg):
     #assert : The assert keyword is used when debugging code. The assert keyword lets you test if a condition in your code returns True, if not, the program will raise an AssertionError.
