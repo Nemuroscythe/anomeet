@@ -38,68 +38,20 @@ application = Flask(__name__)
 
 
 # Route index
-@application.route("/")
-def index():
-    # Connexion à la base de données alwaysdata
-    with psycopg2.connect(
-            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
-        with conn.cursor() as cur:
-            cur.execute('SELECT * FROM "public"."hello";')
-            data = cur.fetchone()
-    # À partir d'ici data = une list contenant les infos reçues du serveur
-    # idéalement il faut faire un print de data → print(data)
-    # pour voir comment les données sont organisées sur la table sql
-    # ici je sais qu'il me faut data[0]
-    print("test")
-    return str(data[0])
+###
+# User
+exec(open("user/controller.py", "r").read())
 
 
-@application.route("/create_user", methods=["GET"])
-def create_user():
-
-    if request.method == 'GET':
-        Last_name = request.args['Last_name']
-        First_name = request.args['First_name']
-        Email = request.args['Email']
-        Password = request.args['Password']
-        Confirm_password = request.args['Confirm_password']
-        Sex = request.args['Sex']
-
-        user = Sign(First_name, Last_name, Email, Password, Confirm_password, Sex)
-
-        sql = """INSERT INTO users(first_name, last_name, email, password, sex)
-             VALUES(%s,%s,%s,%s,%s);"""
-
-    try:
-        # connect to the PostgreSQL database
-        conn = psycopg2.connect(
-            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
-        # create a new cursor
-        cur = conn.cursor()
-        # execute the INSERT statement
-        cur.execute(sql, (user.first_name, user.last_name, user.email, user.password, user.sex))
-        # commit the changes to the database
-        conn.commit()
-        # close communication with the database
-        cur.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
-    return "Utilisateur créé !"
 
 
-@application.route("/signIn")
-def sign_in():
-    html = open("../frontend/sign_in.html", 'r', encoding='utf8').read()
-    return html
 
 
-#logo.png
-@application.route("/hub/logo.png", methods=["GET"])
-def logo():
-	return send_file("../frontend/logo.png", mimetype="image/png")
+
+"""
+Lancement des fichiers statiques
+"""
+exec(open("static_files.py", "r").read())
 
 
 
