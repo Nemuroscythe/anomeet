@@ -32,7 +32,7 @@ class Password:
         return self.value
 
     def __set__(self, obj, value):
-        # 8 à 32 caractères, au moins une majuscule, 1 minuscule, 1 nombre et un caractère spéciale
+        # 8 à 32 caractères, au moins une majuscule, 1 minuscule, 1 nombre et un caractère spécial
         regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$"
         if not re.match(regex, value):
             raise ValueError("Votre mot de passe n'est pas valide")
@@ -44,7 +44,7 @@ class Password:
 #         return self.value
 #
 #     def __set__(self, obj, value):
-#         if Password() != value:
+#         if value != Password():
 #             raise ValueError("Votre mot de passe ne correspond pas dans les deux champs")
 #         self.value = value
 
@@ -63,7 +63,6 @@ def first_name(attr):
     def decorator(classe):
         setattr(classe, attr, Name())
         return classe
-
     return decorator
 
 
@@ -71,7 +70,6 @@ def last_name(attr):
     def decorator(classe):
         setattr(classe, attr, Name())
         return classe
-
     return decorator
 
 
@@ -79,7 +77,6 @@ def email(attr):
     def decorator(classe):
         setattr(classe, attr, Email())
         return classe
-
     return decorator
 
 
@@ -87,23 +84,20 @@ def password(attr):
     def decorator(classe):
         setattr(classe, attr, Password())
         return classe
-
     return decorator
 
-#
-# def confirm_password(attr):
-#     def decorator(classe):
-#         setattr(classe, attr, Confirm_password())
-#         return classe
-#
-#     return decorator
+
+def confirm_password(attr):
+    def decorator(classe):
+        setattr(classe, attr, Confirm_password())
+        return classe
+    return decorator
 
 
 def sex(attr):
     def decorator(classe):
         setattr(classe, attr, Sex())
         return classe
-
     return decorator
 
 
@@ -116,7 +110,6 @@ def sex(attr):
 
 
 class Sign:
-
     def __init__(self, first_name, last_name, email, password, confirm_password, sex):
         self.first_name = first_name
         self.last_name = last_name
