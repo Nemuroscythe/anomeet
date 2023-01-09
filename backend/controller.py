@@ -37,6 +37,76 @@ from flask import Flask, request
 application = Flask(__name__)
 
 
+# Route index
+@application.route("/")
+def index():
+
+	# Connexion à la base de données allwaydata
+	with psycopg2.connect(
+	            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
+	        with conn.cursor() as cur:
+	            cur.execute('SELECT * FROM "public"."hello";')
+	            data = cur.fetchone()
+	
+	# A partir d'ici data = une list contenant les infos reçus du serveur
+	# idealement il faut faire un print de data -> print(data)
+	# pour voir comment les données son organisées sur la table sql
+	# ici je sais qu'il me faut data[0]
+
+
+	return str(data[0])
+
+
+# import des fonction pour les msg AM38
+from utilitaire_AM38 import *
+
+
+
+# Route concernant la reception d'un message
+@application.route("/msgSent", methods=["POST"])
+def msg_sent():
+	msg = request.data
+	try:
+		msg = json.loads(msg)
+	except:
+		return "-1"
+
+	#msg = strip(msg)
+	if msg == "" or len(msg) > 512:
+		return "-1"
+
+	try:
+		with psycopg2.connect(
+		            "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
+		        with conn.cursor() as cur:
+		            cur.execute("INSERT INTO message (content) VALUES (%s);", (msg, ))
+		            conn.commit()
+	except:
+		return "-1"
+	return "0"
+
+
+
+
+
+
+# Routes pour servir l'application "conversation"
+@application.route("/conversation", methods=["GET"])
+def conversation():
+	html = open("../frontend/AM38.html", "r").read()
+	return html
+
+@application.route("/AM38.js", methods=["GET"])
+def am38_js():
+	js = open("../frontend/AM38.js", "r").read()
+	return Response(js, mimetype='text/javascript')
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
