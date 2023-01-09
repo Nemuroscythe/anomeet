@@ -18,7 +18,7 @@ class Name:
 
     def __set__(self, obj, value):
         if len(value) > 50:
-            raise ValueError("Votre nom ne peut pas excéder 50 charactères")
+            raise ValueError("Votre nom ne peut pas excéder 50 caractères")
         elif len(value) == 0:
             raise ValueError("Votre nom ne peut pas être nul")
         elif value.isspace():
@@ -31,7 +31,7 @@ class Password:
         return self.value
 
     def __set__(self, obj, value):
-        # 8 à 32 caractères, au moins une majuscule, 1 minuscule, 1 nombre et un caractère spéciale
+        # 8 à 32 caractères, au moins une majuscule, 1 minuscule, 1 nombre et un caractère spécial
         regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$"
         if not re.match(regex, value):
             raise ValueError("Votre mot de passe n'est pas valide")

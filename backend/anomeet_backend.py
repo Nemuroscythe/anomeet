@@ -56,16 +56,15 @@ def index():
 
 @application.route("/create_user", methods=["GET"])
 def create_user():
-
     if request.method == 'GET':
-        Last_name = request.args['Last_name']
-        First_name = request.args['First_name']
-        Email = request.args['Email']
-        Password = request.args['Password']
-        Confirm_password = request.args['Confirm_password']
-        Sex = request.args['Sex']
+        last_name = request.args['last_name']
+        first_name = request.args['first_name']
+        email = request.args['email']
+        password = request.args['password']
+        confirm_password = request.args['confirm_password']
+        sex = request.args['sex']
 
-        user = Sign(First_name, Last_name, Email, Password, Confirm_password, Sex)
+        user = Sign(first_name, last_name, email, password, confirm_password, sex)
 
         sql = """INSERT INTO users(first_name, last_name, email, password, sex)
              VALUES(%s,%s,%s,%s,%s);"""
