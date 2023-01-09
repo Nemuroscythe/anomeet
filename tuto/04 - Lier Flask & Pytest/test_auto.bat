@@ -1,0 +1,2 @@
+pytest test.py
+pause
