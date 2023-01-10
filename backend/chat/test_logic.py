@@ -3,10 +3,10 @@ import pytest
 from logic import *
 
 def random_string(k):
+    """Function to generate k length random string for test"""
     import string
     import random
     
-    # On return une string de 513 chars
     letters = string.ascii_lowercase
     r = ''.join(random.choice(letters) for i in range(k))
 
