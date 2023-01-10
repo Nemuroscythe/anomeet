@@ -17,16 +17,15 @@ def random_string(k):
 
 
 # Test function
-def test_verification_msg():
-
-    # msg > 512 char
-    assert verification_msg(random_string(513)) == False
-
-    # Empty msg
+def test_verification_msg_empty_msg():
     assert verification_msg("") == False
-
-    # Only space
+    
+def test_verification_msg_long_msg():
+    assert verification_msg(random_string(513)) == False
+    
+def test_verification_msg_space_only():
     assert verification_msg(" ") == True
-
-    # Good string
+    
+def test_verification_msg_good_msg():
     assert verification_msg(random_string(512)) == True
+    
