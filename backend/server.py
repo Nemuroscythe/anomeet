@@ -54,7 +54,7 @@ def index():
 
 ################################
 # User
-exec(open("../chat/controller.py", "r").read())
+exec(open("chat/controller.py", "r").read())
 ################################
 
 
