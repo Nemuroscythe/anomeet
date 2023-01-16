@@ -5,7 +5,7 @@ application = Flask(__name__)
 
 @application.route("/", methods=["GET"])
 def index():
-	fichier = open("template/index.html", "r").read()
+	fichier = open("template/registration.html", "r").read()
 	fichier = fichier.replace("{test}", "Hello Anomeet")
 	return fichier
 
