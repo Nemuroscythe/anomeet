@@ -34,7 +34,6 @@ PORT = "5432"
 from flask import Flask, request, Response
 application = Flask(__name__)
 
-
 # Route index
 @application.route("/")
 def index():
@@ -48,16 +47,12 @@ def index():
 	# idealement il faut faire un print de data -> print(data)
 	# pour voir comment les données son organisées sur la table sql
 	# ici je sais qu'il me faut data[0]
-	print("test")
 	return str(data[0])
 
 
 ################################
 # User
-try:
-	exec(open("chat/controller.py", "r").read())
-except:
-	import chat.controller
+exec(open("chat/controller.py", "r").read())
 ################################
 
 
