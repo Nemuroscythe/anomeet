@@ -4,6 +4,33 @@ from logic import *
 # Si ça fonctionne
 # Si ne fonctionne pas
 
+def test_is_firstName_is_empty():
+    assert check_name("", "etet") == False
+
+
+def test_is_lastName_is_empty():
+    assert check_name("etet", "") == False
+
+
+def test_is_sex_is_empty():
+    assert check_sex("") == False
+
+
+def test_is_email_is_empty():
+    assert check_email("") == False
+
+
+def test_is_password_is_empty():
+    assert check_password("") == False
+
+
+def test_is_same_password_is_empty_password1():
+    assert check_if_same_password("", "efe") == False
+
+
+def test_is_same_password_is_empty_password2():
+    assert check_if_same_password("efe", "") == False
+
 
 def test_check_name_when_true_length_50():
     assert check_name("Jean-Mich", "Dupont") == True
