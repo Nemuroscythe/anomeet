@@ -27,12 +27,12 @@ def msg_sent():
 # Routes pour servir l'application "conversation"
 @application.route("/conversation", methods=["GET"])
 def conversation():
-	html = open("../templates/conversation.html", "r").read()
+	html = open("templates/chat/conversation.html", "r").read()
 	return html
 
 @application.route("/conversation.js", methods=["GET"])
 def am38_js():
-	js = open("../static_files/conversation.js", "r").read()
+	js = open("templates/chat/conversation.js", "r").read()
 	return Response(js, mimetype='text/javascript')
 
 

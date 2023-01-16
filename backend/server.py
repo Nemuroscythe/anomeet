@@ -31,7 +31,7 @@ PORT = "5432"
 
 #######################################################
 # Initialisation Flask
-from flask import Flask, request
+from flask import Flask, request, Response
 application = Flask(__name__)
 
 
