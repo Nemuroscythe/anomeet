@@ -56,7 +56,7 @@ def index():
 # User
 exec(open("chat/controller.py", "r").read())
 ################################
-# from chat.controller import *
+
 
 
 if __name__ == "__main__":
