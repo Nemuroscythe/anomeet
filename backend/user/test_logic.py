@@ -80,12 +80,16 @@ def test_check_if_same_password():
     assert check_if_same_password("bonmdp", "mauvaismdp") == False
 
 
-def test_check_sex():
+def test_check_sex_true():
     assert check_sex("H") == True
+
+def test_check_sex_false():
     assert check_sex("P") == False
 
 
-def test_check_user_signup():
+def test_check_user_signup_true():
     assert check_user_signup("Jean-Mich", "Dupont", "jean-mich@dupont.fr", "Azertyuiop123$", "Azertyuiop123$",
                              "X") == True
+
+def test_check_user_signup_false():
     assert check_user_signup(" ", "", "jeanmich.fr", "Azertyuiop123", "Azertyuiop12", "Q") == False
