@@ -2,14 +2,14 @@ import re
 
 
 def check_name(last_name, first_name):
-    if len(last_name or first_name) > 50:
-        # raise ValueError("Votre nom ne peut pas excéder 50 charactères")
-        return False
-    elif len(last_name or first_name) == 0:
+    if len(last_name) == 0 or len(first_name) == 0:
         # raise ValueError("Votre nom ne peut pas être nul")
         return False
     elif last_name.isspace() or first_name.isspace():
         # raise ValueError("Votre nom ne peut pas être blanc")
+        return False
+    elif len(last_name) > 50 or len(first_name) > 50:
+        # raise ValueError("Votre nom ne peut pas excéder 50 charactères")
         return False
     return True
 
