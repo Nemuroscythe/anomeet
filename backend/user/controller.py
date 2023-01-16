@@ -41,5 +41,5 @@ def creer_utilisateur():
 
 @application.route("/signIn")
 def sign_in():
-    html = open("../frontend/sign_in.html", 'r', encoding='utf8').read()
+    html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
     return html
