@@ -54,7 +54,10 @@ def index():
 
 ################################
 # User
-exec(open("chat/controller.py", "r").read())
+try:
+	exec(open("chat/controller.py", "r").read())
+except:
+	import chat.controller
 ################################
 
 
