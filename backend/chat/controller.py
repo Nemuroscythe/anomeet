@@ -10,8 +10,8 @@ def msg_sent():
 	msg = request.data
 	try:
 		msg = json.loads(msg)
-	except:
-		return "-1"
+	except Exception as e:
+		return str(e)
 	verification_msg(msg)
 
 	try:
@@ -20,8 +20,8 @@ def msg_sent():
 			with conn.cursor() as cur:
 				cur.execute("INSERT INTO message (content) VALUES (%s);", (msg, ))
 				conn.commit()
-	except:
-		return "-1"
+	except Exception as e:
+		return str(e)
 	return "0"
 
 # Routes pour servir l'application "conversation"

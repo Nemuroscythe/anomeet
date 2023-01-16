@@ -14,7 +14,7 @@ function sendMessage()
                 }
                 else
                 {
-                    console.error("erreur d'envoi du message");
+                    console.error(this.responseText);
                 }
             }
         };
