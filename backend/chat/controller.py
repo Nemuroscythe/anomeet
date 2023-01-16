@@ -1,5 +1,8 @@
 # import des fonctions 
-from logic import *
+try:
+	from logic import *
+except:
+	from chat.logic import *
 
 # Route concernant la reception d'un message
 @application.route("/msgSent", methods=["POST"])
