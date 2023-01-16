@@ -5,9 +5,6 @@
 #######################################################
 import os
 
-from backend.users import Users
-from backend.sign_in_treatment import Sign
-
 try:
     import flask
 except:
