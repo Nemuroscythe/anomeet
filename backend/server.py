@@ -51,7 +51,12 @@ def index():
 	print("test")
 	return str(data[0])
 
-exec(open("..\chat\controller.py", "r").read())
+
+################################
+# User
+exec(open("../chat/controller.py", "r").read())
+################################
+
 
 if __name__ == "__main__":
 	application.run(host='0.0.0.0', port=80)
