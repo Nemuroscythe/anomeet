@@ -20,7 +20,7 @@
 }
 
 
-#picProfil {
+#pic-profil {
     position: absolute;
     top: 70px;
     left: 70px;
@@ -32,7 +32,7 @@
     z-index: 1;
 }
 
-#divPic {
+#div-pic {
     position: relative;
 
 }
@@ -45,12 +45,12 @@
 }
 
 /*-------------------Zone publicité supérieur gauche et droite----------------------*/
-.divPubLeft {
+.div-pub-left {
     position: relative;
     left: 15px;
 }
 
-.divPubRight {
+.div-pub-right {
     position: relative;
     left: -15px;
     padding-left: 5px;
@@ -62,37 +62,37 @@
 }
 
 /*--------------------colonne publicité---------------------------*/
-.companyPubSide {
+.company-pub-side {
     padding-top: 10px;
 }
 
-.companyPubSide img {
+.company-pub-side img {
     border-radius: 10px;
 }
 
 /*--------------------les pubs de société ---------------------------------*/
-.companyPubLeft {
+.company-pub-left {
     margin-bottom: 20px;
     position: relative;
     left: -15px;
 }
 
-.companyPubRight {
+.company-pub-right {
     margin-bottom: 20px;
     position: relative;
     left: 15px;
 }
 
-.logoCompanyLeftAdjust {
+.logo-company-left-adjust {
     margin-right: 30px;
 }
 
-.logoCompanyRightAdjust {
+.logo-company-right-adjust {
     margin-right: 10px;
     margin-left: 0px;
 }
 
-.textCompanyAdjust {
+.text-company-adjust {
     padding-right: 1px;
 }
 
@@ -110,7 +110,7 @@
 
 @media (max-width: 768px) {
 
-    img.picBox {
+    img.pic-box {
         position: absolute;
         width: 25%;
     }
@@ -118,7 +118,7 @@
 
 @media (min-width: 768px) {
 
-    img.picBox {
+    img.pic-box {
         position: absolute;
         left: -30px;
         width: 30%;
@@ -126,7 +126,7 @@
 }
 
 @media (min-width: 992px) {
-    img.picBox {
+    img.pic-box {
         position: absolute;
         right: 20px;
         width: 120%;
@@ -134,22 +134,18 @@
 }
 
 @media (min-width: 1200px) {
-    img.picBox {
+    img.pic-box {
         position: absolute;
         top: -1px;
         left: -50px;
         width: 120%;
     }
-
-    /**/
 }
 
-img.picBox {
+img.pic-box {
     background-color: rgba(255, 140, 0, 1.00);
     border-color: rgba(255, 140, 0, 1.00);
 }
-
-/**/
 
 a {
     color: rgba(0, 0, 0, 0.5);
@@ -169,17 +165,15 @@ p.reaction {
     font-size: 0.8em;
 }
 
-
-.publicationDisplay {
+.publication-display {
     border: 2px solid #e9e9e9;
-    /*border:2px solid rgba(168,164,164,0.4);*/
     border-radius: 5px;
     box-shadow: 2px 2px 4px #e9e9e9;
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.borderClass {
+.border-class {
     border-bottom: 1px solid rgba(168, 164, 164, 0.4);
 }
 
@@ -188,7 +182,7 @@ p.reaction {
     background-color: #e9e9e9;
 }
 
-.nameRow {
+.name-row {
     background-color: #f26522;
     border-radius: 3px 3px 0px 0px;
     padding: 15px;
@@ -200,7 +194,7 @@ p.reaction {
     color: #e9e9e9;
 }
 
-.publicationDisplay h5 {
+.publication-display h5 {
     font-family: "black-ops-one", serif;
     color: white;
     font-weight: bold;
@@ -212,7 +206,7 @@ p.reaction {
     background-color: #FDFDFD; /*#FDFDFD*/
 }
 
-.subPicBox {
+.sub-pic-box {
     background-color: rgba(255, 140, 0, 1.00);
     border-color: rgba(255, 140, 0, 1.00);
 }
@@ -252,12 +246,11 @@ p.reaction {
     padding: 5px 0;
 }
 
-
 .search {
     font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 }
 
-.backgrd-color-grey {
+.background-color-grey {
     background-color: #e9e9e9;
 }
 

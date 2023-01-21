@@ -17,7 +17,7 @@
         height: 1px;
     }
 
-    #connexionXs {
+    #connexion-xs {
         border-radius: 10px;
         box-shadow: 2px 2px 5px grey;
         padding-bottom: 5px;
@@ -27,7 +27,7 @@
         font-size: 1em;
     }
 
-    #connexionXs label {
+    #connexion-xs label {
         font-size: 1.4em;
     }
 
@@ -41,13 +41,6 @@
         font-weight: bold;
         color: black;
     }
-
-    /*footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-    }*/
 }
 
 @media (min-width: 768px) {
@@ -59,7 +52,7 @@
         font-size: 2em;
     }
 
-    #connexionXs {
+    #connexion-xs {
         border-radius: 10px;
         box-shadow: 2px 2px 5px grey;
         padding-bottom: 5px;
@@ -68,14 +61,6 @@
         background-color: rgb(215, 217, 207);
         font-size: 1em;
     }
-
-    /*footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        margin-top: 10px;
-    }*/
-
 }
 
 @media (min-width: 992px) {
@@ -89,23 +74,14 @@
         width: 1170px;
     }
 
-    .backgd-img {
+    .background-img {
         background-image: url("../img/anonymous.png");
     }
 
     .subscribe h1 {
         font-size: 4em;
     }
-
-    /*footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-    }*/
-
 }
-
 
 .font-family {
     font-family: 'Beau Rivage', cursive;
@@ -146,31 +122,31 @@ footer {
     border: 1px solid red;
 }
 
-.marginTop {
+.margin-top {
     margin-top: 5px;
 }
 
-.marginTop20 {
+.margin-top-20 {
     margin-top: 20px;
 }
 
-.marginTop30 {
+.margin-top-30 {
     margin-top: 30px;
 }
 
-.marginTop50 {
+.margin-top-50 {
     margin-top: 50px;
 }
 
-.marginRight50 {
+.margin-right-50 {
     margin-right: 50px;
 }
 
-.padding5 {
+.padding-5 {
     padding: 5px;
 }
 
-.paddingBottom12 {
+.padding-bottom-12 {
     padding-bottom: 12px;
 }
 
@@ -178,7 +154,7 @@ footer {
     padding-left: 10px;
 }
 
-.fontSize {
+.font-size {
     font-size: 2em;
 }
 
@@ -191,26 +167,26 @@ footer {
     font-size: 1.5em;
 }
 
-.newPswdBox {
+.new-password-box {
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-.backgroundColor {
+.background-color {
     background-color: rgba(41, 41, 41, 1.00);
 }
 
-.forgotPswd {
+.forgot-password {
     font-size: 0.9em;
     font-family: "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
     color: white;
 }
 
-.forgotPswd:hover {
+.forgot-password:hover {
     color: #ffef76;
 }
 
-.fontColor {
+.font-color {
     color: white;
 }
 
