@@ -1,42 +1,42 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acceuil - connecté</title>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link href="../static_files/css/style.css" rel="stylesheet">
     <link href="../static_files/css/home.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
 		$( function () {
 			 $( "#tabs" ).tabs({
-				 collapsible: true	,	
+				 collapsible: true,
    				 active: false
 			 });
 			 $( ".mainboard" ).tabs();
 		} );
-
-</script>
-
+    </script>
 </head>
 
-<body class=" fontSize fontColor body-home">
+<body class="fontSize fontColor body-home">
 
-<header class="row ">
-    <div class="col-lg-12 col-xs-12 ">
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 backgroundColor padding5   hidden-xs">
+<header class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 backgroundColor padding5 hidden-xs">
             <a href="index.html"><img class="logo" src="../static_files/img/logoAnomeet3.png" alt="logo" width="80px"/></a>
             <span class="font-family logo-text">Anomeet</span>
         </div>
 
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6  padding5   ">
-            <ul class="nav navbar-nav navbar-right ">
-                <li class="active "><a href="#" class="fontColor">Accueil </a></li>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding5">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#" class="fontColor">Accueil </a></li>
                 <li><a href="home.html" class="fontColor">Profil</a></li>
                 <li><a href="#" class="fontColor">Message</a></li>
                 <li><a href="#" class="fontColor">Contact</a></li>
@@ -47,7 +47,7 @@
 <div class="container-fluid">
     <div class="row ">
         <aside class="col-lg-3 col-md-3 hidden-xs hidden-sm">
-            <div class=" ">
+            <div class="">
                 <a href="#"><img src="../static_files/img/profil.png" alt="picture"></a>
             </div>
             <div class="">
@@ -55,21 +55,21 @@
             </div>
         </aside>
 
-        <section class="col-lg-6 col-md-6 col-sm-12 home ">
+        <section class="col-lg-6 col-md-6 col-sm-12 home">
             <div id="tabs">
                 <ul class="color-hover">
-                    <li><a href="#tabs-1" id="tab1"><img src="../static_files/img/icone/search.png" alt="loupe "></a>
+                    <li><a href="#tabs-1" id="tab1"><img src="../static_files/img/icon/search.png" alt="loupe"></a>
                     </li>
                 </ul>
 
                 <div id="tabs-1">
                     <div class="row search">
                         <form action="#" method="POST">
-                            <div class="  col-lg-offset-3 col-lg-6 marginTop30">
+                            <div class="col-lg-offset-3 col-lg-6 marginTop30">
                                 <div class="form-group">
-                                    <label class="font-family  ">Age:</label>
+                                    <label class="font-family">Age:</label>
                                     <div class="input-group">
-                                        <label for="age-min-search" class="  input-group-addon">De</label>
+                                        <label for="age-min-search" class="input-group-addon">De</label>
                                         <!--<input id="ageMin" type="number" class="form-control">-->
                                         <select class="form-control" id="age-min-search">
                                             <option>-----</option>
@@ -137,8 +137,8 @@
                                             <option value="79">79</option>
                                             <option value="80">80+</option>
                                         </select>
+
                                         <label for="age-max-search" class=" input-group-addon">à</label>
-                                        <!--<input id="ageMax" type="number" class="form-control">-->
                                         <select class="form-control" id="age-max-search">
                                             <option>-----</option>
                                             <option value="18">18</option>
@@ -209,7 +209,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-offset-3 col-lg-6  ">
+                            <div class="col-lg-offset-3 col-lg-6">
                                 <div class="form-group">
                                     <label for="country" class="font-family">Pays:</label>
                                     <select class="form-control" id="country">
@@ -220,7 +220,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-offset-3 col-lg-6  ">
+
+                            <div class="col-lg-offset-3 col-lg-6">
                                 <div class="form-group">
                                     <label for="state" class="font-family">Région:</label>
                                     <select class="form-control" id="state">
@@ -231,7 +232,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-offset-3 col-lg-6  ">
+
+                            <div class="col-lg-offset-3 col-lg-6">
                                 <div class="form-group">
                                     <label for="city" class="font-family">Ville:</label>
                                     <select class="form-control" id="city">
@@ -242,71 +244,74 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-lg-offset-3 col-lg-6 marginTop30 text-center">
-                                <input type="submit" class="btn btn-success " value="Recherche"/>
+                                <input type="submit" class="btn btn-success" value="Recherche"/>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
+
             <p>Conversation</p>
-            <div class="col-lg-8 col-md-12 col-lg-offset-2  col-sm-offset-0 col-sm-12  publicationDisplay">
+            <div class="col-lg-8 col-md-12 col-lg-offset-2 col-sm-offset-0 col-sm-12 publicationDisplay">
                 <div>
                     <div class="row borderClass nameRow">
-                        <div class="col-lg-5 col-md-4 col-sm-6 col-xs-5 ">
+                        <div class="col-lg-5 col-md-4 col-sm-6 col-xs-5">
                             <p>Nouveau</p>
                         </div>
                         <div class="pull-right">
                             <a href="#"><span class="glyphicon glyphicon-remove cross"></span></a>
                         </div>
                     </div>
-                    <div class="row  borderClass line">
+                    <div class="row borderClass line">
                         <div>
                             <p class="pull-right hour">05/11/2019 03:16</p>
                         </div>
                     </div>
-                    <div class="row  message">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
-                            <img src="../static_files/img/me_big.png" alt="man" class="img-thumbnail"><!--class="  img-responsive"-->
+                    <div class="row message">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                            <img src="../static_files/img/me_big.png" alt="man" class="img-thumbnail">
                         </div>
                     </div>
-                    <div class="row   border-grey ">
+                    <div class="row border-grey">
                         <div class="col-lg-12 col-xs-12 text-center infos-user">
-                            <div class=" col-lg-6 col-xs-6 ">
+                            <div class="col-lg-6 col-xs-6">
                                 Imad
                             </div>
-                            <div class=" col-lg-6 col-xs-6  ">
+                            <div class="col-lg-6 col-xs-6">
                                 33 ans
                             </div>
-                            <div class="row    ">
-                                <div class=" col-lg-6 col-xs-6 padding5">
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-6 padding5">
                                     Charleroi
                                 </div>
-                                <div class=" col-lg-6 col-xs-6 padding5">
+                                <div class="col-lg-6 col-xs-6 padding5">
                                     Marocain
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row border-grey backgrd-color-grey">
-                        <div class="col-lg-12 text-center ">
-                            <div class=" col-lg-6 col-xs-6 emoji-padding">
-                                <a href="#"><img src="../static_files/img/icone/love.png" alt="love"></a>
+                        <div class="col-lg-12 text-center">
+                            <div class="col-lg-6 col-xs-6 emoji-padding">
+                                <a href="#"><img src="../static_files/img/icon/love.png" alt="love"></a>
                             </div>
 
-                            <div class=" col-lg-6 col-xs-6 emoji-padding">
-                                <a href="#"><img src="../static_files/img/icone/chat.png" alt="chat"></a>
+                            <div class="col-lg-6 col-xs-6 emoji-padding">
+                                <a href="#"><img src="../static_files/img/icon/chat.png" alt="chat"></a>
                             </div>
                         </div>
                     </div>
-                    <div class="row comment-section ">
-                        <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 text-center ">
+                    <div class="row comment-section">
+                        <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 text-center">
                             <a href="#"><img src="../static_files/img/miniMe.jpg" alt="" class="img-thumbnail subPicBox"/></a>
                         </div>
-                        <div class="col-lg-10 col-md-9 col-sm-10 col-xs-9 ">
+                        <div class="col-lg-10 col-md-9 col-sm-10 col-xs-9">
                             <form>
-                                <textarea class="comment" class="form-control" placeholder="Commentez..."></textarea>
+                                <label>Commentaires
+                                    <textarea class="comment form-control" placeholder="Commentez..."></textarea>
+                                </label>
                             </form>
                         </div>
                     </div>
@@ -314,78 +319,79 @@
             </div>
         </section>
 
-        <aside class="col-lg-3 col-md-3 hidden-xs hidden-sm  ">
-            <div class=" ">
-                <div class=" mainboard">
+        <aside class="col-lg-3 col-md-3 hidden-xs hidden-sm">
+            <div class="">
+                <div class="mainboard">
                     <ul class="color-hover">
-                        <li><a href="#mainboard-1"><img src="../static_files/img/icone/message.png" alt="enveloppe"></a></li>
-                        <li><a href="#mainboard-2"><img src="../static_files/img/icone/notification.png" alt="cloche"></a></li>
+                        <li><a href="#mainboard-1"><img src="../static_files/img/icon/message.png" alt="enveloppe"></a></li>
+                        <li><a href="#mainboard-2"><img src="../static_files/img/icon/notification.png" alt="cloche"></a></li>
                     </ul>
 
-                    <div id="mainboard-1" class="mainboard-box ">
-                        <div class=" row mainboard-box-layout ">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                    <div id="mainboard-1" class="mainboard-box">
+                        <div class="row mainboard-box-layout">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMoun.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">Salut ! comment vas-tu?</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout mainboard-box-layout-unread">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMe.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top ">
                                 <p><a href="#">On va boire avec les amis</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout ">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMe.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">je vais dormir</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout mainboard-box-layout-unread">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMe.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">on sort?</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout ">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMe.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">je vais dormir</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout mainboard-box-layout-unread">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMe.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">on sort?</a></p>
                             </div>
                         </div>
                     </div>
+
                     <div id="mainboard-2" class="mainboard-box">
-                        <div class=" row mainboard-box-layout ">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMoun.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">Mouna a visité votre profil !</a></p>
                             </div>
                         </div>
-                        <div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4  mainboard-box-layout-picture-padding-0 ">
+                        <div class="row mainboard-box-layout mainboard-box-layout-unread">
+                            <div class="col-lg-2 col-lg-offset-0 col-md-offset-4 col-md-4 mainboard-box-layout-picture-padding-0">
                                 <a href="#"><img src="../static_files/img/miniMoun.jpg" alt="picture"></a>
                             </div>
-                            <div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
+                            <div class="col-lg-10 col-md-12 mainboard-box-layout-padding-top">
                                 <p><a href="#">Mouna est sous votre charme !</a></p>
                             </div>
                         </div>
