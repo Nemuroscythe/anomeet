@@ -1,7 +1,7 @@
 
 # Definition des routes
 # if se trouve dans controller
-from backend.user.logic import check_user_signup
+from logic import check_user_signup
 
 
 @application.route("/creer_utilisateur", methods=["GET"])
