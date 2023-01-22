@@ -51,8 +51,10 @@ def index():
 
 
 ################################
-# User
+# Import des routes
+exec(open("user/controller.py", "r", encoding="utf-8").read())
 exec(open("chat/controller.py", "r").read())
+
 ################################
 
 
