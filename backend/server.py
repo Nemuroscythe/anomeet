@@ -19,7 +19,7 @@ except:
 
 #######################################################
 # Info connection DataBase
-# Sur Postgresql - Allwaysdata
+# Sur Postgresql - Alwaysdata
 #
 HOST = "postgresql-test-anomeet.alwaysdata.net"
 USER = "test-anomeet_application"
@@ -37,15 +37,15 @@ application = Flask(__name__)
 # Route index
 @application.route("/")
 def index():
-    # Connexion à la base de données allwaydata
+    # Connexion à la base de données alwaysdata
     with psycopg2.connect(
             "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT)) as conn:
         with conn.cursor() as cur:
             cur.execute('SELECT * FROM "public"."hello";')
             data = cur.fetchone()
-    # A partir d'ici data = une list contenant les infos reçus du serveur
-    # idealement il faut faire un print de data -> print(data)
-    # pour voir comment les données son organisées sur la table sql
+    # À partir d'ici data = une list contenant les infos reçues du serveur
+    # idéalement il faut faire un print de data --> print(data)
+    # pour voir comment les données sont organisées sur la table sql
     # ici je sais qu'il me faut data[0]
     return str(data[0])
 

@@ -5,11 +5,11 @@ from logic import *
 # Si ça fonctionne
 # Si ne fonctionne pas
 
-def test_is_firstName_is_empty():
+def test_is_first_name_is_empty():
     assert check_name("", "etet") == False
 
 
-def test_is_lastName_is_empty():
+def test_is_last_name_is_empty():
     assert check_name("etet", "") == False
 
 
@@ -78,7 +78,7 @@ def test_check_if_same_password():
     assert check_if_same_password("bonmdp", "bonmdp") == True
 
 
-def test_check_if_same_password():
+def test_check_if_same_password_with_different_passwords():
     assert check_if_same_password("bonmdp", "mauvaismdp") == False
 
 

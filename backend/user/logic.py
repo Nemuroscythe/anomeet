@@ -9,7 +9,7 @@ def check_name(last_name, first_name):
         # raise ValueError("Votre nom ne peut pas être blanc")
         return False
     elif len(last_name) > 50 or len(first_name) > 50:
-        # raise ValueError("Votre nom ne peut pas excéder 50 charactères")
+        # raise ValueError("Votre nom ne peut pas excéder 50 caractères")
         return False
     return True
 
