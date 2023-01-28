@@ -1,19 +1,12 @@
-function sendMessage()
-{
+function sendMessage() {
     var msg = document.getElementById("textinput").value;
-    if(msg.length <= 512 && msg.length != 0)
-    {
+    if (msg.length <= 512 && msg.length != 0) {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function()
-        {
-            if (this.readyState == 4 && this.status == 200)
-            {
-                if(this.responseText == 0)
-                {
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == 0) {
                     console.log("message bien envoyé !");
-                }
-                else
-                {
+                } else {
                     console.error(this.responseText);
                 }
             }

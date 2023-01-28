@@ -45,7 +45,8 @@ def check_sex(sex):
 
 
 def check_user_signup(first_name, last_name, email, password, confirm_password, sex):
-    if check_name(last_name, first_name) and check_email(email) and check_password(password) and check_if_same_password(password, confirm_password) and check_sex(sex):
+    if check_name(last_name, first_name) and check_email(email) and check_password(password) and check_if_same_password(
+            password, confirm_password) and check_sex(sex):
         return True
     else:
         return False

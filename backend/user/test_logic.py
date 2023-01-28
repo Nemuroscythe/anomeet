@@ -1,6 +1,7 @@
 import pytest
 from logic import *
 
+
 # Si ça fonctionne
 # Si ne fonctionne pas
 
@@ -37,7 +38,8 @@ def test_check_name_when_true_length_50():
 
 
 def test_check_name_when_false_length_50():
-    assert check_name("Jean-MichJean-MichJean-MichJean-MichJean-MichJean-MichJean-Mich", "DupontDupontDupontDupontDupontDupontDupontDupontDupont") == False
+    assert check_name("Jean-MichJean-MichJean-MichJean-MichJean-MichJean-MichJean-Mich",
+                      "DupontDupontDupontDupontDupontDupontDupontDupontDupont") == False
 
 
 def test_check_name_when_true_empty():

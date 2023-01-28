@@ -1,4 +1,3 @@
-
 # Definition des routes
 # if se trouve dans controller
 from backend.user.logic import check_user_signup
