@@ -1,9 +1,14 @@
 # Definition des routes
 # if se trouve dans controller
-from backend.user.logic import check_user_signup
+import psycopg2
+from flask import Blueprint, request, current_app
+
+from .logic import check_user_signup
+
+blueprint = Blueprint('user', __name__, url_prefix='/')
 
 
-@application.route("/creer_utilisateur", methods=["GET"])
+@blueprint.route("/creer_utilisateur", methods=["GET"])
 def creer_utilisateur():
     if request.method == 'GET':
         last_name = request.args['last_name']
@@ -17,9 +22,9 @@ def creer_utilisateur():
             sql = """INSERT INTO users(first_name, last_name, email, password, sex)
                  VALUES(%s,%s,%s,%s,%s);"""
             try:
+                psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
                 # connect to the PostgreSQL database
-                conn = psycopg2.connect(
-                    "host=%s dbname=%s user=%s password=%s port=%s" % (HOST, DATABASE, USER, PASSWORD, PORT))
+                conn = psycopg2.connect(psycopg2_connection_string)
                 # create a new cursor
                 cur = conn.cursor()
                 # execute the INSERT statement
@@ -38,7 +43,7 @@ def creer_utilisateur():
             return "Erreur"
 
 
-@application.route("/signIn")
+@blueprint.route("/signIn")
 def sign_in():
     html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
     return html
