@@ -40,6 +40,7 @@ def am38_js():
     js = open("templates/chat/conversation.js", "r").read()
     return Response(js, mimetype='text/javascript')
 
-@blueprint.route("/start_conversation/{userId}", methods=["GET"])
-def create_random_conversation(userId):
-    return userId
+
+@blueprint.route("/start_conversation/<user_id>/<user_2_id>", methods=["GET"])
+def create_random_conversation(user_id, user_2_id):
+    return user_id + " " + user_2_id
