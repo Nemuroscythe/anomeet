@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+      <th scope="col">email</th>
+	  <th scope="col">password</th>
+	  <th scope="col">sex</th>
+    </tr>
+  </thead>
+	{% for data in result %}
+	<tr>
+	<th scope="row">{{data[0]}}</th>
+	<td>{{data[1]}}
+	</td>
+	<td>{{data[2]}}
+	</td>
+	<td>{{data[3]}}
+	</td>
+	<td>{{data[4]}}
+	</td>
+	<td>{{data[5]}}
+	</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
