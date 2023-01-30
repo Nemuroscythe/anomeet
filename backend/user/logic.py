@@ -1,6 +1,7 @@
 import re
 
-
+# ----------------------------
+# Logic for sign in
 def check_name(last_name, first_name):
     if len(last_name) == 0 or len(first_name) == 0:
         # raise ValueError("Votre nom ne peut pas être nul")
@@ -51,3 +52,27 @@ def check_user_signup(first_name, last_name, email, password, confirm_password, 
     else:
         return False
         # raise ValueError("Les champs ne sont pas valides")
+
+
+# ----------------------
+# Logic for login
+def check_email(result):
+    if result is None:
+        return False
+    else:
+        return True
+
+
+def check_password(password, result):
+    if check_email:
+        if password == result:
+            return True
+        else:
+            return False
+
+
+def check_user_login(password, result):
+    if check_email(result) and check_password(password, result[1]):
+        return True
+    else:
+        return False

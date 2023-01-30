@@ -4,6 +4,7 @@ import psycopg2
 from flask import Blueprint, request, current_app, render_template
 
 from .logic import check_user_signup
+from .logic import check_user_login
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
 
@@ -57,6 +58,37 @@ def creer_utilisateur():
             return "Utilisateur créé !"
         else:
             return "Erreur"
+
+
+@blueprint.route("/connexion", methods=["GET"])
+def loginn():
+    if request.method == 'GET':
+        email = request.args['email']
+        password = request.args['password']
+
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the SELECT statement with email user
+        cur.execute('SELECT email, password, id FROM user WHERE email = %s', email)
+        # commit the changes to the database
+        result = cur.fetchall()
+        # close communication with the database
+        cur.close()
+        conn.close()
+
+        return result[0]
+
+        # if check_user_login(email, password, result):
+#             return
+
+
+@blueprint.route("/login")
+def login():
+    html = open("./templates/user/connexion.html", 'r', encoding='utf8').read()
+    return html
 
 
 @blueprint.route("/signIn")
