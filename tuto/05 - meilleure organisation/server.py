@@ -29,7 +29,7 @@ exec(open("user/controller.py", "r").read())
 """
 Lancement des fichiers statiques
 """
-exec(open("static_files.py", "r").read())
+exec(open("static.py", "r").read())
 
 
 

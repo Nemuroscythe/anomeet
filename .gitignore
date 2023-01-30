@@ -1,3 +1,10 @@
-
 backend/chat/__pycache__/test_logic.cpython-39-pytest-7.2.0.pyc
 backend/chat/__pycache__/logic.cpython-39.pyc
+/backend/test/.pytest_cache/
+*.pyc
+/backend/user/.pytest_cache/
+*.pyc
+backend/chat/__pycache__/test_logic.cpython-39-pytest-7.2.0.pyc
+backend/chat/__pycache__/logic.cpython-39.pyc
+backend/chat/__pycache__/logic.cpython-310.pyc
+/backend/chat/.pytest_cache/
