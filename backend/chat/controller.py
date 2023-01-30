@@ -1,4 +1,5 @@
 import json
+import uuid
 
 import psycopg2
 from flask import Blueprint, request, current_app, Response
@@ -45,7 +46,23 @@ def am38_js():
 def create_random_conversation(user_one_id, user_two_id):
     user_one_fullname = get_user_fullname(user_one_id)
     user_two_fullname = get_user_fullname(user_two_id)
-    return f"{user_one_fullname} and {user_two_fullname} exists"
+
+    conversation_id = create_conversation(user_one_id, user_two_id)
+
+    return f"{user_one_fullname} and {user_two_fullname} exists with conversation id: {str(conversation_id)}"
+
+
+def create_conversation(user_one_id, user_two_id):
+    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+    try:
+        with psycopg2.connect(psycopg2_connection_string) as conn:
+            with conn.cursor() as cur:
+                conversation_id = str(uuid.uuid4())
+                cur.execute("INSERT INTO conversation(id_conversation, user_one_id, user_two_id) VALUES (%s, %s, %s);",
+                            (conversation_id, user_one_id, user_two_id))
+            return conversation_id
+    except Exception as e:
+        return f"Conversation between user: {user_one_id} and user: {user_two_id} could not be created: {str(e)}"
 
 
 def get_user_fullname(user_id):
