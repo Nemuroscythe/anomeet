@@ -1,5 +1,5 @@
 import pytest
-from logic import *
+from .logic import *
 
 
 # Si ça fonctionne

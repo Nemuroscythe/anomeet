@@ -1,6 +1,6 @@
 import pytest
 
-from logic import *
+from .logic import *
 
 
 def random_string(k):
