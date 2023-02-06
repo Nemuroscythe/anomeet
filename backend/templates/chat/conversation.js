@@ -8,7 +8,7 @@ function sendMessage() {
                 if (this.responseText == 0) {
                     console.log("message bien envoyé !");
                 } else {
-                    console.error(this.responseText);
+                    console.error("message non envoyé!");
                 }
             }
         };
@@ -27,7 +27,7 @@ TODO : recupérer l'id de la conversation dans l'url
 
 
 // Check le cookie et si pas de cookie redirige vers le login
-var id_user = "cookie..."
+var id_user = "user_id";
 if (id_user == ""){window.location.href = "login"};
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -88,3 +88,4 @@ function checkCookie() {
     }
   }
 }
+///////////////////////////////////////////////////////////////////////////////////////////
