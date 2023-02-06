@@ -22,6 +22,7 @@ document.getElementById("sendbutton").addEventListener("click", sendMessage);
 
 /*
 TODO : recupérer le cookie qui spécifie l'id de l'utilisateur
+TODO : recupérer l'id de la conversation dans l'url
 */
 
 
