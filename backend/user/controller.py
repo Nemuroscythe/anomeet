@@ -54,9 +54,10 @@ def creer_utilisateur():
             finally:
                 if conn is not None:
                     conn.close()
-            return "Utilisateur créé !"
+            return render_template("user/connexion.html")
         else:
-            return "Erreur"
+            flash('Formulaire incorrect. Veuillez réessayer !')
+            return render_template("user/sign_in.html")
 
 
 @blueprint.route("/login_user", methods=["POST"])
@@ -100,5 +101,4 @@ def login():
 
 @blueprint.route("/signIn")
 def sign_in():
-    html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
-    return html
+    return render_template("user/sign_in.html")

@@ -14,7 +14,7 @@
 </head>
 
 <body class="font-size font-color">
-<div class="container-fluid ">
+<div class="container-fluid">
     <section>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 background-color padding-5">
@@ -39,7 +39,7 @@
                     {% block content %}
                         {% with messages = get_flashed_messages() %}
                                 {% if messages %}
-                                    <div class="bg-danger">
+                                    <div class="bg-danger mb-4">
                                         {{ messages[0] }}
                                     </div>
                                 {% endif %}

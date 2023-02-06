@@ -17,6 +17,16 @@
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inscription</p>
 
+                                 {% block content %}
+                                    {% with messages = get_flashed_messages() %}
+                                            {% if messages %}
+                                                <div class="bg-danger mb-4">
+                                                    {{ messages[0] }}
+                                                </div>
+                                            {% endif %}
+                                    {% endwith %}
+                                {% endblock %}
+
                                 <form class="mx-1 mx-md-4" method="get" action="creer_utilisateur">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
