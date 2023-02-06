@@ -1,10 +1,9 @@
 # Definition des routes
 # if se trouve dans controller
 import psycopg2
-from flask import Blueprint, request, current_app, render_template
+from flask import Blueprint, request, current_app, render_template, make_response
 
 from .logic import check_user_signup
-from .logic import check_user_login
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
 
@@ -80,13 +79,16 @@ def login_user():
         conn.close()
 
         if result:
-            return result
+            id = result[0][0]
+            res = make_response()
+            res.set_cookie("user_id", value=id)
+
+            return res
+
         else:
             return "inscris toi enculé"
     else:
         return "faut remplir les champs"
-        # if check_user_login(email, password, result):
-#             return
 
 
 @blueprint.route("/login")
