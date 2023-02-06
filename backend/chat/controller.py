@@ -39,3 +39,13 @@ def conversation():
 def am38_js():
     js = open("templates/chat/conversation.js", "r").read()
     return Response(js, mimetype='text/javascript')
+
+
+@blueprint.route("/getMsg", methods=["POST"])
+def getMsg():
+    conversationInfo = request.data
+    conversationInfo = json.loads(conversationInfo)
+    id_user = conversationInfo["user_id"]
+    id_conversation = conversationInfo["id_conversation"]
+
+    
