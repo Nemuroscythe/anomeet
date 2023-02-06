@@ -19,19 +19,16 @@ function sendMessage() {
 
 document.getElementById("sendbutton").addEventListener("click", sendMessage);
 //////////////////////////////////////////////////////////////////////////////////
-
-/*
-TODO : recupérer le cookie qui spécifie l'id de l'utilisateur
-TODO : recupérer l'id de la conversation dans l'url
-*/
-
-
 // Check le cookie et si pas de cookie redirige vers le login
 var id_user = "user_id";
 if (id_user == ""){window.location.href = "login"};
+// Check l'id de la conversation
+var url = window.location;
+var urlArray = url.split("/");
+var id_conversation = urlArray[urlArray.length -1];
+
 
 //////////////////////////////////////////////////////////////////////////////////
-
 // SetInterval
 //Faire le JSON {id_user:..., id_conversation:...}
 var conversationInfo = {"id_user":user_id, "id_conversation":id_conversation}
