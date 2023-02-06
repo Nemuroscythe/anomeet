@@ -208,3 +208,6 @@ footer {
 label {
     letter-spacing: 0.2rem;
 }
+.background-color-none{
+	background-image: none !important;
+}
