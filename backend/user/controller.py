@@ -1,5 +1,6 @@
 # Definition des routes
 # if se trouve dans controller
+import flask
 import psycopg2
 from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
 
@@ -95,10 +96,26 @@ def login_user():
 
 @blueprint.route("/login")
 def login():
-    return render_template("user/connexion.html")
+    if request.cookies.get('user_id'):
+        flask.abort(403)
+    else:
+        return render_template("user/connexion.html")
+
+
+@blueprint.route("/disconnect")
+def disconnect():
+    if not request.cookies.get('user_id'):
+        flask.abort(403)
+    else:
+        res = make_response()
+        res.set_cookie("user_id", "", expires=0)
+        return res
 
 
 @blueprint.route("/signIn")
 def sign_in():
-    html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
-    return html
+    if request.cookies.get('user_id'):
+        flask.abort(403)
+    else:
+        html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
+        return html
