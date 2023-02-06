@@ -33,9 +33,10 @@ if (id_user == ""){window.location.href = "login"};
 //////////////////////////////////////////////////////////////////////////////////
 
 // SetInterval
-function retrieveMsg() {
+//Faire le JSON {id_user:..., id_conversation:...}
+var conversationInfo = {"id_user":user_id, "id_conversation":id_conversation}
 
-    //Faire le JSON {id_user:..., id_conversation:...}
+function retrieveMsg() {
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -44,7 +45,7 @@ function retrieveMsg() {
         }
     }
     xhttp.open("POST", "getMsg", true);
-    xhttp.send(/*JSON a faire*/);
+    xhttp.send(JSON.stringify());
 }
 
 setInterval(retrieveMsg, 1000);
