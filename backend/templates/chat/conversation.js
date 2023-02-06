@@ -38,7 +38,8 @@ function retrieveMsg() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200){
-            // Function pour traiter la reception des messages
+            // Function pour traiter la reception des messages.
+            loadMsg(this.responseText),
         }
     }
     xhttp.open("POST", "getMsg", true);
@@ -48,6 +49,21 @@ function retrieveMsg() {
 setInterval(retrieveMsg, 1000);
 
 
+function loadMsg(listOfMessages){
+    listOfMessages = JSON.parse(listOfMessages);
+    var buffer = "";
+    for(var i=0; i<listOfMessages.length; i++){
+        //listOfMessage[i][0]:id_user
+        //listOfMessage[i][1]:id_message
+        //listOfMessage[i][2]:message
+        //listOfMessage[i][3]:date
+        var canvas = " <div>Contenu </div>"
+        canvas.replace("Contenu",listOfMessages[i][2]);
+        buffer = buffer + canvas;
+    }
+    document.getElementById("flow").innerHTML=buffer;
+}
+var tabConversation = JSON.parse(this);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // Fonctions du w3school pour la gestion des cookies
