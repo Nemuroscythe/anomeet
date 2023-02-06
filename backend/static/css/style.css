@@ -207,3 +207,6 @@ footer {
 label {
     letter-spacing: 0.2rem;
 }
+.background-color-white{
+	background-image: none !important;
+}
