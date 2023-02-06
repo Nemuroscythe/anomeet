@@ -1,7 +1,9 @@
 import json
 import uuid
+from random import randrange
 
 import psycopg2
+import requests
 from flask import Blueprint, request, current_app, Response
 
 from .logic import *
@@ -17,7 +19,7 @@ def msg_sent():
     except Exception as e:
         return str(e)
 
-    if verification_msg(msg) == True:
+    if verification_msg(msg):
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         try:
             with psycopg2.connect(psycopg2_connection_string) as conn:
@@ -42,14 +44,16 @@ def am38_js():
     return Response(js, mimetype='text/javascript')
 
 
-@blueprint.route("/start_conversation/<user_one_id>/<user_two_id>", methods=["GET"])
-def create_random_conversation(user_one_id, user_two_id):
+@blueprint.route("/start_conversation/<user_one_id>", methods=["GET"])
+def create_random_conversation(user_one_id):
     user_one_fullname = get_user_fullname(user_one_id)
+    user_two_id = get_random_user()
     user_two_fullname = get_user_fullname(user_two_id)
 
     conversation_id = create_conversation(user_one_id, user_two_id)
 
-    return f"{user_one_fullname} and {user_two_fullname} exists with conversation id: {str(conversation_id)}"
+    requests.get("http://127.0.0.1/conversation")
+    return "", 301
 
 
 def create_conversation(user_one_id, user_two_id):
@@ -75,3 +79,32 @@ def get_user_fullname(user_id):
                 return user_data[0] + " " + user_data[1]
     except Exception as e:
         return f"User with id: {user_id} does not exist {str(e)}"
+
+
+def get_random_user():
+    sql = "select id from Users"
+    try:
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql)
+        # commit the changes to the database
+        result = cur.fetchall()
+
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    random_number = randrange(0, len(result))
+
+    return result[random_number][0]
+
+
