@@ -1,7 +1,7 @@
 # Definition des routes
 # if se trouve dans controller
 import psycopg2
-from flask import Blueprint, request, current_app, render_template, make_response
+from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
 
 from .logic import check_user_signup
 
@@ -86,15 +86,16 @@ def login_user():
             return res
 
         else:
-            return "inscris toi enculé"
+            flash('email ou mot de passe incorrect. Veuillez réessayer !')
+            return render_template("user/connexion.html")
     else:
-        return "faut remplir les champs"
+        flash('Il faut remplir tous les champs')
+        return render_template("user/connexion.html")
 
 
 @blueprint.route("/login")
 def login():
-    html = open("./templates/user/connexion.html", 'r', encoding='utf8').read()
-    return html
+    return render_template("user/connexion.html")
 
 
 @blueprint.route("/signIn")
