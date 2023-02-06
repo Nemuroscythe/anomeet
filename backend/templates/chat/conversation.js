@@ -45,7 +45,7 @@ function retrieveMsg() {
         }
     }
     xhttp.open("POST", "getMsg", true);
-    xhttp.send(JSON.stringify());
+    xhttp.send(JSON.stringify(conversationInfo));
 }
 
 setInterval(retrieveMsg, 1000);
