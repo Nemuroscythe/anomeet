@@ -195,6 +195,7 @@ footer {
 }
 
 .font-color {
+    font-size: 1.15em;
     color: lightpink;
     text-shadow: 1px 1px grey;
 
