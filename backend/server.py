@@ -3,7 +3,7 @@ from flask import Flask
 
 
 def create_app():
-    application = Flask(__name__, template_folder='templates')  # template_folder permet de faire fonctionner "render_template"
+    application = Flask(__name__)
 
     application.config.from_object("backend.config.Config")
 

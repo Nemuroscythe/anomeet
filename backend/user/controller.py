@@ -60,11 +60,11 @@ def creer_utilisateur():
             return "Erreur"
 
 
-@blueprint.route("/connexion", methods=["GET"])
-def loginn():
-    if request.method == 'GET':
-        email = request.args['email']
-        password = request.args['password']
+@blueprint.route("/login_user", methods=["POST"])
+def login_user():
+    if request.method == 'POST' and request.form['email'] and request.form['password']:
+        email = request.form['email']
+        password = request.form['password']
 
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         # connect to the PostgreSQL database
@@ -72,15 +72,19 @@ def loginn():
         # create a new cursor
         cur = conn.cursor()
         # execute the SELECT statement with email user
-        cur.execute('SELECT email, password, id FROM user WHERE email = %s', email)
+        cur.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password, ))
         # commit the changes to the database
         result = cur.fetchall()
         # close communication with the database
         cur.close()
         conn.close()
 
-        return result[0]
-
+        if result:
+            return result
+        else:
+            return "inscris toi enculé"
+    else:
+        return "faut remplir les champs"
         # if check_user_login(email, password, result):
 #             return
 
