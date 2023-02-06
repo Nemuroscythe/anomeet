@@ -1,11 +1,16 @@
 # Definition des routes
 # if se trouve dans controller
+import json
+import random
+
 import psycopg2
-from flask import Blueprint, request, current_app
+from flask import Blueprint, request, current_app, jsonify
 
 from .logic import check_user_signup
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
+
+from random import *
 
 
 @blueprint.route("/creer_utilisateur", methods=["GET"])
@@ -47,3 +52,31 @@ def creer_utilisateur():
 def sign_in():
     html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
     return html
+
+
+@blueprint.route("/get_random_user")
+def get_random_user():
+    sql = "select * from Users"
+    try:
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql)
+        # commit the changes to the database
+        result = cur.fetchall()
+
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    random_number = randrange(0, len(result))
+
+    return jsonify(result[random_number])
