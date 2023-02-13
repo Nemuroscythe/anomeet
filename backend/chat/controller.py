@@ -47,5 +47,7 @@ def getMsg():
     conversationInfo = json.loads(conversationInfo)
     id_user = conversationInfo["user_id"]
     id_conversation = conversationInfo["id_conversation"]
+    listOfMessage = retrieveMsg(id_user, id_conversation)
 
-    
+    return json.dumps(listOfMessage)
+
