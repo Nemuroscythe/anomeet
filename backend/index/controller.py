@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Blueprint ,current_app
+from flask import Blueprint, current_app, render_template
 
 blueprint = Blueprint('index', __name__, url_prefix='/')
 
@@ -16,4 +16,4 @@ def index():
     # idéalement il faut faire un print de data --> print(data)
     # pour voir comment les données sont organisées sur la table sql
     # ici je sais qu'il me faut data[0]
-    return str(data[0])
+    return render_template("index.html")
