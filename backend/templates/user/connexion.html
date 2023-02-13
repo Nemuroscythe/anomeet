@@ -23,9 +23,9 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding-5">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="../index.html" class="font-color">Accueil</a></li>
-                        <li><a href="registration.html" class="font-color">Inscription</a></li>
-                        <li><a href="connexion.html" class="font-color">Connexion</a></li>
+                        <li class="active"><a href="/" class="font-color">Accueil</a></li>
+                        <li><a href="signIn" class="font-color">Inscription</a></li>
+                        <li><a href="login" class="font-color">Connexion</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,14 +36,25 @@
             <div class="col-lg-12">
                 <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-6 col-lg-4 col-lg-offset-4 text-center subscribe new-password-box">
                     <h1 class="font-family">Connexion</h1>
-                    <form action="#" method="POST">
+
+                    {% block content %}
+                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                            {% for category, message in messages %}
+                                                <div class="{{ category }}">
+                                                    {{ message }}
+                                                </div>
+                                            {% endfor %}
+                                    {% endwith %}
+                    {% endblock %}
+
+                    <form action="login_user" method="post">
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="email" class="font-family"> Email:</label>
-                            <input id="email" type="email" placeholder="Votre Email" class="form-control input-lg"/>
+                            <input id="email" name="email" type="email" placeholder="Votre Email" class="form-control input-lg"/>
                         </div>
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="password" class="font-family"> Mot de passe:</label>
-                            <input id="password" type="password" placeholder="password" class="form-control input-lg"/>
+                            <input id="password" name="password" type="password" placeholder="password" class="form-control input-lg"/>
 							<a class="forgot-password " href="forget_password.html">mdp oublié?</a>
                         </div>
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
