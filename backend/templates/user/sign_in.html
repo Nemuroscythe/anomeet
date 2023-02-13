@@ -18,12 +18,12 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inscription</p>
 
                                  {% block content %}
-                                    {% with messages = get_flashed_messages() %}
-                                            {% if messages %}
-                                                <div class="bg-danger mb-4">
-                                                    {{ messages[0] }}
+                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                            {% for category, message in messages %}
+                                                <div class="{{ category }}">
+                                                    {{ message }}
                                                 </div>
-                                            {% endif %}
+                                            {% endfor %}
                                     {% endwith %}
                                 {% endblock %}
 

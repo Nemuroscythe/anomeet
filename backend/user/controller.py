@@ -55,9 +55,12 @@ def creer_utilisateur():
             finally:
                 if conn is not None:
                     conn.close()
-            return "Utilisateur créé !"
+
+            flash("Votre profil a bien été créé !", 'bg-success')
+            return render_template("user/connexion.html")
         else:
-            return "Erreur"
+            flash("Il y a une erreur dans votre formulaire", 'bg-danger')
+            return render_template("user/sign_in.html")
 
 
 @blueprint.route("/login_user", methods=["POST"])
@@ -87,10 +90,10 @@ def login_user():
             return res
 
         else:
-            flash('email ou mot de passe incorrect. Veuillez réessayer !')
+            flash('email ou mot de passe incorrect. Veuillez réessayer !', 'bg-danger')
             return render_template("user/connexion.html")
     else:
-        flash('Il faut remplir tous les champs')
+        flash('Il faut remplir tous les champs', 'bg-danger')
         return render_template("user/connexion.html")
 
 
@@ -117,5 +120,4 @@ def sign_in():
     if request.cookies.get('user_id'):
         flask.abort(403)
     else:
-        html = open("./templates/user/sign_in.html", 'r', encoding='utf8').read()
-        return html
+        return render_template("user/sign_in.html")
