@@ -101,13 +101,13 @@ def login_user():
             flash('Il faut remplir tous les champs', 'bg-danger')
             return render_template("user/connexion.html")
     else:
-        flask.abort(403)
+        return render_template("homev2.html")
 
 
 @blueprint.route("/login")
 def login():
     if request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("homev2.html")
     else:
         return render_template("user/connexion.html")
 
