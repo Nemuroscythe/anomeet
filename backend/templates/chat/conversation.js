@@ -66,7 +66,7 @@ function loadMsg(listOfMessages){
     }
     document.getElementById("flow").innerHTML=buffer;
 }
-var tabConversation = JSON.parse(this);
+//var tabConversation = JSON.parse(this);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // Fonctions du w3school pour la gestion des cookies
