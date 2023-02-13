@@ -1,6 +1,7 @@
 import re
 
-
+# ----------------------------
+# Logic for sign in
 def check_name(last_name, first_name):
     if len(last_name) == 0 or len(first_name) == 0:
         # raise ValueError("Votre nom ne peut pas être nul")
