@@ -195,6 +195,7 @@ footer {
 }
 
 .font-color {
+    font-size: 1.15em;
     color: lightpink;
     text-shadow: 1px 1px grey;
 
@@ -209,4 +210,29 @@ label {
 }
 .background-color-none{
 	background-image: none !important;
+}
+
+.header
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #ffffc1;
+    width: 100%;
+    z-index: 6;
+}
+
+.trunk
+{
+    padding-top: 11em;
+}
+
+footer
+{
+    position: fixed center;
+    bottom: 0px;
+    z-index: 6;
+    font-size: 70%;
+    width: 45%;
+    margin: 0 auto;
 }
