@@ -27,13 +27,14 @@ def recuperer_utilisateur():
 
 @blueprint.route("/creer_utilisateur", methods=["GET"])
 def creer_utilisateur():
-    if request.method == 'GET':
-        last_name = request.args['last_name']
-        first_name = request.args['first_name']
-        email = request.args['email']
-        password = request.args['password']
-        confirm_password = request.args['confirm_password']
-        sex = request.args['sex']
+    if request.cookies.get('user_id'):
+        if request.method == 'GET':
+            last_name = request.args['last_name']
+            first_name = request.args['first_name']
+            email = request.args['email']
+            password = request.args['password']
+            confirm_password = request.args['confirm_password']
+            sex = request.args['sex']
 
         if check_user_signup(first_name, last_name, email, password, confirm_password, sex):
             sql = """INSERT INTO users(first_name, last_name, email, password, sex)
@@ -61,40 +62,45 @@ def creer_utilisateur():
         else:
             flash("Il y a une erreur dans votre formulaire", 'bg-danger')
             return render_template("user/sign_in.html")
+    else:
+        flask.abort(403)
 
 
 @blueprint.route("/login_user", methods=["POST"])
 def login_user():
-    if request.method == 'POST' and request.form['email'] and request.form['password']:
-        email = request.form['email']
-        password = request.form['password']
+    if not request.cookies.get('user_id'):
+        if request.method == 'POST' and request.form['email'] and request.form['password']:
+            email = request.form['email']
+            password = request.form['password']
 
-        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
-        # connect to the PostgreSQL database
-        conn = psycopg2.connect(psycopg2_connection_string)
-        # create a new cursor
-        cur = conn.cursor()
-        # execute the SELECT statement with email user
-        cur.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password, ))
-        # commit the changes to the database
-        result = cur.fetchall()
-        # close communication with the database
-        cur.close()
-        conn.close()
+            psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+            # connect to the PostgreSQL database
+            conn = psycopg2.connect(psycopg2_connection_string)
+            # create a new cursor
+            cur = conn.cursor()
+            # execute the SELECT statement with email user
+            cur.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password, ))
+            # commit the changes to the database
+            result = cur.fetchall()
+            # close communication with the database
+            cur.close()
+            conn.close()
 
-        if result:
-            id = result[0][0]
-            res = make_response()
-            res.set_cookie("user_id", value=id)
+            if result:
+                id = result[0][0]
+                res = make_response()
+                res.set_cookie("user_id", value=id)
 
-            return res
+                return res
 
+            else:
+                flash('email ou mot de passe incorrect. Veuillez réessayer !', 'bg-danger')
+                return render_template("user/connexion.html")
         else:
-            flash('email ou mot de passe incorrect. Veuillez réessayer !', 'bg-danger')
+            flash('Il faut remplir tous les champs', 'bg-danger')
             return render_template("user/connexion.html")
     else:
-        flash('Il faut remplir tous les champs', 'bg-danger')
-        return render_template("user/connexion.html")
+        flask.abort(403)
 
 
 @blueprint.route("/login")
