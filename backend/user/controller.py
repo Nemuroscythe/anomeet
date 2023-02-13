@@ -62,7 +62,7 @@ def creer_utilisateur():
                 return render_template("user/connexion.html")
             else:
                 flash("Il y a une erreur dans votre formulaire", 'bg-danger')
-                return render_template("user/sign_in.html")
+                return render_template("user/registration.html")
     else:
         flask.abort(403)
 
@@ -127,4 +127,4 @@ def sign_in():
     if request.cookies.get('user_id'):
         flask.abort(403)
     else:
-        return render_template("user/sign_in.html")
+        return render_template("user/registration.html")
