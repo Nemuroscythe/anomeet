@@ -90,10 +90,18 @@ def test_check_sex_false():
     assert check_sex("P") == False
 
 
+def test_check_orientation_true():
+    assert check_orientation("H") == True
+
+
+def test_check_orientation_false():
+    assert check_orientation("M") == False
+
+
 def test_check_user_signup_true():
     assert check_user_signup("Jean-Mich", "Dupont", "jean-mich@dupont.fr",
-                             "Azertyuiop123$", "Azertyuiop123$", "X") == True
+                             "Azertyuiop123$", "Azertyuiop123$", "X", "X") == True
 
 
 def test_check_user_signup_false():
-    assert check_user_signup(" ", "", "jeanmich.fr", "Azertyuiop123", "Azertyuiop12", "Q") == False
+    assert check_user_signup(" ", "", "jeanmich.fr", "Azertyuiop123", "Azertyuiop12", "Q", "P") == False
