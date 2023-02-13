@@ -17,5 +17,8 @@ def retrieveMsg(id_user, id_conversation):
     cur.execute(sql, (id_conversation, ))
 
     data = cur.fetchall()
+
+    cur.close()
+    conn.close()
     
     return json.dumps(data)
