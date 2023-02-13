@@ -23,15 +23,16 @@ document.getElementById("sendbutton").addEventListener("click", sendMessage);
 var id_user = "user_id";
 if (id_user == ""){window.location.href = "login"};
 // Check l'id de la conversation
-var url = window.location;
+var url = window.location.href;
 var urlArray = url.split("/");
 var id_conversation = urlArray[urlArray.length -1];
-
+var isOK = true;
+if (id_conversation == "conversation"){isOK = false}
 
 //////////////////////////////////////////////////////////////////////////////////
 // SetInterval
 //Faire le JSON {id_user:..., id_conversation:...}
-var conversationInfo = {"id_user":user_id, "id_conversation":id_conversation}
+var conversationInfo = {"id_user":id_user, "id_conversation":id_conversation}
 
 function retrieveMsg() {
 
@@ -39,11 +40,13 @@ function retrieveMsg() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200){
             // Function pour traiter la reception des messages.
-            loadMsg(this.responseText),
+            loadMsg(this.responseText);
         }
     }
     xhttp.open("POST", "getMsg", true);
-    xhttp.send(JSON.stringify(conversationInfo));
+    if (isOK) {
+        xhttp.send(JSON.stringify(conversationInfo));
+    }
 }
 
 setInterval(retrieveMsg, 1000);

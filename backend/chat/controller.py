@@ -45,7 +45,7 @@ def am38_js():
 def getMsg():
     conversationInfo = request.data
     conversationInfo = json.loads(conversationInfo)
-    id_user = conversationInfo["user_id"]
+    id_user = conversationInfo["id_user"]
     id_conversation = conversationInfo["id_conversation"]
     listOfMessage = retrieveMsg(id_user, id_conversation)
 
