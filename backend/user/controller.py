@@ -35,10 +35,11 @@ def creer_utilisateur():
             password = request.args['password']
             confirm_password = request.args['confirm_password']
             sex = request.args['sex']
+            orientation = request.args['orientation']
 
-            if check_user_signup(first_name, last_name, email, password, confirm_password, sex):
-                sql = """INSERT INTO users(first_name, last_name, email, password, sex)
-                     VALUES(%s,%s,%s,%s,%s);"""
+            if check_user_signup(first_name, last_name, email, password, confirm_password, sex, orientation):
+                sql = """INSERT INTO users(first_name, last_name, email, password, sex, orientation)
+                     VALUES(%s,%s,%s,%s,%s,%s);"""
                 try:
                     psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
                     # connect to the PostgreSQL database
@@ -46,7 +47,7 @@ def creer_utilisateur():
                     # create a new cursor
                     cur = conn.cursor()
                     # execute the INSERT statement
-                    cur.execute(sql, (first_name, last_name, email, password, sex))
+                    cur.execute(sql, (first_name, last_name, email, password, sex, orientation))
                     # commit the changes to the database
                     conn.commit()
                     # close communication with the database

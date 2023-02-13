@@ -44,10 +44,16 @@ def check_sex(sex):
         return False
     return True
 
+def check_orientation(orientation):
+    if orientation != "H" and orientation != "F" and orientation != "X" and orientation != "T":
+        # raise ValueError("Votre sexe n'est pas valide")
+        return False
+    return True
 
-def check_user_signup(first_name, last_name, email, password, confirm_password, sex):
+
+def check_user_signup(first_name, last_name, email, password, confirm_password, sex, orientation):
     if check_name(last_name, first_name) and check_email(email) and check_password(password) and check_if_same_password(
-            password, confirm_password) and check_sex(sex):
+            password, confirm_password) and check_sex(sex) and check_orientation(orientation):
         return True
     else:
         return False
