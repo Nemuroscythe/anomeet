@@ -43,14 +43,13 @@
                     <form action="#" method="POST">
                         <div class="margin-top-30">
                             <div class="form-check">
-                                <label class="form-check-label font-family margin-top-30 margin-right-50" for="man">Homme
-                                    <input class="form-check-input radio-inline mr-3" type="radio"
-                                           name="flexRadioDefault" id="man" value="man" checked/>
-                                </label>
-                                <label class="form-check-label font-family" for="woman">Femme
-                                    <input class="form-check-input radio-inline mx-3" type="radio"
-                                           name="flexRadioDefault" id="woman" value="woman"/>
-                                </label>
+                                <select class="select" name="sex" style="color:black">
+                                                <option value="none" selected disabled hidden>Sélectionnez votre genre
+                                                </option>
+                                                <option value="H">Homme</option>
+                                                <option value="F">Femme</option>
+                                                <option value="X">Autre</option>
+                                            </select>
                             </div>
                         </div>
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
