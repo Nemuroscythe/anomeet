@@ -38,7 +38,7 @@ function retrieveMsg() {
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200){
+        if (this.readyState == 4 && this.status == 200 && this.responseText != "0"){
             // Function pour traiter la reception des messages.
             loadMsg(this.responseText);
         }
