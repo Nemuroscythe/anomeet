@@ -89,7 +89,7 @@ def login_user():
 
             if result:
                 id = result[0][0]
-                res = make_response()
+                res = make_response(render_template("homev2.html"))
                 res.set_cookie("user_id", value=id)
 
                 return res
