@@ -1,12 +1,18 @@
 # Definition des routes
 # if se trouve dans controller
 import flask
+import json
+
+
 import psycopg2
 from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
+from flask import Blueprint, request, current_app, jsonify
 
 from .logic import check_user_signup
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
+
+from random import *
 
 
 @blueprint.route("/recuperer_utilisateur", methods=["GET"])
@@ -128,3 +134,7 @@ def sign_in():
         flask.abort(403)
     else:
         return render_template("user/registration.html")
+
+
+
+
