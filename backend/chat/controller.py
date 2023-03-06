@@ -31,7 +31,7 @@ def msg_sent():
 # Routes pour servir l'application "conversation"
 @blueprint.route("/conversation", methods=["GET"])
 def conversation():
-    html = open("templates/chat/conversation.html", "r").read()
+    html = open("templates/chat.html", "r").read()
     return html
 
 
@@ -39,3 +39,15 @@ def conversation():
 def am38_js():
     js = open("templates/chat/conversation.js", "r").read()
     return Response(js, mimetype='text/javascript')
+
+
+@blueprint.route("/getMsg", methods=["POST"])
+def getMsg():
+    conversationInfo = request.data
+    conversationInfo = json.loads(conversationInfo)
+    id_user = conversationInfo["id_user"]
+    id_conversation = conversationInfo["id_conversation"]
+    listOfMessage = retrieveMsg(id_user, id_conversation)
+
+    return json.dumps(listOfMessage)
+
