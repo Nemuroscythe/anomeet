@@ -5,4 +5,3 @@ des pages créées.
 Il est exécuté tel quel avant le application.run()
 
 """
-

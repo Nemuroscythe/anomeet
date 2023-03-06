@@ -2,6 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=Beau+Rivage&family=Great+Vibes&family=Italianno&family=Tangerine:wght@700&display=swap');
 
+body {
+color:black;
+background-color:white;
+background-image:url(../img/anonymous.png);
+background-attachment:fixed;
+margin:0;
+}
+
 .container {
     margin: auto;
 }
@@ -187,7 +195,10 @@ footer {
 }
 
 .font-color {
-    color: white;
+    font-size: 1.15em;
+    color: lightpink;
+    text-shadow: 1px 1px grey;
+
 }
 
 .box {
@@ -196,4 +207,32 @@ footer {
 
 label {
     letter-spacing: 0.2rem;
+}
+.background-color-none{
+	background-image: none !important;
+}
+
+.header
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #ffffc1;
+    width: 100%;
+    z-index: 6;
+}
+
+.trunk
+{
+    padding-top: 11em;
+}
+
+footer
+{
+    position: fixed center;
+    bottom: 0px;
+    z-index: 6;
+    font-size: 70%;
+    width: 45%;
+    margin: 0 auto;
 }
