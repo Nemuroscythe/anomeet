@@ -20,7 +20,7 @@ function sendMessage() {
 document.getElementById("sendbutton").addEventListener("click", sendMessage);
 //////////////////////////////////////////////////////////////////////////////////
 // Check le cookie et si pas de cookie redirige vers le login
-var id_user = "user_id";
+var id_user = getCookie("user_id");
 if (id_user == ""){window.location.href = "login"};
 // Check l'id de la conversation
 var url = window.location.href;
@@ -60,9 +60,20 @@ function loadMsg(listOfMessages){
         //listOfMessage[i][1]:id_message
         //listOfMessage[i][2]:message
         //listOfMessage[i][3]:date
-        var canvas = " <div>Contenu </div>"
-        canvas.replace("Contenu",listOfMessages[i][2]);
-        buffer = buffer + canvas;
+        
+        //Caneva de test
+        //var canvas = " <div>Contenu </div>"
+
+        if listOfMessages[i][0] == id_user { 
+            var canvas = '<div class="row text-left">Contenu</div>'
+            canvas.replace("Contenu",listOfMessages[i][2]);
+            buffer = buffer + canvas;
+        }
+        else {
+            var canvas = '<div class="row text-right">Contenu</div>'
+            canvas.replace("Contenu",listOfMessages[i][2]);
+            buffer = buffer + canvas;
+        }
     }
     document.getElementById("flow").innerHTML=buffer;
 }
