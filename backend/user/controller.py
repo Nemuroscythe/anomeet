@@ -2,7 +2,7 @@
 # if se trouve dans controller
 import flask
 import psycopg2
-from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
+from flask import Blueprint, request, current_app, render_template, make_response, flash
 
 from .logic import check_user_signup
 
@@ -80,7 +80,7 @@ def login_user():
             # create a new cursor
             cur = conn.cursor()
             # execute the SELECT statement with email user
-            cur.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password, ))
+            cur.execute('SELECT id FROM users WHERE email = %s AND password = %s', (email, password,))
             # commit the changes to the database
             result = cur.fetchall()
             # close communication with the database
