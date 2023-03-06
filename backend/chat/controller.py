@@ -31,7 +31,7 @@ def msg_sent():
 # Routes pour servir l'application "conversation"
 @blueprint.route("/conversation", methods=["GET"])
 def conversation():
-    html = open("templates/chat/conversation.html", "r").read()
+    html = open("templates/chat.html", "r").read()
     return html
 
 
