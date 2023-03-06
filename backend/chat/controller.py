@@ -1,10 +1,8 @@
-import json
 import uuid
 from random import randrange
 
-import psycopg2
 import requests
-from flask import Blueprint, request, current_app, Response
+from flask import Blueprint, request, current_app, Response, render_template
 
 from .logic import *
 
@@ -34,8 +32,7 @@ def msg_sent():
 # Routes pour servir l'application "conversation"
 @blueprint.route("/conversation", methods=["GET"])
 def conversation():
-    html = open("templates/chat.html", "r").read()
-    return html
+    return render_template("chat.html")
 
 
 @blueprint.route("/conversation.js", methods=["GET"])
@@ -53,7 +50,6 @@ def getMsg():
     listOfMessage = retrieveMsg(id_user, id_conversation)
 
     return json.dumps(listOfMessage)
-
 
 
 @blueprint.route("/start_conversation/<user_one_id>", methods=["GET"])
@@ -118,5 +114,3 @@ def get_random_user():
     random_number = randrange(0, len(result))
 
     return result[random_number][0]
-
-
