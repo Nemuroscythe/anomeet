@@ -25,17 +25,17 @@ def recuperer_utilisateur():
     return render_template("user/show_user.html", result=result)
 
 
-@blueprint.route("/creer_utilisateur", methods=["GET"])
+@blueprint.route("/creer_utilisateur", methods=["POST"])
 def creer_utilisateur():
     if not request.cookies.get('user_id'):
-        if request.method == 'GET':
-            last_name = request.args['last_name']
-            first_name = request.args['first_name']
-            email = request.args['email']
-            password = request.args['password']
-            confirm_password = request.args['confirm_password']
-            sex = request.args['sex']
-            orientation = request.args['orientation']
+        if request.method == 'POST':
+            last_name = request.form['last_name']
+            first_name = request.form['first_name']
+            email = request.form['email']
+            password = request.form['password']
+            confirm_password = request.form['confirm_password']
+            sex = request.form['sex']
+            orientation = request.form['orientation']
 
             if check_user_signup(first_name, last_name, email, password, confirm_password, sex, orientation):
                 sql = """INSERT INTO users(first_name, last_name, email, password, sex, orientation)
@@ -117,7 +117,7 @@ def disconnect():
     if not request.cookies.get('user_id'):
         flask.abort(403)
     else:
-        res = make_response()
+        res = make_response(render_template("index.html"))
         res.set_cookie("user_id", "", expires=0)
         return res
 
