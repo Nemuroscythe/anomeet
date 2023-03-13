@@ -67,11 +67,11 @@ def test_check_email_when_false_regex():
 
 
 def test_check_password_when_true_regex():
-    assert check_password("Azertyuiop123$") == True
+    assert check_password("Azertyuiop123#@") == True
 
 
 def test_check_password_when_false_regex():
-    assert check_password("Azertyuiop123") == False
+    assert check_password("Azertyuiop123#@^") == False
 
 
 def test_check_if_same_password():
@@ -100,7 +100,7 @@ def test_check_orientation_false():
 
 def test_check_user_signup_true():
     assert check_user_signup("Jean-Mich", "Dupont", "jean-mich@dupont.fr",
-                             "Azertyuiop123$", "Azertyuiop123$", "X", "X") == True
+                             "Azertyuiop123@#", "Azertyuiop123@#", "X", "X") == True
 
 
 def test_check_user_signup_false():

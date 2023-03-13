@@ -16,7 +16,7 @@ def check_name(last_name, first_name):
 
 
 def check_email(email):
-    regex = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+    regex = "^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
     if not re.match(regex, email):
         # raise ValueError("Votre email n'est pas valide")
         return False
@@ -24,7 +24,7 @@ def check_email(email):
 
 
 def check_password(password):
-    regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$"
+    regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,32}$"
     if not re.match(regex, password):
         # raise ValueError("Votre mot de passe n'est pas valide")
         return False
