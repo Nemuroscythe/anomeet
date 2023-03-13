@@ -5,12 +5,12 @@ from flask import Flask
 def create_app():
     application = Flask(__name__)
 
-    application.config.from_object("backend.config.Config")
+    application.config.from_object("config.Config")
 
     # Import des routes
-    from .user.controller import blueprint as user_blueprint
-    from .chat.controller import blueprint as chat_blueprint
-    from .index.controller import blueprint as index_blueprint
+    from user.controller import blueprint as user_blueprint
+    from chat.controller import blueprint as chat_blueprint
+    from index.controller import blueprint as index_blueprint
 
     application.register_blueprint(user_blueprint)
     application.register_blueprint(chat_blueprint)
