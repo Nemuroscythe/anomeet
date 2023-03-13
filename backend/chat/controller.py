@@ -1,8 +1,7 @@
 import uuid
 from random import randrange
 
-import requests
-from flask import Blueprint, request, current_app, Response, render_template
+from flask import Blueprint, request, current_app, Response, render_template, redirect, url_for
 
 from .logic import *
 
@@ -60,8 +59,7 @@ def create_random_conversation(user_one_id):
 
     conversation_id = create_conversation(user_one_id, user_two_id)
 
-    requests.get("http://127.0.0.1/conversation")
-    return "", 301
+    return redirect(url_for('chat.conversation')), 301
 
 
 def create_conversation(user_one_id, user_two_id):
