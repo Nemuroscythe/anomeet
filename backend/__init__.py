@@ -5,7 +5,7 @@ from flask import Flask
 def create_app():
     application = Flask(__name__)
 
-    application.config.from_object("config.Config")
+    application.config.from_object("backend.config.Config")
 
     # Import des routes
     from user.controller import blueprint as user_blueprint
