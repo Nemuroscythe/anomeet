@@ -4,7 +4,7 @@ import flask
 import psycopg2
 from flask import Blueprint, request, current_app, render_template, make_response, flash
 
-from .logic import check_user_signup
+from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
 
@@ -61,8 +61,21 @@ def creer_utilisateur():
                 flash("Votre profil a bien été créé !", 'bg-success')
                 return render_template("user/connexion.html")
             else:
-                flash("Il y a une erreur dans votre formulaire", 'bg-danger')
-                return render_template("user/registration.html")
+                if not check_email(email):
+                    flash("Il y a une erreur dans votre email", 'bg-danger')
+                    return render_template("user/registration.html")
+
+                elif not check_password(password):
+                    flash("Il y a une erreur dans votre mot de passe", 'bg-danger')
+                    return render_template("user/registration.html")
+
+                elif not check_if_same_password(password, confirm_password):
+                    flash("Le mot de passe n'est pas identique", 'bg-danger')
+                    return render_template("user/registration.html")
+
+                else:
+                    flash("Un problème est survenu. Veuillez réessayer", 'bg-danger')
+                    return render_template("user/registration.html")
     else:
         flask.abort(403)
 
