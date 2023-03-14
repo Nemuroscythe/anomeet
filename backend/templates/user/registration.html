@@ -50,61 +50,68 @@
                     {% endblock %}
 
                     <form action="creer_utilisateur" method="post">
+
                         <div class="margin-top-30">
-							<div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="form-outline flex-fill mb-0 ">
-                                            <select class="select font-family" name="sex">
-                                                <option value="none" selected disabled hidden>
-													sexe
-                                                </option>
-                                                <option value="H">Homme</option>
-                                                <option value="F">Femme</option>
-                                                <option value="X">Je le garde pour moi</option>
-                                            </select>
-                                        </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <select class="select font-family h2" name="orientation">
+                                        <option value="None" selected disabled hidden>Sélectionnez votre attirance sexuelle
+                                        </option>
+                                        <option value="H">Homme</option>
+                                        <option value="F">Femme</option>
+                                        <option value="X">Autre</option>
+                                        <option value="T">Tout le monde</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <select class="select font-family" name="orientation">
-                                                <option value="none" selected disabled hidden>Sélectionnez votre attirance sexuelle
-                                                </option>
-                                                <option value="H">Homme</option>
-                                                <option value="F">Femme</option>
-                                                <option value="X">Autre</option>
-                                                <option value="T">Tout le monde</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                            
+                            <div class="d-flex flex-row align-items-center margin-top-10">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0 ">
+                                    <select class="select font-family  h2" name="sex">
+                                        <option value="None" selected disabled hidden>
+                                            sexe
+                                        </option>
+                                        <option value="H">Homme</option>
+                                        <option value="F">Femme</option>
+                                        <option value="X">Je le garde pour moi</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="last_name" class="font-family">Nom</label>
-                            <input id="last_name" name="last_name" type="text" placeholder="Nom" class="form-control"/>
+                            <input id="last_name" name="last_name" type="text" placeholder="Nom" class="form-control input-lg"/>
                         </div>
+
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="first_name" class="font-family">Prénom</label>
                             <input id="first_name" name="first_name" type="text" placeholder="Prénom" class="form-control input-lg"/>
                         </div>
+
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="email" class="font-family">Email:</label>
                             <input id="email" name="email" type="email" placeholder="Email" class="form-control input-lg"/>
                         </div>
+
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <label for="password" class="font-family">Mot de passe:</label>
                             <input id="password" name="password" type="password" placeholder="Password" class="form-control input-lg"/>
                             <comment>Minimum 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial</comment>
                         </div>
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
+
+                        <div class="col-lg-offset-3 col-lg-6 margin-top-30 mb-1">
                             <label for="confirm-password" class="font-family">Confirmez mot de passe:</label>
                             <input id="confirm_password" name="confirm_password" type="password" placeholder="Password"
                                    class="form-control input-lg"/>
                         </div>
+
                         <div class="col-lg-offset-3 col-lg-6 margin-top-30">
                             <button type="submit" class="btn btn-success btn-lg">Enregistrer</button>
                         </div>
+
                     </form>
                 </div>
             </div>
