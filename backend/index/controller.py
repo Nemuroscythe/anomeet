@@ -1,5 +1,6 @@
 import psycopg2
 from flask import Blueprint, current_app, render_template
+import json
 
 blueprint = Blueprint('index', __name__, url_prefix='/')
 
@@ -17,3 +18,10 @@ def index():
     # pour voir comment les données sont organisées sur la table sql
     # ici je sais qu'il me faut data[0]
     return render_template("index.html")
+
+
+# --------------------------------------------------------------------------AM16
+# ---------------------------------------------------------------msg on homepage
+@blueprint.route("/MainChannelMsg", methods=["POST"])
+def retrieveMsg():
+    data = {}
