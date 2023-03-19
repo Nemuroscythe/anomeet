@@ -301,10 +301,10 @@
 
 				 <br>
 				<div id="MsgBox">
-					<textarea style="width:500px; height:100%;resize:none;">
+					<textarea style="width:500px; height:100%;resize:none;" id="inputMsg">
 					</textarea>
 					<div style="text-align:center; width:500px">
-						<button class="btn btn-success">Envoyer</button>
+						<button class="btn btn-success" id="btnSendMsg">Envoyer</button>
 					</div>
 				</div>
 			</aside>
@@ -316,8 +316,8 @@
 
 
 <style name="AM16">
-/*--------------------------------------------------------------------AM16 CSS*/
-/*---------------------------------------------------------rework Imad*/
+/*------------------------------------------------------------------------------------------------AM16 CSS*/
+/*-------------------------------------------------------------------------------------rework Imad*/
 	.mainboard-tab {
 		display:inline-block;
 		margin-top:10px;
@@ -373,12 +373,14 @@
 
 <script name="AM16">
 
-/*---------------------------------------------------------------------AM16 JS*/
-/*----------------------------------------------------------global var*/
+/*-------------------------------------------------------------------------------------------------AM16 JS*/
+/*--------------------------------------------------------------------------------------global var*/
 	//Route for retrieving msg
-	gen_url = "";
+	gen_url = "MainChannelMsg";
+	//Route for sending msg
+	send_url = "MainChannelSend";
 	//Time of setInterval (ms)
-	gen_time = 1000;
+	gen_time = 500;
 
 	user_id = getCookie("user_id");
 
@@ -402,8 +404,7 @@
 	canal3Board.style.display = "none";
 
 	canalData = {};
-
-/*--------------------------------------------------------Switch canal*/
+/*------------------------------------------------------------------------------------Switch canal*/
 	function switchCanal(c) {
 		switch(c) {
 		case 1:
@@ -452,13 +453,13 @@
 			canalActif = 1;
 		}
 	}
-/*---------------------------------------------------------reset board*/
+/*-------------------------------------------------------------------------------------reset board*/
 	function resetBoards(){
 		canal1Board.innerHTML = "";
 		canal2Board.innerHTML = "";
 		canal3Board.innerHTML = "";
 	}
-/*----------------------------------------------------------Draw board*/
+/*--------------------------------------------------------------------------------------Draw board*/
 	function drawBoards(data){
 		resetBoards();
 		if (canalData == "") {return;}
@@ -548,7 +549,7 @@
 		canal3Board.innerHTML = buffer3;
 
 	}
-/*--------------------------------------------------------Retrieve Msg*/
+/*------------------------------------------------------------------------------------Retrieve Msg*/
 	function retrieveMsg(){
 		/* Server must return JSON of type:
 		{
@@ -559,7 +560,7 @@
 		*/
 
 		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange == function(){
+		xhttp.onreadystatechange = function(){
 			//All good
 			if (this.readyState == 4 && this.status == 200) {
 				canalData = JSON.parse(this.responseText);
@@ -573,9 +574,9 @@
 		xhttp.open("POST", gen_url, true);
 		xhttp.send();
 	}
-/*---------------------------------------------------------setInterval*/
+/*-------------------------------------------------------------------------------------setInterval*/
 	//setInterval(retrieveMsg(), gen_time);
-/*-----------------------------------------------------------getCookie*/
+/*---------------------------------------------------------------------------------------getCookie*/
 	function getCookie(cname) {
   		let name = cname + "=";
   		let ca = document.cookie.split(';');
@@ -590,14 +591,89 @@
   		}
   		return "";
 	}
-/*-------------------------------------------------------------sendMsg*/
+/*-----------------------------------------------------------------------------------------sendMsg*/
 	function sendMsg(){
 		/*Send msg to server:
 		["CanalNumber", "user_id", "msg"]
 		*/
 
 		//Need to add verification on msg...
+		let text = document.getElementById("inputMsg").value;
+		text = text.trim();
 
+		if (text == "") {
+			console.error("Erreur Message : message vide...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		if(text.length > 512) {
+			console.error("Erreur Message : message trop long (>512)");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		//Verification user_id
+		if (user_id == ""){
+			console.error("Erreur Message : user_id non trouvé...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+
+		var msgData = JSON.stringify([canalActif, user_id, text]);
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			//good, check resp form server
+			if (this.readyState == 4 && this.status == 200) {
+				// Msg send without error
+				if (this.responseText == 0) {
+					console.log("Message envoyé");
+					document.getElementById("inputMsg").value = "";
+					document.getElementById("inputMsg").style.borderColor = "";
+				}
+				// Error received form server
+				if (this.responseText != 0){
+					console.error("Erreur Message : code reçu du serveur => " + this.responseText);
+					document.getElementById("inputMsg").style.borderColor = "1px solid red";
+				}
+			}
+			//Ajax not good
+			if (this.readyState == 4 && this.status != 200){
+				console.error("Erreur Message : code HTML => " + this.status);
+				document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			}
+		}
+		xhttp.open("POST", send_url, true);
+		xhttp.send(msgData);
 	}
+/*-----------------------------------------------------------------------Event listener (send msg)*/
+	//Bouton d'envoi
+	document.getElementById("btnSendMsg").addEventListener('click', sendMsg());
+	//Appui sur enter
+	document.getElementById("inputMsg").addEventListener('keydown', function(event){
+		if (event.keyCode === 13 && !event.shiftKey){
+			event.preventDefault();
+			sendMsg();
+		}
+	})
 
+
+
+/*--------------------------------------------------------AJAX Notes*/
+//-                                        Recuperation des messages : 
+//-                                            -route : MainChannelMsg
+//-                                                    -methode : POST
+//-                                               -retour du serveur : 
+//-         {
+//- 	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 		}
+//- 
+//-                                                 Envoi de message :
+//-                                           -route : MainChannelSend
+//-                                                    -methode : POST
+//-                          -json : ["CanalNumber", "user_id", "msg"]
+//-                                               -retour du serveur : 
+//-                              0 : ok, autre : erreur sur le serveur
+/*------------------------------------------------------------------*/
 </script>
