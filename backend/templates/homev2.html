@@ -18,7 +18,6 @@
 
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 
 	</head>
 
@@ -33,11 +32,11 @@
 			
 			<div class="col-lg-5 col-md-6 col-sm-6 col-xs-6  padding5   ">
 				 <ul class="nav navbar-nav navbar-right ">
-				    <li class="active "><a href="#" class="fontColor">Accueil </a></li>
-					<li><a href="home.html" class="fontColor">Profil</a></li>
-				    <li><a href="#" class="fontColor">Message</a></li>
-					<li><a href="#" class="fontColor">Contact</a></li>
-					<li><a href="/disconnect" class="fontColor">Déconnexion</a></li>
+				    <li class="active "><a href="#" class="fontColor" style="color:#ff3399">Accueil </a></li>
+					<li><a href="home.html" class="fontColor" style="color:#ff3399">Profil</a></li>
+				    <li><a href="#" class="fontColor" style="color:#ff3399">Message</a></li>
+					<li><a href="#" class="fontColor" style="color:#ff3399">Contact</a></li>
+					<li><a href="/disconnect" class="fontColor" style="color:#ff3399">Déconnexion</a></li>
 			    </ul>
 			</div>
 		</div>
@@ -270,7 +269,7 @@
 					  <div id="mainbord-1" class="mainboard-box">
 					  	<!-- premier canal -->
 
-					  	<div>
+					  	<!--<div>
 					  		<div class="bubble bubble-white">
 					  			<div class="bubble-user-id">{user-id}</div>
 					  			<div class="bubble-date">{date}</div>
@@ -284,24 +283,24 @@
 					  			<div class="bubble-date">{date}</div>
 					  			<div class="bubble-msg">{msg}</div>
 					  		</div>	
-					  	</div>
+					  	</div>-->
 
 					  </div>
 					  
 
 					  <div id="mainbord-2" class="mainboard-box">
 						<!-- 2eme canal-->
-						deuxieme canal
+
 					  </div>
 
 					  <div id="mainbord-3" class="mainboard-box">
 					  	<!--3eme-->
-					  	3eme canal
+
 					  </div>
 
 				 <br>
 				<div id="MsgBox">
-					<textarea style="width:500px; height:100%;resize:none;" id="inputMsg">
+					<textarea style="width:500px; height:100%;resize:none;" id="inputMsg" onclick="this.setSelectionRange(0,0)">
 					</textarea>
 					<div style="text-align:center; width:500px">
 						<button class="btn btn-success" id="btnSendMsg">Envoyer</button>
@@ -332,6 +331,7 @@
 		border:1px solid rgba(0, 0, 0, 0.5);
 		border-radius:10px;
 		box-shadow:2px 2px 10px rgba(0, 0, 0, 0.3);
+		overflow-y:auto;
 	}
 	.active-tab {
 		background-color:#ff3399;
@@ -367,6 +367,9 @@
 .bubble-date {
 	font-size:9px;
 	text-align:center;
+}
+.bubble-msg {
+	padding: 0px 3px 3px 3px;
 }
 
 </style>
@@ -462,7 +465,14 @@
 /*--------------------------------------------------------------------------------------Draw board*/
 	function drawBoards(data){
 		resetBoards();
+		//console.log("Calling drawBoards function")
 		if (canalData == "") {return;}
+
+		//Bool pour vérifier si il y a un nouveau message
+		//Si c'est le cas, on bouge le scroll
+		var canal1NewElement = false;
+		var canal2NewElement = false;
+		var canal3NewElement = false;
 
 		var skeleton_white = "<div><div class='bubble bubble-white'><div class='bubble-user-id'>{user-id}</div><div class='bubble-date'>{date}</div><div class='bubble-msg'>{msg}</div></div></div>";
 		var skeleton_blue = "<div><div class='bubble bubble-blue'><div class='bubble-user-id'>{user-id}</div><div class='bubble-date'>{date}</div><div class='bubble-msg'>{msg}</div></div></div>";
@@ -473,6 +483,7 @@
 			//Check if msg was already in printed
 			var t = id_msg_buffer.includes(canal1Data[i][0]);
 			if (t == false) {
+				canal1NewElement = true
 				//Check owner of msg with user_id
 				if (canal1Data[i][1] == user_id){
 					var s = skeleton_blue;
@@ -493,6 +504,10 @@
 		}
 		//Print to canal
 		canal1Board.innerHTML = buffer1;
+		//Verifie si on doit scrollTop
+		if (canal1NewElement == true) {
+			canal1Board.scrollTop = canal1Board.scrollHeight;
+		}
 
 		//Canal 2
 		var canal2Data = canalData["Canal2"];
@@ -500,6 +515,7 @@
 			//Check if msg was already in printed
 			var t = id_msg_buffer.includes(canal2Data[i][0]);
 			if (t == false) {
+				canal2NewElement = true;
 				//Check owner of msg with user_id
 				if (canal2Data[i][1] == user_id){
 					var s = skeleton_blue;
@@ -520,6 +536,10 @@
 		}
 		//Print to canal
 		canal2Board.innerHTML = buffer2;
+		//Verifie si on doit scrollTop
+		if (canal2NewElement == true) {
+			canal2Board.scrollTop = canal2Board.scrollHeight;
+		}
 
 		//Canal 3
 		var canal3Data = canalData["Canal3"];
@@ -527,6 +547,7 @@
 			//Check if msg was already in printed
 			var t = id_msg_buffer.includes(canal3Data[i][0]);
 			if (t == false) {
+				canal3NewElement = true;
 				//Check owner of msg with user_id
 				if (canal3Data[i][1] == user_id){
 					var s = skeleton_blue;
@@ -547,6 +568,10 @@
 		}
 		//Print to canal
 		canal3Board.innerHTML = buffer3;
+		//Verifie si on doit scrollTop
+		if (canal3NewElement == true) {
+			canal3Board.scrollTop = canal3Board.scrollHeight;
+		}
 
 	}
 /*------------------------------------------------------------------------------------Retrieve Msg*/
@@ -563,6 +588,20 @@
 		xhttp.onreadystatechange = function(){
 			//All good
 			if (this.readyState == 4 && this.status == 200) {
+				//Verification d'erreur serveur
+				if (this.responseText == "Error SQL"){
+					console.error("Erreur serveur : Error SQL");
+					return;
+				}
+				if (this.responseText == "Error Data"){
+					console.error("Erreur serveur : Error Data (line 53)");
+					return;
+				}
+				if (this.responseText == "Error making Resp"){
+					console.error("Erreur serveur : Error making Resp (line 70)");
+					return;
+				}
+
 				canalData = JSON.parse(this.responseText);
 				drawBoards(canalData);
 			}
@@ -575,7 +614,7 @@
 		xhttp.send();
 	}
 /*-------------------------------------------------------------------------------------setInterval*/
-	//setInterval(retrieveMsg(), gen_time);
+	setInterval(retrieveMsg, gen_time);
 /*---------------------------------------------------------------------------------------getCookie*/
 	function getCookie(cname) {
   		let name = cname + "=";
@@ -625,13 +664,13 @@
 			//good, check resp form server
 			if (this.readyState == 4 && this.status == 200) {
 				// Msg send without error
-				if (this.responseText == 0) {
+				if (this.responseText == "0") {
 					console.log("Message envoyé");
 					document.getElementById("inputMsg").value = "";
 					document.getElementById("inputMsg").style.borderColor = "";
 				}
 				// Error received form server
-				if (this.responseText != 0){
+				if (this.responseText != "0"){
 					console.error("Erreur Message : code reçu du serveur => " + this.responseText);
 					document.getElementById("inputMsg").style.borderColor = "1px solid red";
 				}
@@ -647,7 +686,7 @@
 	}
 /*-----------------------------------------------------------------------Event listener (send msg)*/
 	//Bouton d'envoi
-	document.getElementById("btnSendMsg").addEventListener('click', sendMsg());
+	document.getElementById("btnSendMsg").addEventListener('click', sendMsg);
 	//Appui sur enter
 	document.getElementById("inputMsg").addEventListener('keydown', function(event){
 		if (event.keyCode === 13 && !event.shiftKey){
