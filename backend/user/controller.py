@@ -134,7 +134,7 @@ def login():
 @blueprint.route("/disconnect")
 def disconnect():
     if not request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("user/connexion.html")
     else:
         res = make_response(render_template("index.html"))
         res.set_cookie("user_id", "", expires=0)
@@ -144,13 +144,14 @@ def disconnect():
 @blueprint.route("/signIn")
 def sign_in():
     if request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("homev2.html")
     else:
         return render_template("user/registration.html")
 
+
 @blueprint.route("/profile")
-def sign_in():
+def profile():
     if request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("profile.html")
     else:
-        return render_template("user/profile.html")
+        return render_template("user/connexion.html")
