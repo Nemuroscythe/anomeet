@@ -3,7 +3,7 @@ import uuid
 from random import randrange
 
 import psycopg2
-import requests
+#import requests
 from flask import Blueprint, request, current_app, Response
 
 from .logic import *
