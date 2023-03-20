@@ -29,8 +29,8 @@ def msg_sent():
 
 
 # Routes pour servir l'application "conversation"
-@blueprint.route("/conversation", methods=["GET"])
-def conversation():
+@blueprint.route("/conversation/<id>", methods=["GET"])
+def conversation(id):
     return render_template("chat.html")
 
 
