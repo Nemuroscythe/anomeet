@@ -39,14 +39,14 @@ def check_if_same_password(password, confirm_password):
 
 
 def check_sex(sex):
-    if sex != "H" and sex != "F" and sex != "X":
+    if sex != "None" and sex != "H" and sex != "F" and sex != "X":
         # raise ValueError("Votre sexe n'est pas valide")
         return False
     return True
 
 
 def check_orientation(orientation):
-    if orientation != "H" and orientation != "F" and orientation != "X" and orientation != "T":
+    if orientation != "None" and orientation != "H" and orientation != "F" and orientation != "X" and orientation != "T":
         # raise ValueError("Votre sexe n'est pas valide")
         return False
     return True

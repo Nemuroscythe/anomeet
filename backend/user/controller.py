@@ -35,8 +35,8 @@ def creer_utilisateur():
             password = request.form['password']
             confirm_password = request.form['confirm_password']
             # probleme champs vide avec orientation et sex
-            orientation = request.form['orientation']
             sex = request.form['sex']
+            orientation = request.form['orientation']
 
             if last_name == "" or first_name == "" or email == "" or password == "" or confirm_password == "" or sex == "None" or orientation == "None":
                 flash("Vous devez remplir tous les champs.", 'bg-danger')
