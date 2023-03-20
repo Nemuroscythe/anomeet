@@ -147,3 +147,10 @@ def sign_in():
         flask.abort(403)
     else:
         return render_template("user/registration.html")
+
+@blueprint.route("/profile")
+def sign_in():
+    if request.cookies.get('user_id'):
+        flask.abort(403)
+    else:
+        return render_template("user/profile.html")
