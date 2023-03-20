@@ -154,3 +154,30 @@ def sign_in():
         flask.abort(403)
     else:
         return render_template("user/profile.html")
+
+@blueprint.route("/modifier_profil", methods=["POST"])
+def modifier_profil():
+    if request.cookies.get('user_id'):
+        if request.method == 'POST':
+            bio = request.form['bio']
+            sql = """INSERT INTO users(bio) VALUES(%s);"""
+            try:
+                psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+                conn = psycopg2.connect(psycopg2_connection_string)
+                cur = conn.cursor()
+                cur.execute(sql, (bio))
+                conn.commit()
+                cur.close()
+            except (Exception, psycopg2.DatabaseError) as error:
+                print(error)
+            finally:
+                if conn is not None:
+                    conn.close()
+
+            flash("Votre profil a bien été modifié !", 'bg-success')
+            return render_template("user/homev2.html")
+        else:
+            flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
+            return render_template("user/registration.html")
+    else:
+        flask.abort(403)
