@@ -633,7 +633,7 @@
 /*-----------------------------------------------------------------------------------------sendMsg*/
 	function sendMsg(){
 		/*Send msg to server:
-		["CanalNumber", "user_id", "msg"]
+		["CanalNumber", "user_id", "msg", "prenom"]
 		*/
 
 		//Need to add verification on msg...
@@ -653,6 +653,12 @@
 		//Verification user_id
 		if (user_id == ""){
 			console.error("Erreur Message : user_id non trouvé...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		// Verification prenom
+		if (prenom == ""){
+			console.error("Erreur Message : Prénom vide...");
 			document.getElementById("inputMsg").style.borderColor = "1px solid red";
 			return;
 		}
