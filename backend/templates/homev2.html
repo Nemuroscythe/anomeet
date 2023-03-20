@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 		<meta charset="utf-8">
@@ -18,7 +18,6 @@
 
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 
 	</head>
 
@@ -33,30 +32,19 @@
 			
 			<div class="col-lg-5 col-md-6 col-sm-6 col-xs-6  padding5   ">
 				 <ul class="nav navbar-nav navbar-right ">
-				    <li class="active "><a href="#" class="fontColor">Accueil </a></li>
-					<li><a href="home.html" class="fontColor">Profil</a></li>
-				    <li><a href="#" class="fontColor">Message</a></li>
-					<li><a href="#" class="fontColor">Contact</a></li>
-					<li><a href="/disconnect" class="fontColor">Déconnexion</a></li>
+				    <li class="active "><a href="#" class="fontColor" style="color:#ff3399">Accueil </a></li>
+					<li><a href="home.html" class="fontColor" style="color:#ff3399">Profil</a></li>
+				    <li><a href="#" class="fontColor" style="color:#ff3399">Message</a></li>
+					<li><a href="#" class="fontColor" style="color:#ff3399">Contact</a></li>
+					<li><a href="/disconnect" class="fontColor" style="color:#ff3399">Déconnexion</a></li>
 			    </ul>
 			</div>
 		</div>
 	</header>
 	<div class="container-fluid">
 		<div class="row ">
-			<aside class="col-lg-3 col-md-3 hidden-xs hidden-sm">
-				<!--<div class=" ">
-					<a href="#"><img src="img/profil.png" alt="picture"></a>
-					<br>
-				</div>
-				<div class="">
-					<a href="#"><img src="img/profil.png" alt="picture"></a>
-				</div>-->
-			</aside>
+
 			<section class="col-lg-6 home ">
-
-			
-
 				<div id="tabs">
 					<ul class="color-hover">
 						
@@ -266,177 +254,465 @@
 					</div>
 			
 				</div>
-				<p>Conversation</p>
-				<hr>
-				<div class="col-lg-8 col-lg-offset-2    publicationDisplay">
-					<div>
-						<div class="row borderClass nameRow">
-							<div class=" ">
-								<p>Nouveau</p>
-							</div>
-							
-							<div class="pull-right">
-								<a href="#"><span class="glyphicon glyphicon-remove cross"></span></a>
-							</div>
-						</div>
-						<div class="row  borderClass line">
-							<div >
-									<p class="pull-right hour">05/11/2019 03:16</p>
-								</div>
-						</div>
-						<div class="row  message">
-							<div class="col-lg-12 text-center ">
-								<a href="chat.html"><img src="../static/img/profil.png" alt="man" class="img-thumbnail"></a><!--class="  img-responsive"-->
-							</div>
-								
-						</div>
-						<div class="row   border-grey ">
-							<div class="col-lg-12  text-center infos-user">
-								<div class=" col-lg-6  ">
-									Imad
-								</div>
-								<div class=" col-lg-6   ">
-									33 ans
-								</div>
-							<div class="row    ">
-								<div class=" col-lg-6  padding5">
-									Charleroi
-								</div>
-								<div class=" col-lg-6  padding5">
-									Marocain
-								</div>
-							</div>
-							</div>
-								
-						</div>
-						<div class="row border-grey backgrd-color-grey">
-							<div class="col-lg-12 text-center ">
-								
-								<div class=" col-lg-6  emoji-padding">
-									<a href="#"><img src="img/icone/love.png" alt="love"></a>
-								</div>
-								
-								<div class=" col-lg-6  emoji-padding">
-									<a href="#"><img src="img/icone/chat.png" alt="chat"></a>
-								</div>
-							</div>
-								
-						</div>
-						<div class="row comment-section ">
-
-									<div class="col-lg-2 text-center ">
-										<a href="#"><img src="img/miniMe.jpg" alt="" class="img-thumbnail subPicBox"/></a>
-									</div>
-									<div class="col-lg-10 ">
-										<form >
-											<textarea  class="form-control comment" placeholder="Commentez..."></textarea>
-										</form>
-									</div>		
-
-							</div>
-
-						</div>
-
-					</div>
-			
-				
 			</section>
-			<aside class="col-lg-3  ">
-				<div class=" ">
-					<div  class=" mainbord">
-					  <ul class="color-hover">
-						<li><a href="#mainbord-1"><img src="img/icone/message.png" alt="enveloppe"></a></li>
-						<li><a href="#mainbord-2"><img src="img/icone/notification.png" alt="cloche"></a></li>
-						
-					  </ul>
-					  <div id="mainbord-1" class="mainboard-box ">
-						<div class=" row mainboard-box-layout ">
-								<div class="col-lg-2 col-lg-offset-0  mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMoun.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10     mainboard-box-layout-padding-top">
-									<p><a href="#">Salut ! comment vas-tu?</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMe.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    mainboard-box-layout-padding-top ">
-									<p><a href="#">On va boire avec les amis</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout ">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMe.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
-									<p><a href="#">je vais dormir</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMe.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
-									<p><a href="#">on sort?</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout ">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMe.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
-									<p><a href="#">je vais dormir</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMe.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
-									<p><a href="#">on sort?</a></p>
-								</div>						
-						</div>
+
+<!--AM16 - Stephane & Guy ----------------------------------------------------->
+			<aside class="col-lg-3">
+
+					  
+					  <div id="mainboad-tab-container">
+					  	<div id="canal1" class="mainboard-tab active-tab" onclick="switchCanal(1);">Général</div>
+					  	<div id="canal2" class="mainboard-tab inactive-tab" onclick="switchCanal(2);">Love</div>
+					  	<div id="canal3" class="mainboard-tab inactive-tab" onclick="switchCanal(3);">Jordan XXL</div>
 					  </div>
+
+					  <div id="mainbord-1" class="mainboard-box">
+					  	<!-- premier canal -->
+
+					  	<!--<div>
+					  		<div class="bubble bubble-white">
+					  			<div class="bubble-user-id">{user-id}</div>
+					  			<div class="bubble-date">{date}</div>
+					  			<div class="bubble-msg">{msg}</div>
+					  		</div>	
+					  	</div>
+
+					  	<div>
+					  		<div class="bubble bubble-blue">
+					  			<div class="bubble-user-id">{user-id}</div>
+					  			<div class="bubble-date">{date}</div>
+					  			<div class="bubble-msg">{msg}</div>
+					  		</div>	
+					  	</div>-->
+
+					  </div>
+					  
+
 					  <div id="mainbord-2" class="mainboard-box">
-						<div class=" row mainboard-box-layout ">
-								<div class="col-lg-2 col-lg-offset-0   mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMoun.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top">
-									<p><a href="#">Mouna a visité votre profil !</a></p>
-								</div>						
-						</div>
-						<div class=" row mainboard-box-layout  mainboard-box-layout-unread">
-								<div class="col-lg-2 col-lg-offset-0  mainboard-box-layout-picture-padding-0 " >
-									<a href="#"><img src="img/miniMoun.jpg" alt="picture" ></a>
-								</div>
-								<div class="col-lg-10    col-md-12 mainboard-box-layout-padding-top ">
-									<p><a href="#">Mouna est sous votre charme !</a></p>
-								</div>						
-						</div>
+						<!-- 2eme canal-->
+
 					  </div>
-					</div>
-					
-				</div>
+
+					  <div id="mainbord-3" class="mainboard-box">
+					  	<!--3eme-->
+
+					  </div>
+
 				 <br>
-				<div class="pub divPubRight"></div>
+				<div id="MsgBox">
+					<textarea style="width:500px; height:100%;resize:none;" id="inputMsg" onclick="this.setSelectionRange(0,0)">
+					</textarea>
+					<div style="text-align:center; width:500px">
+						<button class="btn btn-success" id="btnSendMsg">Envoyer</button>
+					</div>
+				</div>
 			</aside>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-	
-	<script>
-		$( function () {
-			 $( "#tabs" ).tabs({
-				 collapsible: true	,	
-   				 active: false
-			 });
-			 $( ".mainbord" ).tabs();
-		} );
-	</script>
 </body>
 </html>
+
+
+
+<style name="AM16">
+/*------------------------------------------------------------------------------------------------AM16 CSS*/
+/*-------------------------------------------------------------------------------------rework Imad*/
+	.mainboard-tab {
+		display:inline-block;
+		margin-top:10px;
+		border:1px solid rgba(0, 0, 0, 0.5);
+		border-radius:5px;
+		width:85px;
+		text-align:center;
+		font-weight:700;
+		cursor:pointer;
+	}
+	.mainboard-box {
+		border:1px solid rgba(0, 0, 0, 0.5);
+		border-radius:10px;
+		box-shadow:2px 2px 10px rgba(0, 0, 0, 0.3);
+		overflow-y:auto;
+	}
+	.active-tab {
+		background-color:#ff3399;
+		color:white;
+	}
+	.inactive-tab {
+		background-color:#cccccc;
+		color:#404040;
+	}
+/*-------------------------------------------------msg style in chanel*/
+.bubble {
+	display:inline-block;
+	border:1px solid rgba(0, 0, 0, 0.3);
+	border-radius:10px;
+	margin:1px 3px 0px 3px;
+	box-shadow:1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.bubble-white {
+	background-color:#F2F2F2;
+	color:#1A1A1A;
+	max-width:100%;
+	min-width:100px;
+}
+.bubble-blue {
+	background-color:#0066FF;
+	color:#E6F0FF;
+	max-width:100%;
+	min-width:100px;
+}
+.bubble-user-id {
+	font-size:7px;
+}
+.bubble-date {
+	font-size:9px;
+	text-align:center;
+}
+.bubble-msg {
+	padding: 0px 3px 3px 3px;
+}
+
+</style>
+
+<script name="AM16">
+
+/*-------------------------------------------------------------------------------------------------AM16 JS*/
+/*--------------------------------------------------------------------------------------global var*/
+	//Route for retrieving msg
+	gen_url = "MainChannelMsg";
+	//Route for sending msg
+	send_url = "MainChannelSend";
+	//Time of setInterval (ms)
+	gen_time = 500;
+
+	user_id = getCookie("user_id");
+
+	buffer1 = "";
+	buffer2 = "";
+	buffer3 = "";
+
+	id_msg_buffer = [];
+
+	var canalActif = 1;
+
+	var canal1Btn = document.getElementById("canal1");
+	var canal2Btn = document.getElementById("canal2");
+	var canal3Btn = document.getElementById("canal3");
+	var canal1Board = document.getElementById("mainbord-1");
+	var canal2Board = document.getElementById("mainbord-2");
+	var canal3Board = document.getElementById("mainbord-3");
+
+	canal1Board.style.display = "block";
+	canal2Board.style.display = "none";
+	canal3Board.style.display = "none";
+
+	canalData = {};
+/*------------------------------------------------------------------------------------Switch canal*/
+	function switchCanal(c) {
+		switch(c) {
+		case 1:
+			console.log("Switch to canal 1");
+			canal1Board.style.display = "block";
+			canal2Board.style.display = "none";
+			canal3Board.style.display = "none";
+			canal1Btn.classList.remove('inactive-tab');
+			canal1Btn.classList.add('active-tab')
+			canal2Btn.classList.remove('active-tab');
+			canal2Btn.classList.add('inactive-tab')
+			canal3Btn.classList.remove('active-tab');
+			canal3Btn.classList.add('inactive-tab')
+			canalActif = 1;
+			break;
+		case 2:
+			console.log("Switch to canal 2");
+			canal1Board.style.display = "none";
+			canal2Board.style.display = "block";
+			canal3Board.style.display = "none";
+			canal1Btn.classList.remove('active-tab');
+			canal1Btn.classList.add('inactive-tab')
+			canal2Btn.classList.remove('inactive-tab');
+			canal2Btn.classList.add('active-tab')
+			canal3Btn.classList.remove('active-tab');
+			canal3Btn.classList.add('inactive-tab')
+			canalActif = 2;
+			break;
+		case 3:
+			console.log("Switch to canal 3");
+			canal1Board.style.display = "none";
+			canal2Board.style.display = "none";
+			canal3Board.style.display = "block";
+			canal1Btn.classList.remove('active-tab');
+			canal1Btn.classList.add('inactive-tab')
+			canal2Btn.classList.remove('active-tab');
+			canal2Btn.classList.add('inactive-tab')
+			canal3Btn.classList.remove('inactive-tab');
+			canal3Btn.classList.add('active-tab')
+			canalActif = 3;
+			break;
+		default:
+			canal1Board.style.display = "block";
+			canal2Board.style.display = "none";
+			canal3Board.style.display = "none";
+			canalActif = 1;
+		}
+	}
+/*-------------------------------------------------------------------------------------reset board*/
+	function resetBoards(){
+		canal1Board.innerHTML = "";
+		canal2Board.innerHTML = "";
+		canal3Board.innerHTML = "";
+	}
+/*--------------------------------------------------------------------------------------Draw board*/
+	function drawBoards(data){
+		resetBoards();
+		//console.log("Calling drawBoards function")
+		if (canalData == "") {return;}
+
+		//Bool pour vérifier si il y a un nouveau message
+		//Si c'est le cas, on bouge le scroll
+		var canal1NewElement = false;
+		var canal2NewElement = false;
+		var canal3NewElement = false;
+
+		var skeleton_white = "<div><div class='bubble bubble-white'><div class='bubble-user-id'>{user-id}</div><div class='bubble-date'>{date}</div><div class='bubble-msg'>{msg}</div></div></div>";
+		var skeleton_blue = "<div><div class='bubble bubble-blue'><div class='bubble-user-id'>{user-id}</div><div class='bubble-date'>{date}</div><div class='bubble-msg'>{msg}</div></div></div>";
+
+		//Canal 1
+		var canal1Data = canalData["Canal1"];
+		for (var i = 0; i < canal1Data.length; i++) {
+			//Check if msg was already in printed
+			var t = id_msg_buffer.includes(canal1Data[i][0]);
+			if (t == false) {
+				canal1NewElement = true
+				//Check owner of msg with user_id
+				if (canal1Data[i][1] == user_id){
+					var s = skeleton_blue;
+					s = s.replace("{user-id}", canal1Data[i][1]);
+					s = s.replace("{date}", canal1Data[i][2]);
+					s = s.replace("{msg}", canal1Data[i][3]);
+					id_msg_buffer.push(canal1Data[i][0])
+					buffer1 = buffer1 + s;
+				} else {
+					var s = skeleton_white;
+					s = s.replace("{user-id}", canal1Data[i][1]);
+					s = s.replace("{date}", canal1Data[i][2]);
+					s = s.replace("{msg}", canal1Data[i][3]);
+					id_msg_buffer.push(canal1Data[i][0])
+					buffer1 = buffer1 + s;
+				}
+			}
+		}
+		//Print to canal
+		canal1Board.innerHTML = buffer1;
+		//Verifie si on doit scrollTop
+		if (canal1NewElement == true) {
+			canal1Board.scrollTop = canal1Board.scrollHeight;
+		}
+
+		//Canal 2
+		var canal2Data = canalData["Canal2"];
+		for (var i = 0; i < canal2Data.length; i++) {
+			//Check if msg was already in printed
+			var t = id_msg_buffer.includes(canal2Data[i][0]);
+			if (t == false) {
+				canal2NewElement = true;
+				//Check owner of msg with user_id
+				if (canal2Data[i][1] == user_id){
+					var s = skeleton_blue;
+					s = s.replace("{user-id}", canal2Data[i][1]);
+					s = s.replace("{date}", canal2Data[i][2]);
+					s = s.replace("{msg}", canal2Data[i][3]);
+					id_msg_buffer.push(canal2Data[i][0])
+					buffer2 = buffer2 + s;
+				} else {
+					var s = skeleton_white;
+					s = s.replace("{user-id}", canal2Data[i][1]);
+					s = s.replace("{date}", canal2Data[i][2]);
+					s = s.replace("{msg}", canal2Data[i][3]);
+					id_msg_buffer.push(canal2Data[i][0])
+					buffer2 = buffer2 + s;
+				}
+			}
+		}
+		//Print to canal
+		canal2Board.innerHTML = buffer2;
+		//Verifie si on doit scrollTop
+		if (canal2NewElement == true) {
+			canal2Board.scrollTop = canal2Board.scrollHeight;
+		}
+
+		//Canal 3
+		var canal3Data = canalData["Canal3"];
+		for (var i = 0; i < canal3Data.length; i++) {
+			//Check if msg was already in printed
+			var t = id_msg_buffer.includes(canal3Data[i][0]);
+			if (t == false) {
+				canal3NewElement = true;
+				//Check owner of msg with user_id
+				if (canal3Data[i][1] == user_id){
+					var s = skeleton_blue;
+					s = s.replace("{user-id}", canal3Data[i][1]);
+					s = s.replace("{date}", canal3Data[i][2]);
+					s = s.replace("{msg}", canal3Data[i][3]);
+					id_msg_buffer.push(canal3Data[i][0])
+					buffer3 = buffer3 + s;
+				} else {
+					var s = skeleton_white;
+					s = s.replace("{user-id}", canal3Data[i][1]);
+					s = s.replace("{date}", canal3Data[i][2]);
+					s = s.replace("{msg}", canal3Data[i][3]);
+					id_msg_buffer.push(canal3Data[i][0])
+					buffer3 = buffer3 + s;
+				}
+			}
+		}
+		//Print to canal
+		canal3Board.innerHTML = buffer3;
+		//Verifie si on doit scrollTop
+		if (canal3NewElement == true) {
+			canal3Board.scrollTop = canal3Board.scrollHeight;
+		}
+
+	}
+/*------------------------------------------------------------------------------------Retrieve Msg*/
+	function retrieveMsg(){
+		/* Server must return JSON of type:
+		{
+	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
+	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
+	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+		}
+		*/
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			//All good
+			if (this.readyState == 4 && this.status == 200) {
+				//Verification d'erreur serveur
+				if (this.responseText == "Error SQL"){
+					console.error("Erreur serveur : Error SQL");
+					return;
+				}
+				if (this.responseText == "Error Data"){
+					console.error("Erreur serveur : Error Data (line 53)");
+					return;
+				}
+				if (this.responseText == "Error making Resp"){
+					console.error("Erreur serveur : Error making Resp (line 70)");
+					return;
+				}
+
+				canalData = JSON.parse(this.responseText);
+				drawBoards(canalData);
+			}
+			//End of request but something went wrong...
+			if (this.readyState == 4 && this.status != 200) {
+				console.error("Error on function retrieveMsg code : " + this.status);
+			}
+		}
+		xhttp.open("POST", gen_url, true);
+		xhttp.send();
+	}
+/*-------------------------------------------------------------------------------------setInterval*/
+	setInterval(retrieveMsg, gen_time);
+/*---------------------------------------------------------------------------------------getCookie*/
+	function getCookie(cname) {
+  		let name = cname + "=";
+  		let ca = document.cookie.split(';');
+  		for(let i = 0; i < ca.length; i++) {
+    		let c = ca[i];
+    		while (c.charAt(0) == ' ') {
+    			c = c.substring(1);
+    		}
+    		if (c.indexOf(name) == 0) {
+      			return c.substring(name.length, c.length);
+    		}
+  		}
+  		return "";
+	}
+/*-----------------------------------------------------------------------------------------sendMsg*/
+	function sendMsg(){
+		/*Send msg to server:
+		["CanalNumber", "user_id", "msg"]
+		*/
+
+		//Need to add verification on msg...
+		let text = document.getElementById("inputMsg").value;
+		text = text.trim();
+
+		if (text == "") {
+			console.error("Erreur Message : message vide...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		if(text.length > 512) {
+			console.error("Erreur Message : message trop long (>512)");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		//Verification user_id
+		if (user_id == ""){
+			console.error("Erreur Message : user_id non trouvé...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+
+		var msgData = JSON.stringify([canalActif, user_id, text]);
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			//good, check resp form server
+			if (this.readyState == 4 && this.status == 200) {
+				// Msg send without error
+				if (this.responseText == "0") {
+					console.log("Message envoyé");
+					document.getElementById("inputMsg").value = "";
+					document.getElementById("inputMsg").style.borderColor = "";
+				}
+				// Error received form server
+				if (this.responseText != "0"){
+					console.error("Erreur Message : code reçu du serveur => " + this.responseText);
+					document.getElementById("inputMsg").style.borderColor = "1px solid red";
+				}
+			}
+			//Ajax not good
+			if (this.readyState == 4 && this.status != 200){
+				console.error("Erreur Message : code HTML => " + this.status);
+				document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			}
+		}
+		xhttp.open("POST", send_url, true);
+		xhttp.send(msgData);
+	}
+/*-----------------------------------------------------------------------Event listener (send msg)*/
+	//Bouton d'envoi
+	document.getElementById("btnSendMsg").addEventListener('click', sendMsg);
+	//Appui sur enter
+	document.getElementById("inputMsg").addEventListener('keydown', function(event){
+		if (event.keyCode === 13 && !event.shiftKey){
+			event.preventDefault();
+			sendMsg();
+		}
+	})
+
+
+
+/*--------------------------------------------------------AJAX Notes*/
+//-                                        Recuperation des messages : 
+//-                                            -route : MainChannelMsg
+//-                                                    -methode : POST
+//-                                               -retour du serveur : 
+//-         {
+//- 	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 		}
+//- 
+//-                                                 Envoi de message :
+//-                                           -route : MainChannelSend
+//-                                                    -methode : POST
+//-                          -json : ["CanalNumber", "user_id", "msg"]
+//-                                               -retour du serveur : 
+//-                              0 : ok, autre : erreur sur le serveur
+/*------------------------------------------------------------------*/
+</script>
