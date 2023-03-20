@@ -4,7 +4,7 @@ import flask
 import psycopg2
 from flask import Blueprint, request, current_app, render_template, make_response, flash
 
-from .logic import check_user_signup
+from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
 
@@ -34,35 +34,54 @@ def creer_utilisateur():
             email = request.form['email']
             password = request.form['password']
             confirm_password = request.form['confirm_password']
+            # probleme champs vide avec orientation et sex
             sex = request.form['sex']
             orientation = request.form['orientation']
 
-            if check_user_signup(first_name, last_name, email, password, confirm_password, sex, orientation):
-                sql = """INSERT INTO users(first_name, last_name, email, password, sex, orientation)
-                     VALUES(%s,%s,%s,%s,%s,%s);"""
-                try:
-                    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
-                    # connect to the PostgreSQL database
-                    conn = psycopg2.connect(psycopg2_connection_string)
-                    # create a new cursor
-                    cur = conn.cursor()
-                    # execute the INSERT statement
-                    cur.execute(sql, (first_name, last_name, email, password, sex, orientation))
-                    # commit the changes to the database
-                    conn.commit()
-                    # close communication with the database
-                    cur.close()
-                except (Exception, psycopg2.DatabaseError) as error:
-                    print(error)
-                finally:
-                    if conn is not None:
-                        conn.close()
-
-                flash("Votre profil a bien été créé !", 'bg-success')
-                return render_template("user/connexion.html")
-            else:
-                flash("Il y a une erreur dans votre formulaire", 'bg-danger')
+            if last_name == "" or first_name == "" or email == "" or password == "" or confirm_password == "" or sex == "None" or orientation == "None":
+                flash("Vous devez remplir tous les champs.", 'bg-danger')
                 return render_template("user/registration.html")
+
+            else:
+                if check_user_signup(first_name, last_name, email, password, confirm_password, sex, orientation):
+                    sql = """INSERT INTO users(first_name, last_name, email, password, sex, orientation)
+                         VALUES(%s,%s,%s,%s,%s,%s);"""
+                    try:
+                        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+                        # connect to the PostgreSQL database
+                        conn = psycopg2.connect(psycopg2_connection_string)
+                        # create a new cursor
+                        cur = conn.cursor()
+                        # execute the INSERT statement
+                        cur.execute(sql, (first_name, last_name, email, password, sex, orientation))
+                        # commit the changes to the database
+                        conn.commit()
+                        # close communication with the database
+                        cur.close()
+                    except (Exception, psycopg2.DatabaseError) as error:
+                        print(error)
+                    finally:
+                        if conn is not None:
+                            conn.close()
+
+                    flash("Votre profil a bien été créé !", 'bg-success')
+                    return render_template("user/connexion.html")
+                else:
+                    if not check_email(email):
+                        flash("Il y a une erreur dans votre email.", 'bg-danger')
+                        return render_template("user/registration.html")
+
+                    elif not check_password(password):
+                        flash("Il y a une erreur dans votre mot de passe. Vérifiez toutes les conditions.", 'bg-danger')
+                        return render_template("user/registration.html")
+
+                    elif not check_if_same_password(password, confirm_password):
+                        flash("Le mot de passe n'est pas identique.", 'bg-danger')
+                        return render_template("user/registration.html")
+
+                    else:
+                        flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
+                        return render_template("user/registration.html")
     else:
         flask.abort(403)
 
