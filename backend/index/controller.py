@@ -88,10 +88,34 @@ def sendMsg():
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         with psycopg2.connect(psycopg2_connection_string) as conn:
             with conn.cursor() as cur:
-                cur.execute('INSERT INTO "channelsMessage" (channel, author, content) VALUES (%s, %s, %s)', (data[0], data[1], data[2]))
+                cur.execute('INSERT INTO "channelsMessage" (channel, author, content, prenom) VALUES (%s, %s, %s, %s)', (data[0], data[1], data[2], data[3]))
     except Exception as e:
         print(e)
         return "-2"
 
     return "0"
+# ------------------------------------------------------------Retrieve user Name
+@blueprint.route("/RetrieveUserName", methods=["POST"])
+def retrieveUserName():
+    name = ""
+    try:
+        data = json.loads(request.data)
+    except:
+        return ""
+
+    try:
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        with psycopg2.connect(psycopg2_connection_string) as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT prenom FROM first_name WHERE id = %s", (data,))
+                name = cur.fetchone()
+    except Exception as e:
+        print(e)
+        return ""
+
+    try:
+        return name[0]
+    except Exception as e:
+        print(e)
+        return ""
 # ==============================================================================
