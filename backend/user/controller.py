@@ -34,7 +34,6 @@ def creer_utilisateur():
             email = request.form['email']
             password = request.form['password']
             confirm_password = request.form['confirm_password']
-            # probleme champs vide avec orientation et sex
             sex = request.form['sex']
             orientation = request.form['orientation']
 
@@ -134,7 +133,7 @@ def login():
 @blueprint.route("/disconnect")
 def disconnect():
     if not request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("user/connexion.html")
     else:
         res = make_response(render_template("index.html"))
         res.set_cookie("user_id", "", expires=0)
@@ -144,6 +143,6 @@ def disconnect():
 @blueprint.route("/signIn")
 def sign_in():
     if request.cookies.get('user_id'):
-        flask.abort(403)
+        return render_template("homev2.html")
     else:
         return render_template("user/registration.html")
