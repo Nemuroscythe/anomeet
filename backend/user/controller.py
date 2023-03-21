@@ -25,6 +25,11 @@ def recuperer_utilisateur():
     return render_template("user/show_user.html", result=result)
 
 
+@blueprint.route("/test")
+def test():
+    return render_template("user/test.html")
+
+
 @blueprint.route("/creer_utilisateur", methods=["POST"])
 def creer_utilisateur():
     if not request.cookies.get('user_id'):

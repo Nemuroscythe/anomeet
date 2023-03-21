@@ -118,14 +118,6 @@ h1 {
     letter-spacing: 1rem;
 }
 
-footer {
-    background-color: rgba(41, 41, 41, 1.00);
-
-    font-weight: bold;
-    letter-spacing: 1rem;
-    font-size: 1.5em;
-}
-
 .test {
     border: 1px solid red;
 }
@@ -225,14 +217,4 @@ label {
 .trunk
 {
     padding-top: 11em;
-}
-
-footer
-{
-    position: fixed center;
-    bottom: 0px;
-    z-index: 6;
-    font-size: 70%;
-    width: 45%;
-    margin: 0 auto;
 }
