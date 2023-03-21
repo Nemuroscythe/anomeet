@@ -1,123 +1,88 @@
 <!doctype html>
-<html lang="fr">
-<head>
+<html lang="en" class="h-100">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inscription</title>
+    <title>Page d'inscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../../static/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+  </head>
 
-	
-	
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link href="../../static/css/style.css" rel="stylesheet">
-    <link href="../../static/css/home.css" rel="stylesheet">
-</head>
-
-<body class="font-size font-color">
-<div class="container-fluid">
-
-    <header class="row">
-    <div class="col-lg-12 col-xs-12">
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 background-color padding-5 hidden-xs">
-            <a href="../index.html"><img class="logo" src="../../static/img/logoAnomeet3.png" alt="logo" width="80px"/></a>
-            <span class="font-family logo-text">Anomeet</span>
-        </div>
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding-5">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/" class="font-color">Accueil</a></li>
-                <li><a href="signIn" class="font-color">Inscription</a></li>
-                <li><a href="login" class="font-color">Connexion</a></li>
-            </ul>
-        </div>
-    </div>
-</header>
-    <section>
-        <div class="row">
-            <div class="col-lg-12 ">
-                <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-6 col-lg-4 col-lg-offset-4 text-center subscribe">
-                    <h1 class="font-family">Inscription</h1>
-
-                    {% block content %}
-                                    {% with messages = get_flashed_messages(with_categories=true) %}
-                                            {% for category, message in messages %}
-                                                <div class="{{ category }}">
-                                                    {{ message }}
-                                                </div>
-                                            {% endfor %}
-                                    {% endwith %}
-                    {% endblock %}
-
-                    <form action="creer_utilisateur" method="post">
-
-                        <div class="margin-top-30">
-
-                            <div class="d-flex flex-row align-items-center margin-top-10">
-                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                <label for="last_name" class="font-family">Votre sex</label>
-                                <div class="form-outline flex-fill mb-0 ">
-                                    <select class="select font-family  h2" name="sex">
-                                        <option value="H">Homme</option>
-                                        <option value="F">Femme</option>
-                                        <option value="X">Je le garde pour moi</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                <label for="last_name" class="font-family">Votre orientation</label>
-                                <div class="form-outline flex-fill mb-0">
-                                    <select class="select font-family h2" name="orientation">
-                                        <option value="H">Homme</option>
-                                        <option value="F">Femme</option>
-                                        <option value="X">Autre</option>
-                                        <option value="T">Tout le monde</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="last_name" class="font-family">Nom</label>
-                            <input id="last_name" name="last_name" type="text" placeholder="Nom" class="form-control input-lg"/>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="first_name" class="font-family">Prénom</label>
-                            <input id="first_name" name="first_name" type="text" placeholder="Prénom" class="form-control input-lg"/>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="email" class="font-family">Email:</label>
-                            <input id="email" name="email" type="email" placeholder="Email" class="form-control input-lg"/>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="password" class="font-family">Mot de passe:</label>
-                            <input id="password" name="password" type="password" placeholder="Password" class="form-control input-lg"/>
-                            <comment>Minimum 8 charactères, 1 majuscule, 1 chiffre, 1 charactère spécial</comment>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30 mb-1">
-                            <label for="confirm-password" class="font-family">Confirmez mot de passe:</label>
-                            <input id="confirm_password" name="confirm_password" type="password" placeholder="Password"
-                                   class="form-control input-lg"/>
-                        </div>
-
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <button type="submit" class="btn btn-success btn-lg">Enregistrer</button>
-                        </div>
-
-                    </form>
+  <body class="d-flex flex-column h-100">
+    <!-- Appeler le header ici -->
+    {% include 'include/header.html' %}
+    <!-- Contenu de la page -->
+    <div class="container py-4">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="card mb-3" style="max-width: 5400px;">
+        <div class="row g-0" style="background-color: black">
+          <div class="col-md-4">
+            <img src="../../static/img/logoAnomeet.png" class="img-fluid rounded-start" alt="...">
+          </div>
+        <div class="col-md-8">
+            <div class="card-body">
+              {% block content %}
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% for category, message in messages %}
+                              <div class="{{ category }}">
+                                  {{ message }}
+                              </div>
+                          {% endfor %}
+                  {% endwith %}
+              {% endblock %}
+              <form class="row g-4 text-white" method="post" action="creer_utilisateur">
+                <div class="col-md-4">
+                  <label for="last_name" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="last_name"  name="last_name" required>
                 </div>
+                <div class="col-md-4">
+                  <label for="first_name" class="form-label">Prénom</label>
+                  <input type="text" class="form-control" id="first_name"  name="first_name" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="confirm_password">Confirmation du mot de passe</label>
+                  <input type="password" id="confirm_password" name="confirm_password" class="form-control"/>
+                  </div>
+                <div class="col-md-6">
+                  <label for="sex" class="form-label">Sexe</label>
+                    <select class="form-select" id="sex" name="sex">
+                        <option value="H">Homme</option>
+                        <option value="F">Femme</option>
+                        <option value="X">Autre</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="orientation" class="form-label">Préférence sexuelle</label>
+                      <select class="form-select" id="orientation" name="orientation">
+                          <option value="H">Homme</option>
+                          <option value="F">Femme</option>
+                          <option value="X">Autre</option>
+                          <option value="T">Tout le monde</option>
+                      </select>
+                </div>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary" type="submit">Inscription</button>
+                  <button class="btn btn-secondary" type="reset">Annuler</button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-    </section>
-</div>
-<footer>
-    <p>©2023 Anomeet - Tous droits réservés... ou pas !</p>
-</footer>
-</body>
+      </div>
+    </div>
+    <!-- Appeler le footer ici -->
+    {% include 'include/footer.html' %}
+  </body>
 </html>
