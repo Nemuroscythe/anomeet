@@ -152,7 +152,20 @@ def sign_in():
 @blueprint.route("/profile")
 def profile():
     if request.cookies.get('user_id'):
-        return render_template("profile.html")
+        user_id = request.cookies.get('user_id')
+
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the SELECT statement
+        cur.execute('SELECT last_name, first_name, email, bio, sex, orientation FROM users WHERE id = %s;', (user_id,))
+        # fetch the data
+        result = cur.fetchall()
+        cur.close()
+        conn.close()
+        return render_template("profile.html", result=result)
     else:
         return render_template("user/connexion.html")
 
