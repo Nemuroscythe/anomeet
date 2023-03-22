@@ -36,8 +36,8 @@
 
                     <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding-5">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="#" class="font-color">Accueil </a></li>
-                            <li><a href="home.html" class="font-color">Profil</a></li>
+                            <li class="active"><a href="/login" class="font-color">Accueil </a></li>
+                            <li><a href="#" class="font-color">Profil</a></li>
                             <li><a href="#" class="font-color">Message</a></li>
                             <li><a href="#" class="font-color">Contact</a></li>
                         </ul>
@@ -45,11 +45,11 @@
                 </div>
             </header>
 
-            <div class="container d-flex align-items-center justify-content-center bg-secondary mt-5 mb-5">
+            <div class="container d-flex bg-opacity-50 mt-5 mb-5" style="background-color: rgb(215, 217, 207,0.6);border-radius: 10px;">
                 <div class="row">
                     <div class="p-4" style="width:100%;">
                         <div>
-                            <h4 class="text-center">Votre profil</h4>
+                            <h1 class="text-center font-family">Votre profil</h1>
                         </div>
                         {% block content %}
                             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -68,54 +68,55 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="">
-                                        <div class="p-3 py-5">
-                                            <div class="row mt-2">
-                                                <div class="col-md-6">
-                                                    <label class="labels">Nom</label>
-                                                    <input type="text" class="form-control" value="{{ data[0] }}">
+                                        <div class="p-3 py-5 font-family">
+                                            <div class="row mt-2 align-items-center justify-content-center">
+                                                <div class="col-md-3">
+                                                    <label for="last_name" class="labels h2">Nom</label>
+                                                    <input id="last_name" name="last_name" type="text" class="form-control font-family text-center" value="{{ data[0] }}">
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label class="labels">Prénom</label>
-                                                    <input type="text" class="form-control" value="{{ data[1] }}">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-12">
-                                                    <label class="labels">Email</label>
-                                                    <input type="text" class="form-control" value="{{ data[2] }}">
+                                                <div class="col-md-3">
+                                                    <label for="first_name" class="labels h2">Prénom</label>
+                                                    <input id="first_name" name="first_name" type="text" class="form-control font-family text-center" value="{{ data[1] }}">
                                                 </div>
                                             </div>
-                                            <div class="row mt-3 align-items-center justify-content-center bg-secondary">
-                                                <div class="col-md-6 ">
-                                                    <label class="labels">Votre bio :</label>
-                                                    <textarea type="text" class="form-control" rows="8" cols="50">{{ data[3] }}</textarea>
+                                            <div class="row mt-3 align-items-center justify-content-center">
+                                                <div class="col-md-5">
+                                                    <label for="email" class="labels h2">Email</label>
+                                                    <input id="email" name="email" type="email" class="form-control font-family text-center" value="{{ data[2] }}">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3 align-items-center justify-content-center">
+                                                <div class="col-md-6">
+                                                    <label for="bio" class="labels h2">Votre bio :</label>
+                                                    <textarea id="bio" name="bio" type="text" class="form-control font-family" rows="8" cols="50">{{ data[3] }}</textarea>
                                                 </div>
                                             </div>
 
-                                            <div class="row mt-4">
+                                            <div class="row mt-4 align-items-center justify-content-center">
                                                 <div class="col-md-3">
-                                                    <label class="labels">Votre sex</label>
-                                                    <select class="select form-control font-family  h2" name="sex">
-                                                        <option value="H">Homme</option>
-                                                        <option value="F">Femme</option>
-                                                        <option value="X">Je le garde pour moi</option>
+                                                    <label for="sex" class="labels h2">Votre sex</label>
+                                                    <select id="sex" class="select form-control font-family" name="sex">
+                                                        <option value="H" {%if data[4] =="H" %}selected{% endif %}>Homme</option>
+                                                        <option value="F" {%if data[4] =="F" %}selected{% endif %}>Femme</option>
+                                                        <option value="X" {%if data[4] =="X" %}selected{% endif %}>Je le garde pour moi</option>
                                                     </select>
                                                 </div>
+
                                                 <div class="col-md-3">
-                                                    <label class="labels">Votre orientation</label>
-                                                    <select class="select form-control font-family h2" name="orientation">
-                                                        <option value="H">Homme</option>
-                                                        <option value="F">Femme</option>
-                                                        <option value="X">Autre</option>
-                                                        <option value="T">Tout le monde</option>
+                                                    <label for="orientation" class="labels h2">Votre orientation</label>
+                                                    <select id="orientation" class="select form-control font-family" name="orientation">
+                                                        <option value="H" {%if data[5] =="H" %}selected{% endif %}>Homme</option>
+                                                        <option value="F" {%if data[5] =="F" %}selected{% endif %}>Femme</option>
+                                                        <option value="X" {%if data[5] =="X" %}selected{% endif %}>Autre</option>
+                                                        <option value="T" {%if data[5] =="T" %}selected{% endif %}>Tout le monde</option>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="mt-5 text-center">
-                                                <button class="btn btn-primary profile-button" type="button">modifier profil</button>
-                                            </div>
                                         </div>
+                                            <div class="mt-5 text-center">
+                                                <button class="btn btn-success btn-lg" type="submit">modifier profil</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

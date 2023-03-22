@@ -4,25 +4,10 @@ import flask
 import psycopg2
 from flask import Blueprint, request, current_app, render_template, make_response, flash
 
-from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation
+from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation, \
+    check_update_profil, check_name
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
-
-
-@blueprint.route("/recuperer_utilisateur", methods=["GET"])
-def recuperer_utilisateur():
-    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
-    # connect to the PostgreSQL database
-    conn = psycopg2.connect(psycopg2_connection_string)
-    # create a new cursor
-    cur = conn.cursor()
-    # execute the SELECT statement
-    cur.execute('SELECT * FROM users;')
-    # fetch the data
-    result = cur.fetchall()
-    cur.close()
-    conn.close()
-    return render_template("user/show_user.html", result=result)
 
 
 @blueprint.route("/creer_utilisateur", methods=["POST"])
@@ -169,29 +154,55 @@ def profile():
     else:
         return render_template("user/connexion.html")
 
+
 @blueprint.route("/modifier_profil", methods=["POST"])
 def modifier_profil():
     if request.cookies.get('user_id'):
         if request.method == 'POST':
+            user_id = request.cookies.get('user_id')
+            last_name = request.form['last_name']
+            first_name = request.form['first_name']
+            email = request.form['email']
+            sex = request.form['sex']
+            orientation = request.form['orientation']
             bio = request.form['bio']
-            sql = """INSERT INTO users(bio) VALUES(%s);"""
-            try:
-                psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
-                conn = psycopg2.connect(psycopg2_connection_string)
-                cur = conn.cursor()
-                cur.execute(sql, (bio))
-                conn.commit()
-                cur.close()
-            except (Exception, psycopg2.DatabaseError) as error:
-                print(error)
-            finally:
-                if conn is not None:
-                    conn.close()
 
-            flash("Votre profil a bien été modifié !", 'bg-success')
-            return render_template("user/homev2.html")
+            if last_name == "" or first_name == "" or email == "" or sex == "None" or orientation == "None":
+                flash("Vous devez remplir tous les champs.", 'bg-danger')
+                return render_template("/profil")
+
+            else:
+                if check_update_profil(last_name, first_name, email, sex, orientation, bio):
+                    sql = """INSERT INTO users(first_name, last_name, email, sex, orientation, bio) VALUES(%s,%s,%s,%s,%s,%s) WHERE id == %s;"""
+                    try:
+                        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+                        conn = psycopg2.connect(psycopg2_connection_string)
+                        cur = conn.cursor()
+                        cur.execute(sql, (first_name, last_name, email, sex, orientation, bio, user_id))
+                        conn.commit()
+                        cur.close()
+                    except (Exception, psycopg2.DatabaseError) as error:
+                        print(error)
+                    finally:
+                        if conn is not None:
+                            conn.close()
+
+                    flash("Votre profil a bien été modifié !", 'bg-success')
+                    return render_template("profile.html")
+                else:
+                    if not check_name(last_name, first_name):
+                        flash("Il y a une erreur dans votre nom ou prénom. ils ne doivent pas dépasser 50 charachtère", 'bg-danger')
+                        return render_template("profile.html")
+
+                    if not check_email(email):
+                        flash("Il y a une erreur dans votre email.", 'bg-danger')
+                        return render_template("profile.html")
+
+                    else:
+                        flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
+                        return render_template("profile.html")
         else:
             flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
-            return render_template("user/registration.html")
+            return render_template("profile.html")
     else:
-        flask.abort(403)
+        return render_template("user/connexion.html")
