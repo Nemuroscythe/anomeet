@@ -121,7 +121,7 @@ def disconnect():
     if not request.cookies.get('user_id'):
         return render_template("user/connexion.html")
     else:
-        res = make_response(render_template("index.html"))
+        res = make_response(redirect(url_for('index.index')))
         res.set_cookie("user_id", "", expires=0)
         return res
 
@@ -162,23 +162,22 @@ def modifier_profil():
             user_id = request.cookies.get('user_id')
             last_name = request.form['last_name']
             first_name = request.form['first_name']
-            email = request.form['email']
             sex = request.form['sex']
             orientation = request.form['orientation']
             bio = request.form['bio']
 
-            if last_name == "" or first_name == "" or email == "" or sex == "None" or orientation == "None":
+            if last_name == "" or first_name == "" or sex == "None" or orientation == "None":
                 flash("Vous devez remplir tous les champs.", 'bg-danger')
-                return render_template("user.profile")
+                return redirect(url_for('user.profile'))
 
             else:
-                if check_update_profil(last_name, first_name, email, sex, orientation, bio):
+                if check_update_profil(last_name, first_name, sex, orientation, bio):
                     try:
                         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
                         conn = psycopg2.connect(psycopg2_connection_string)
                         cur = conn.cursor()
-                        cur.execute("UPDATE users SET first_name=%s, last_name=%s, email=%s, sex=%s, orientation=%s, "
-                                    "bio=%s WHERE id = %s;", (first_name, last_name, email, sex, orientation, bio,
+                        cur.execute("UPDATE users SET first_name=%s, last_name=%s, sex=%s, orientation=%s, "
+                                    "bio=%s WHERE id = %s;", (first_name, last_name, sex, orientation, bio,
                                                               user_id))
                         conn.commit()
                         cur.close()
@@ -194,11 +193,6 @@ def modifier_profil():
                     if not check_name(last_name, first_name):
                         flash("Il y a une erreur dans votre nom ou prénom. ils ne doivent pas dépasser 50 charachtère", 'bg-danger')
                         return redirect(url_for('user.profile'))
-
-                    if not check_email(email):
-                        flash("Il y a une erreur dans votre email.", 'bg-danger')
-                        return redirect(url_for('user.profile'))
-
                     else:
                         flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
                         return redirect(url_for('user.profile'))
