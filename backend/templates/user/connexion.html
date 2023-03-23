@@ -1,73 +1,65 @@
 <!doctype html>
-<html lang="fr">
-<head>
+<html lang="en" class="h-100">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Connection</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link href="../../static/css/style.css" rel="stylesheet">
-    <link href="../../static/css/home.css" rel="stylesheet">
-</head>
-<body class="font-size font-color">
-<div class="container-fluid ">
-    <header class="row">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 background-color padding-5">
-                <div class="col-xs-6 col-sm-6">
-                    <a href="/"><img class="logo" src="../../static/img/logoAnomeet3.png" alt="logo"
-                                                 width="80px"/></a>
-                    <span class="font-family logo-text">Anomeet</span>
-                </div>
-                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding-5">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/" class="font-color">Accueil</a></li>
-                        <li><a href="signIn" class="font-color">Inscription</a></li>
-                        <li><a href="login" class="font-color">Connexion</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-    <section>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-6 col-lg-4 col-lg-offset-4 text-center subscribe new-password-box">
-                    <h1 class="font-family">Connexion</h1>
+    <title>Page de connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../../static/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+  </head>
 
-                    {% block content %}
-                                    {% with messages = get_flashed_messages(with_categories=true) %}
-                                            {% for category, message in messages %}
-                                                <div class="{{ category }}">
-                                                    {{ message }}
-                                                </div>
-                                            {% endfor %}
-                                    {% endwith %}
-                    {% endblock %}
-
-                    <form action="login_user" method="post">
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="email" class="font-family"> Email:</label>
-                            <input id="email" name="email" type="email" placeholder="Votre Email" class="form-control input-lg"/>
-                        </div>
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <label for="password" class="font-family"> Mot de passe:</label>
-                            <input id="password" name="password" type="password" placeholder="password" class="form-control input-lg"/>
-							<a class="forgot-password " href="forget_password.html">mdp oublié?</a>
-                        </div>
-                        <div class="col-lg-offset-3 col-lg-6 margin-top-30">
-                            <button type="submit" class="btn btn-success btn-lg">Enregistrer</button>
-                        </div>
-                    </form>
+  <body class="d-flex flex-column h-100">
+    <!-- Appeler le header ici -->
+    {% include 'include/header.html' %}
+    <!-- Contenu de la page -->
+    <div class="container py-4">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="card mb-3" style="max-width: 5400px;">
+        <div class="row g-0" style="background-color: black">
+          <div class="col-md-4">
+            <img src="../../static/img/logoAnomeetConnexion.png" class="img-fluid rounded-start" alt="...">
+          </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                {% block content %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% for category, message in messages %}
+                                <div class="{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                    {% endwith %}
+                {% endblock %}
+              <form class="row g-4 text-white" method="post" action="login_user">
+                <div class="col-md-12">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
                 </div>
+                <div class="col-md-12">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary" type="submit">Connexion</button>
+                  <button class="btn btn-secondary" type="reset">Annuler</button>
+                </div>
+                <p><i>En cliquant sur le bouton "Connexion" ci-dessus, vous reconnaissez
+                    avoir lu et compris les conditions et termes d'utilisation de notre
+                    service. Vous acceptez également de vous conformer à ces conditions
+                    pendant toute la durée de votre utilisation de notre site web.
+                    Si vous n'acceptez pas ces conditions, veuillez ne pas vous connecter.</i></p>
+              </form>
             </div>
+          </div>
         </div>
-    </section>
-</div>
-<footer>
-    <p>©2023 Anomeet - Tous droits réservés... ou pas !</p>
-</footer>
-</body>
+      </div>
+    </div>
+    <!-- Appeler le footer ici -->
+    {% include 'include/footer.html' %}
+  </body>
 </html>

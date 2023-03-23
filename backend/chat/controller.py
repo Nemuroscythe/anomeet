@@ -1,7 +1,10 @@
 import uuid
 from random import randrange
 
+import psycopg2
+#import requests
 from flask import Blueprint, request, current_app, Response, render_template, redirect, url_for
+
 
 from .logic import *
 
