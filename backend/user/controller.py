@@ -2,7 +2,7 @@
 # if se trouve dans controller
 import flask
 import psycopg2
-from flask import Blueprint, request, current_app, render_template, make_response, flash
+from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
 
 from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation, \
     check_update_profil, check_name
@@ -169,16 +169,17 @@ def modifier_profil():
 
             if last_name == "" or first_name == "" or email == "" or sex == "None" or orientation == "None":
                 flash("Vous devez remplir tous les champs.", 'bg-danger')
-                return render_template("/profil")
+                return render_template("user.profile")
 
             else:
                 if check_update_profil(last_name, first_name, email, sex, orientation, bio):
-                    sql = """INSERT INTO users(first_name, last_name, email, sex, orientation, bio) VALUES(%s,%s,%s,%s,%s,%s) WHERE id == %s;"""
                     try:
                         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
                         conn = psycopg2.connect(psycopg2_connection_string)
                         cur = conn.cursor()
-                        cur.execute(sql, (first_name, last_name, email, sex, orientation, bio, user_id))
+                        cur.execute("UPDATE users SET first_name=%s, last_name=%s, email=%s, sex=%s, orientation=%s, "
+                                    "bio=%s WHERE id = %s;", (first_name, last_name, email, sex, orientation, bio,
+                                                              user_id))
                         conn.commit()
                         cur.close()
                     except (Exception, psycopg2.DatabaseError) as error:
@@ -188,21 +189,21 @@ def modifier_profil():
                             conn.close()
 
                     flash("Votre profil a bien été modifié !", 'bg-success')
-                    return render_template("profile.html")
+                    return redirect(url_for('user.profile'))
                 else:
                     if not check_name(last_name, first_name):
                         flash("Il y a une erreur dans votre nom ou prénom. ils ne doivent pas dépasser 50 charachtère", 'bg-danger')
-                        return render_template("profile.html")
+                        return redirect(url_for('user.profile'))
 
                     if not check_email(email):
                         flash("Il y a une erreur dans votre email.", 'bg-danger')
-                        return render_template("profile.html")
+                        return redirect(url_for('user.profile'))
 
                     else:
                         flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
-                        return render_template("profile.html")
+                        return redirect(url_for('user.profile'))
         else:
             flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
-            return render_template("profile.html")
+            return redirect(url_for('user.profile'))
     else:
         return render_template("user/connexion.html")
