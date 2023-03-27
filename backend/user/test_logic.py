@@ -150,3 +150,5 @@ def test_check_profil_bio_false():
                      "augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis "
                      "nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; "
                      "Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam.") == False
+
+
