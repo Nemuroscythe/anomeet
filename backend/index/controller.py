@@ -41,7 +41,6 @@ def retrieveMsg():
             with conn.cursor() as cur:
                 cur.execute(sql)
                 data = cur.fetchall()
-                print(data)
     except Exception as e:
         print(e)
         return "Error SQL"
