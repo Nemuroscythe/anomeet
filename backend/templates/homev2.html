@@ -386,6 +386,7 @@
 	gen_time = 500;
 
 	user_id = getCookie("user_id");
+	var first_name = "";
 
 	buffer1 = "";
 	buffer2 = "";
@@ -578,9 +579,9 @@
 	function retrieveMsg(){
 		/* Server must return JSON of type:
 		{
-	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
-	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
-	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+	"Canal1" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
+	"Canal2" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
+	"Canal3" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
 		}
 		*/
 
@@ -633,7 +634,7 @@
 /*-----------------------------------------------------------------------------------------sendMsg*/
 	function sendMsg(){
 		/*Send msg to server:
-		["CanalNumber", "user_id", "msg", "frist_name"]
+		["CanalNumber", "user_id", "msg", "first_name"]
 		*/
 
 		//Need to add verification on msg...
@@ -704,7 +705,26 @@
 		}
 	})
 
+/*-----------------------------------------------------------------------Event listener (recup first_name)*/
+	var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			//good, check resp form server
+			if (this.readyState == 4 && this.status == 200) {
+				// Msg send without error
+				if (this.responseText != "") {
+					console.log("utilisateur trouvé");
+					first_name = JSON.parse(responseText);
 
+				}
+				// Error received form server
+				if (this.responseText == ""){
+					console.error("Erreur Message : code reçu du serveur => " + this.responseText);
+				}
+			}
+			//Ajax not good
+			if (this.readyState == 4 && this.status != 200){
+				console.error("Erreur Message : code HTML => " + this.status);
+			}
 
 /*--------------------------------------------------------AJAX Notes*/
 //-                                        Recuperation des messages : 
