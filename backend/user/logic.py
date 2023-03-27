@@ -63,3 +63,4 @@ def check_update_profil(last_name, first_name, sex, orientation, bio):
         return True
     else:
         return False
+
