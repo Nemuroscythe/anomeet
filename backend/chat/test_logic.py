@@ -1,5 +1,6 @@
 import pytest
 
+from .controller import conversation_down
 from .logic import *
 
 
@@ -29,3 +30,9 @@ def test_verification_msg_space_only():
 
 def test_verification_msg_good_msg():
     assert verification_msg(random_string(512)) == True
+
+def test_coversation_down():
+    assert conversation_down("573a9703-680c-4b88-9c8a-1d5bd32b6230", "573a9703-680c-4b88-9c8a-1d5bd32b6230")
+
+# def test_conversation_up():
+#     asse

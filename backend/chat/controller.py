@@ -91,7 +91,7 @@ def get_user_fullname(user_id):
 
 
 def get_random_user():
-    sql = "select id from Users"
+    sql = "select id from Users where available"
     try:
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         # connect to the PostgreSQL database
@@ -115,3 +115,58 @@ def get_random_user():
     random_number = randrange(0, len(result))
 
     return result[random_number][0]
+
+
+
+@blueprint.route("/conversation_up", methods=["POST"])
+def conversation_up(user_on_id, user_two_id):
+    sql = "update users set available = false where id in (%s,%s)"
+    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+
+    try:
+        print(psycopg2_connection_string)
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (user_on_id, user_two_id,))
+        # commit the changes to the database
+        result = cur.fetchall()
+
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+
+@blueprint.route("/conversation_down", methods=["POST"])
+def conversation_down(user_on_id, user_two_id):
+    sql = "update users set available = true where id in (%s,%s);"
+    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(psycopg2_connection_string)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (user_on_id, user_two_id,))
+        # commit the changes to the database
+        result = cur.fetchall()
+
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+
+
