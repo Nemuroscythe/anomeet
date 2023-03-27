@@ -1,61 +1,38 @@
 <!doctype html>
-<html lang="fr">
-<head>
+<html lang="en" class="h-100">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bienvenue sur Anomeet !</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link href="../static/css/style.css" rel="stylesheet">
-    <link href="../static/css/home.css" rel="stylesheet">
-</head>
-<body class="font-size font-color">
-<div class="header">
-    <header class="row">
-        <div class="col-lg-12 col-xs-12">
-            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 background-color padding-5 hidden-xs">
-                <a href="/"><img class="logo" src="../static/img/logoAnomeet3.png" alt="logo" width="80px"/></a>
-                <span class="font-family logo-text">Anomeet</span>
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 padding-5">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#" class="font-color">Accueil</a></li>
-                    <li><a href="signIn" class="font-color">Inscription</a></li>
-                    <li><a href="login" class="font-color">Connexion</a></li>
-                </ul>
-            </div>
+    <title>Page d'accueil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../../static/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+  </head>
+
+
+  <body class="d-flex flex-column h-100">
+    <!-- Appeler le header ici -->
+    {% include 'include/header.html' %}
+
+    <main class="flex-shrink-0">
+        <section class="jumbotron text-center">
+        <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="text-white">Bienvenue sur Anomeet !</h1>
+        <p class="lead text-white">Anomeet est un site de rencontres pour adultes, où vous ferez la connaissance de personnes par le biais d'un chat écrit.
+        Avec Anomeet, vous ne pourrez pas choisir les nouvelles rencontres que vous ferez : le meeting sera anonyme, d'où Anomeet.
+        Via un algorythme sophistiqué, vous ferez la connaissance de personnes nouvelles, sans même avoir une idée de ses goûts, ses convictions, son métier ou ses loisirs : seule l'orientation sexuelle de chaque participant sera prise en compte de manière assurée, et uniquement dans le cas d'une recherche pour rencontre plus qu'amicale. Pour le reste, faite connaissance !
+        Tel un speed dating, mais sans le côté "speed", vous serez mis en relation avec des inconnus. Il vous sera possible de poursuivre la conversation autant que vous le voulez, tant qu'une des deux personnes n'a pas cliqué sur STOP. Si ce bouton est pressé, la conversation s'arrêtera brusquement, et vous serez tous deux redirigés vers la page de mise en relation.
+        Il est bien entendu possible de mettre en favoris un contact avec qui vous aurez eu une conversation agréable. Il suffira pour cela que chacun des deux participants ait cliqué sur LIKE. Ensuite, vous pourrez demander une conversation avec cette personne à tout moment via une fenêtre dédiée.
+        Nous vous souhaitons de rencontrer les inconnus les plus en phase avec vous. N'oubliez pas : restez vous-même !</p>
         </div>
-    </header>
-</div>
-<div class="container-fluid">
-    <div class="left font-color trunk">
-        <aside class="col-lg-6 col-md-6 hidden-xs hidden-sm">
-            <div class="">
-                <h1>Bienvenue sur Anomeet !</h1>
-                <p>Anomeet est un site de rencontres pour adultes, où vous ferez la connaissance de personnes par le biais d'un chat écrit.</p>
-                <p>Avec Anomeet, vous ne pourrez pas choisir les nouvelles rencontres que vous ferez : le meeting sera anonyme, d'où Anomeet.</p>
-                <p>Via un algorythme sophistiqué, vous ferez la connaissance de personnes nouvelles, sans même avoir une idée de ses goûts, ses convictions, son métier ou ses loisirs : seule l'orientation sexuelle de chaque participant sera prise en compte de manière assurée, et uniquement dans le cas d'une recherche pour rencontre plus qu'amicale. Pour le reste, faites connaissance !</p>
-                <p>Tel un speed dating, mais sans le côté "speed", vous serez mis en relation avec des inconnus. Il vous sera possible de poursuivre la conversation autant que vous le voulez, tant qu'une des deux personnes n'a pas cliqué sur STOP. Si ce bouton est pressé, la conversation s'arrêtera brusquement, et vous serez tous deux redirigés vers la page de mise en relation.</p>
-                <p>Il est bien entendu possible de mettre en favoris un contact avec qui vous aurez eu une conversation agréable. Il suffira pour cela que chacun des deux participants ait cliqué sur LIKE. Ensuite, vous pourrez demander une conversation avec cette personne à tout moment via une fenêtre dédiée.</p>
-                <p>Nous vous souhaitons de rencontrer les inconnus les plus en phase avec vous. N'oubliez pas : restez vous-même !</p>
-            </div>
-        </aside>
-        <section class="col-lg-6 col-md-6 col-sm-12 home">
-            <div class="center font-color">
-                
-            </div>
-        </section>
-        <aside class="col-lg-3 col-md-3 hidden-xs hidden-sm">
-            <div class="right">
-                
-            </div>
-        </aside>
-    </div>
-</div>
-<footer>
-    <p>©2023 Anomeet - Tous droits réservés... ou pas !</p>
-</footer>
-</body>
+      </section>
+    </main>
+
+    <!-- Appeler le footer ici -->
+    {% include 'include/footer.html' %}
+    </body>
 </html>
