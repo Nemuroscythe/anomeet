@@ -9,7 +9,6 @@ from .logic import check_user_signup, check_email, check_password, check_if_same
 
 blueprint = Blueprint('user', __name__, url_prefix='/')
 
-
 @blueprint.route("/creer_utilisateur", methods=["POST"])
 def creer_utilisateur():
     if not request.cookies.get('user_id'):
