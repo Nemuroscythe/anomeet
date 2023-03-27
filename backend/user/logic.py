@@ -57,8 +57,8 @@ def check_user_signup(first_name, last_name, email, password, confirm_password, 
         return False
 
 
-def check_update_profil(last_name, first_name, email, sex, orientation, bio):
-    if check_name(last_name, first_name) and check_email(email) and check_sex(sex) and check_orientation(
+def check_update_profil(last_name, first_name, sex, orientation, bio):
+    if check_name(last_name, first_name) and check_sex(sex) and check_orientation(
             orientation) and check_bio(bio):
         return True
     else:

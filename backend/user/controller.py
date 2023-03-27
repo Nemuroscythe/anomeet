@@ -2,7 +2,7 @@
 # if se trouve dans controller
 import flask
 import psycopg2
-from flask import Blueprint, request, current_app, render_template, make_response, flash, redirect, url_for
+from flask import redirect, url_for, Blueprint, request, current_app, render_template, make_response, flash
 
 from .logic import check_user_signup, check_email, check_password, check_if_same_password, check_sex, check_orientation, \
     check_update_profil, check_name
@@ -166,9 +166,9 @@ def modifier_profil():
             orientation = request.form['orientation']
             bio = request.form['bio']
 
-            if last_name == "" or first_name == "" or sex == "None" or orientation == "None":
+            if last_name == "" or first_name == "" or sex == "None" or orientation == "None" or bio == "":
                 flash("Vous devez remplir tous les champs.", 'bg-danger')
-                return redirect(url_for('user.profile'))
+                return redirect(url_for("user.profile"))
 
             else:
                 if check_update_profil(last_name, first_name, sex, orientation, bio):
@@ -176,9 +176,9 @@ def modifier_profil():
                         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
                         conn = psycopg2.connect(psycopg2_connection_string)
                         cur = conn.cursor()
-                        cur.execute("UPDATE users SET first_name=%s, last_name=%s, sex=%s, orientation=%s, "
-                                    "bio=%s WHERE id = %s;", (first_name, last_name, sex, orientation, bio,
-                                                              user_id))
+                        cur.execute("UPDATE users SET first_name=%s,last_name=%s, sex=%s, orientation=%s, "
+                                    "bio=%s WHERE id = %s", (first_name, last_name, sex, orientation, bio,
+                                                             user_id,))
                         conn.commit()
                         cur.close()
                     except (Exception, psycopg2.DatabaseError) as error:
@@ -188,16 +188,17 @@ def modifier_profil():
                             conn.close()
 
                     flash("Votre profil a bien été modifié !", 'bg-success')
-                    return redirect(url_for('user.profile'))
+                    return redirect(url_for("user.profile"))
                 else:
                     if not check_name(last_name, first_name):
-                        flash("Il y a une erreur dans votre nom ou prénom. ils ne doivent pas dépasser 50 charachtère", 'bg-danger')
-                        return redirect(url_for('user.profile'))
+                        flash("Il y a une erreur dans votre nom ou prénom. ils ne doivent pas dépasser 50 charachtère",
+                              'bg-danger')
+                        return redirect(url_for("user.profile"))
                     else:
                         flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
-                        return redirect(url_for('user.profile'))
+                        return redirect(url_for("user.profile"))
         else:
             flash("Un problème est survenu. Veuillez réessayer.", 'bg-danger')
-            return redirect(url_for('user.profile'))
+            return redirect(url_for("user.profile"))
     else:
         return render_template("user/connexion.html")
