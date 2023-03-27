@@ -29,8 +29,8 @@ def retrieveMsg():
     data = ()
 
     sql = """
-    SELECT id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content, first_name
-    FROM "channelsMessage"
+    SELECT "channelsMessage".id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content, first_name
+    FROM "channelsMessage" JOIN users ON "channelsMessage".author = users.id
     WHERE date >= NOW() - INTERVAL '24 HOURS' 
     ORDER BY date ASC;
     """
@@ -41,6 +41,7 @@ def retrieveMsg():
             with conn.cursor() as cur:
                 cur.execute(sql)
                 data = cur.fetchall()
+                print(data)
     except Exception as e:
         print(e)
         return "Error SQL"
@@ -88,7 +89,7 @@ def sendMsg():
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         with psycopg2.connect(psycopg2_connection_string) as conn:
             with conn.cursor() as cur:
-                cur.execute('INSERT INTO "channelsMessage" (channel, author, content, prenom) VALUES (%s, %s, %s, %s)', (data[0], data[1], data[2], data[3]))
+                cur.execute('INSERT INTO "channelsMessage" (channel, author, content) VALUES (%s, %s, %s)', (data[0], data[1], data[2]))
     except Exception as e:
         print(e)
         return "-2"
@@ -97,18 +98,21 @@ def sendMsg():
 # ------------------------------------------------------------Retrieve user Name
 @blueprint.route("/RetrieveUserName", methods=["POST"])
 def retrieveUserName():
-    name = ""
+    #name = ""
     try:
         data = json.loads(request.data)
-    except:
+    except Exception as e:
+        print("Error parsing data")
+        print(e)
         return ""
 
     try:
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         with psycopg2.connect(psycopg2_connection_string) as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT prenom FROM first_name WHERE id = %s", (data,))
+                cur.execute("SELECT first_name FROM users WHERE id = %s", (data,))
                 name = cur.fetchone()
+
     except Exception as e:
         print(e)
         return ""

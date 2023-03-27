@@ -705,26 +705,29 @@
 		}
 	})
 
-/*-----------------------------------------------------------------------Event listener (recup first_name)*/
+/*-------------------------------------------------------------------------------Recup First_name*/
 	var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
+	xhttp.onreadystatechange = function() {
 			//good, check resp form server
 			if (this.readyState == 4 && this.status == 200) {
 				// Msg send without error
 				if (this.responseText != "") {
 					console.log("utilisateur trouvé");
-					first_name = JSON.parse(responseText);
+					first_name = this.responseText;
 
 				}
 				// Error received form server
 				if (this.responseText == ""){
-					console.error("Erreur Message : code reçu du serveur => " + this.responseText);
+					console.error("Erreur Prénom : code reçu du serveur => " + this.responseText);
 				}
-			}
 			//Ajax not good
 			if (this.readyState == 4 && this.status != 200){
-				console.error("Erreur Message : code HTML => " + this.status);
+				console.error("Erreur Prénom : code HTML => " + this.status);
 			}
+		}
+	}
+	xhttp.open("POST", "RetrieveUserName", false);
+	xhttp.send(JSON.stringify(user_id));
 
 /*--------------------------------------------------------AJAX Notes*/
 //-                                        Recuperation des messages : 
