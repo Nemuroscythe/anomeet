@@ -452,6 +452,7 @@
 	gen_time = 500;
 
 	user_id = getCookie("user_id");
+	var first_name = "";
 
 	buffer1 = "";
 	buffer2 = "";
@@ -553,14 +554,14 @@
 				//Check owner of msg with user_id
 				if (canal1Data[i][1] == user_id){
 					var s = skeleton_blue;
-					s = s.replace("{user-id}", canal1Data[i][1]);
+					s = s.replace("{user-id}", canal1Data[i][4]);
 					s = s.replace("{date}", canal1Data[i][2]);
 					s = s.replace("{msg}", canal1Data[i][3]);
 					id_msg_buffer.push(canal1Data[i][0])
 					buffer1 = buffer1 + s;
 				} else {
 					var s = skeleton_white;
-					s = s.replace("{user-id}", canal1Data[i][1]);
+					s = s.replace("{user-id}", canal1Data[i][4]);
 					s = s.replace("{date}", canal1Data[i][2]);
 					s = s.replace("{msg}", canal1Data[i][3]);
 					id_msg_buffer.push(canal1Data[i][0])
@@ -585,14 +586,14 @@
 				//Check owner of msg with user_id
 				if (canal2Data[i][1] == user_id){
 					var s = skeleton_blue;
-					s = s.replace("{user-id}", canal2Data[i][1]);
+					s = s.replace("{user-id}", canal2Data[i][4]);
 					s = s.replace("{date}", canal2Data[i][2]);
 					s = s.replace("{msg}", canal2Data[i][3]);
 					id_msg_buffer.push(canal2Data[i][0])
 					buffer2 = buffer2 + s;
 				} else {
 					var s = skeleton_white;
-					s = s.replace("{user-id}", canal2Data[i][1]);
+					s = s.replace("{user-id}", canal2Data[i][4]);
 					s = s.replace("{date}", canal2Data[i][2]);
 					s = s.replace("{msg}", canal2Data[i][3]);
 					id_msg_buffer.push(canal2Data[i][0])
@@ -617,14 +618,14 @@
 				//Check owner of msg with user_id
 				if (canal3Data[i][1] == user_id){
 					var s = skeleton_blue;
-					s = s.replace("{user-id}", canal3Data[i][1]);
+					s = s.replace("{user-id}", canal3Data[i][4]);
 					s = s.replace("{date}", canal3Data[i][2]);
 					s = s.replace("{msg}", canal3Data[i][3]);
 					id_msg_buffer.push(canal3Data[i][0])
 					buffer3 = buffer3 + s;
 				} else {
 					var s = skeleton_white;
-					s = s.replace("{user-id}", canal3Data[i][1]);
+					s = s.replace("{user-id}", canal3Data[i][4]);
 					s = s.replace("{date}", canal3Data[i][2]);
 					s = s.replace("{msg}", canal3Data[i][3]);
 					id_msg_buffer.push(canal3Data[i][0])
@@ -644,9 +645,9 @@
 	function retrieveMsg(){
 		/* Server must return JSON of type:
 		{
-	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
-	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
-	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+	"Canal1" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
+	"Canal2" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
+	"Canal3" : [["Msg_id", "user_id", "date", "message", "first_name"], [...]],
 		}
 		*/
 
@@ -699,7 +700,7 @@
 /*-----------------------------------------------------------------------------------------sendMsg*/
 	function sendMsg(){
 		/*Send msg to server:
-		["CanalNumber", "user_id", "msg"]
+		["CanalNumber", "user_id", "msg", "first_name"]
 		*/
 
 		//Need to add verification on msg...
@@ -716,9 +717,18 @@
 			document.getElementById("inputMsg").style.borderColor = "1px solid red";
 			return;
 		}
+		/*
 		//Verification user_id
 		if (user_id == ""){
 			console.error("Erreur Message : user_id non trouvé...");
+			document.getElementById("inputMsg").style.borderColor = "1px solid red";
+			return;
+		}
+		*/
+
+		// Verification prenom
+		if (first_name == ""){
+			console.error("Erreur Message : Prénom vide...");
 			document.getElementById("inputMsg").style.borderColor = "1px solid red";
 			return;
 		}
@@ -761,7 +771,29 @@
 		}
 	})
 
+/*-------------------------------------------------------------------------------Recup First_name*/
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+			//good, check resp form server
+			if (this.readyState == 4 && this.status == 200) {
+				// Msg send without error
+				if (this.responseText != "") {
+					console.log("utilisateur trouvé");
+					first_name = this.responseText;
 
+				}
+				// Error received form server
+				if (this.responseText == ""){
+					console.error("Erreur Prénom : code reçu du serveur => " + this.responseText);
+				}
+			//Ajax not good
+			if (this.readyState == 4 && this.status != 200){
+				console.error("Erreur Prénom : code HTML => " + this.status);
+			}
+		}
+	}
+	xhttp.open("POST", "RetrieveUserName", false);
+	xhttp.send(JSON.stringify(user_id));
 
 /*--------------------------------------------------------AJAX Notes*/
 //-                                        Recuperation des messages :
@@ -769,9 +801,9 @@
 //-                                                    -methode : POST
 //-                                               -retour du serveur :
 //-         {
-//- 	"Canal1" : [["Msg_id", "user_id", "date", "message"], [...]],
-//- 	"Canal2" : [["Msg_id", "user_id", "date", "message"], [...]],
-//- 	"Canal3" : [["Msg_id", "user_id", "date", "message"], [...]],
+//- 	"Canal1" : [["Msg_id", "date", "message", "first_name"], [...]],
+//- 	"Canal2" : [["Msg_id", "date", "message", "first_name"], [...]],
+//- 	"Canal3" : [["Msg_id", "date", "message", "first_name"], [...]],
 //- 		}
 //-
 //-                                                 Envoi de message :

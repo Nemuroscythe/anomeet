@@ -31,8 +31,8 @@ def retrieveMsg():
     data = ()
 
     sql = """
-    SELECT id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content 
-    FROM "channelsMessage"
+    SELECT "channelsMessage".id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content, first_name
+    FROM "channelsMessage" JOIN users ON "channelsMessage".author = users.id
     WHERE date >= NOW() - INTERVAL '24 HOURS' 
     ORDER BY date ASC;
     """
@@ -56,13 +56,13 @@ def retrieveMsg():
         for item in data:
             s = []
             if item[3] == 1:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal1.append(s)
             elif item[3] == 2:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal2.append(s)
             elif item[3] == 3:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal3.append(s)
     except Exception as e:
         print(e)
@@ -96,4 +96,34 @@ def sendMsg():
         return "-2"
 
     return "0"
+
+
+# ------------------------------------------------------------Retrieve user Name
+@blueprint.route("/RetrieveUserName", methods=["POST"])
+def retrieveUserName():
+    #name = ""
+    try:
+        data = json.loads(request.data)
+    except Exception as e:
+        print("Error parsing data")
+        print(e)
+        return ""
+
+    try:
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        with psycopg2.connect(psycopg2_connection_string) as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT first_name FROM users WHERE id = %s", (data,))
+                name = cur.fetchone()
+
+    except Exception as e:
+        print(e)
+        return ""
+
+    try:
+        return name[0]
+    except Exception as e:
+        print(e)
+        return ""
 # ==============================================================================
+
