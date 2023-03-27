@@ -7,9 +7,7 @@ blueprint = Blueprint('index', __name__, url_prefix='/')
 
 @blueprint.route("/")
 def index():
-    if request.cookies.get('user_id'):
-        return render_template("homev2.html")
-    else:
+    if not request.cookies.get('user_id'):
         # Connexion à la base de données Alwaysdata
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
         with psycopg2.connect(psycopg2_connection_string) as conn:
@@ -21,6 +19,8 @@ def index():
         # pour voir comment les données sont organisées sur la table sql
         # ici je sais qu'il me faut data[0]
         return render_template("index.html")
+    else:
+        return render_template("homev2.html")
 
 
 
