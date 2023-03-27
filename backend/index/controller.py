@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Blueprint, current_app, render_template, request, redirect, url_for
+from flask import Blueprint, current_app, render_template, request
 import json
 
 blueprint = Blueprint('index', __name__, url_prefix='/')
@@ -8,7 +8,7 @@ blueprint = Blueprint('index', __name__, url_prefix='/')
 @blueprint.route("/")
 def index():
     if request.cookies.get('user_id'):
-        return redirect(url_for("user.login"))
+        return render_template("homev2.html")
     else:
         # Connexion à la base de données Alwaysdata
         psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
