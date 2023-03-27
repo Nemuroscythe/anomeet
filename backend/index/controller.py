@@ -29,7 +29,7 @@ def retrieveMsg():
     data = ()
 
     sql = """
-    SELECT id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content 
+    SELECT id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content, first_name
     FROM "channelsMessage"
     WHERE date >= NOW() - INTERVAL '24 HOURS' 
     ORDER BY date ASC;
@@ -54,13 +54,13 @@ def retrieveMsg():
         for item in data:
             s = []
             if item[3] == 1:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal1.append(s)
             elif item[3] == 2:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal2.append(s)
             elif item[3] == 3:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal3.append(s)
     except Exception as e:
         print(e)
