@@ -93,6 +93,7 @@ margin:0;
 
 .font-family {
     font-family: 'Beau Rivage', cursive;
+    font-size: 1.2em;
 }
 
 .logo {
@@ -116,14 +117,6 @@ h1 {
     font-weight: bold;
     font-size: 3em;
     letter-spacing: 1rem;
-}
-
-footer {
-    background-color: rgba(41, 41, 41, 1.00);
-
-    font-weight: bold;
-    letter-spacing: 1rem;
-    font-size: 1.5em;
 }
 
 .test {
@@ -180,6 +173,7 @@ footer {
     margin-bottom: 100px;
 }
 
+
 .background-color {
     background-color: rgba(41, 41, 41, 1.00);
 }
@@ -225,14 +219,4 @@ label {
 .trunk
 {
     padding-top: 11em;
-}
-
-footer
-{
-    position: fixed center;
-    bottom: 0px;
-    z-index: 6;
-    font-size: 70%;
-    width: 45%;
-    margin: 0 auto;
 }

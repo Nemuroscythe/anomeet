@@ -7,18 +7,20 @@ blueprint = Blueprint('index', __name__, url_prefix='/')
 
 @blueprint.route("/")
 def index():
-    # Connexion à la base de données Alwaysdata
-    psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
-    with psycopg2.connect(psycopg2_connection_string) as conn:
-        with conn.cursor() as cur:
-            cur.execute('SELECT * FROM "public"."hello";')
-            data = cur.fetchone()
-    # À partir d'ici data = une list contenant les infos reçues du serveur
-    # idéalement il faut faire un print de data --> print(data)
-    # pour voir comment les données sont organisées sur la table sql
-    # ici je sais qu'il me faut data[0]
-    return render_template("index.html")
-
+    if request.cookies.get('user_id'):
+        return render_template("homev2.html")
+    else:
+        # Connexion à la base de données Alwaysdata
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        with psycopg2.connect(psycopg2_connection_string) as conn:
+            with conn.cursor() as cur:
+                cur.execute('SELECT * FROM "public"."hello";')
+                data = cur.fetchone()
+        # À partir d'ici data = une list contenant les infos reçues du serveur
+        # idéalement il faut faire un print de data --> print(data)
+        # pour voir comment les données sont organisées sur la table sql
+        # ici je sais qu'il me faut data[0]
+        return render_template("index.html")
 
 
 # ==========================================================================AM16
@@ -29,8 +31,8 @@ def retrieveMsg():
     data = ()
 
     sql = """
-    SELECT id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content 
-    FROM "channelsMessage"
+    SELECT "channelsMessage".id, author, to_char(date, 'DD-MM-YYYY HH24:MI:SS'), channel, content, first_name
+    FROM "channelsMessage" JOIN users ON "channelsMessage".author = users.id
     WHERE date >= NOW() - INTERVAL '24 HOURS' 
     ORDER BY date ASC;
     """
@@ -54,13 +56,13 @@ def retrieveMsg():
         for item in data:
             s = []
             if item[3] == 1:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal1.append(s)
             elif item[3] == 2:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal2.append(s)
             elif item[3] == 3:
-                s = [item[0], item[1], item[2], item[4]]
+                s = [item[0], item[1], item[2], item[4], item[5]]
                 canal3.append(s)
     except Exception as e:
         print(e)
@@ -94,4 +96,34 @@ def sendMsg():
         return "-2"
 
     return "0"
+
+
+# ------------------------------------------------------------Retrieve user Name
+@blueprint.route("/RetrieveUserName", methods=["POST"])
+def retrieveUserName():
+    #name = ""
+    try:
+        data = json.loads(request.data)
+    except Exception as e:
+        print("Error parsing data")
+        print(e)
+        return ""
+
+    try:
+        psycopg2_connection_string = current_app.config.get("PSYCOPG2_CONNECTION_STRING")
+        with psycopg2.connect(psycopg2_connection_string) as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT first_name FROM users WHERE id = %s", (data,))
+                name = cur.fetchone()
+
+    except Exception as e:
+        print(e)
+        return ""
+
+    try:
+        return name[0]
+    except Exception as e:
+        print(e)
+        return ""
 # ==============================================================================
+
