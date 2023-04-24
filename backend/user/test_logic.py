@@ -29,6 +29,7 @@ def test_is_same_password_is_empty_password1():
     assert check_if_same_password("", "efe") == False
 
 
+
 def test_is_same_password_is_empty_password2():
     assert check_if_same_password("efe", "") == False
 
